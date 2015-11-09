@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="90af02bc21ef450e96a07088dd846d2c" Name="Diagram1">
+        <EntityTypeShape EntityType="zenergyModel.accessory" Width="1.5" PointX="3.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.activity" Width="1.5" PointX="9.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.admin" Width="1.5" PointX="7.5" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.CartContent" Width="1.5" PointX="10.5" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.category" Width="1.5" PointX="6" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.contributor" Width="1.5" PointX="7.5" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.event" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.manager" Width="1.5" PointX="7.5" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.member" Width="1.5" PointX="7.5" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.notification" Width="1.5" PointX="7.5" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.ponctualEvent" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.product" Width="1.5" PointX="8.25" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.purchase" Width="1.5" PointX="7.5" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.purchaseContent" Width="1.5" PointX="9.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.regularEvent" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.room" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.roomContent" Width="1.5" PointX="6" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="zenergyModel.user" Width="1.5" PointX="5.25" PointY="21.625" IsExpanded="true" />
+        <AssociationConnector Association="zenergyModel.fk_accesRAcces" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_ActivEven" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_ActivManag" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_UserAdmin" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_ProdCartC" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_UserCartC" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_CatProd" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_UserContrib" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_EvtPonctEv" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_EvtRegEv" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_RoomEvent" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_UserManag" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_UserMember" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_UNotif" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_ProdPurchCont" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_Purchase" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_UPurch" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.fk_RoomRAcces" ManuallyRouted="false" />
+        <AssociationConnector Association="zenergyModel.eventRegistration" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

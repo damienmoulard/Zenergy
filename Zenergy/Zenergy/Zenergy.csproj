@@ -52,6 +52,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -171,6 +172,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ApiControllers\usersController.cs" />
+    <Compile Include="Models\accessory.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\activity.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\admin.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -205,19 +216,78 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Models\CartContent.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\category.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\contributor.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Models\event.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\manager.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\member.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\notification.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ponctualEvent.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\product.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Models\purchase.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\purchaseContent.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\regularEvent.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="Models\room.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\roomContent.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Models\user.cs">
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ZenergyModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ZenergyModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ZenergyModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ZenergyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ZenergyModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ZenergyModel.edmx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -285,6 +355,16 @@
     <Content Include="Scripts\Lib\angular-cookies.min.js.map" />
     <Content Include="Scripts\Lib\angular-aria.min.js.map" />
     <Content Include="Scripts\Lib\angular-animate.min.js.map" />
+    <Content Include="Models\ZenergyModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ZenergyModel.edmx</DependentUpon>
+      <LastGenOutput>ZenergyModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ZenergyModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ZenergyModel.edmx</DependentUpon>
+      <LastGenOutput>ZenergyModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\Lib\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1057,6 +1137,13 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\Lib\version.json" />
+    <EntityDeploy Include="Models\ZenergyModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ZenergyModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ZenergyModel.edmx.diagram">
+      <DependentUpon>ZenergyModel.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1068,6 +1155,9 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\Lib\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

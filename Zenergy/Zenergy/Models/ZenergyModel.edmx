@@ -1,0 +1,1245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="zenergyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="accessory">
+          <Key>
+            <PropertyRef Name="accessoryId" />
+          </Key>
+          <Property Name="accessoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accessoryName" Type="varchar" MaxLength="30" />
+          <Property Name="accessoryTotalQuantity" Type="int" />
+        </EntityType>
+        <EntityType Name="activity">
+          <Key>
+            <PropertyRef Name="activityId" />
+          </Key>
+          <Property Name="activityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="activityName" Type="varchar" MaxLength="30" />
+          <Property Name="activityShortDescription" Type="varchar" MaxLength="30" />
+          <Property Name="activityLongDescription" Type="varchar" MaxLength="100" />
+          <Property Name="managerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CartContent">
+          <Key>
+            <PropertyRef Name="productId" />
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="productId" Type="int" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="productQuantity" Type="int" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="categoryId" />
+          </Key>
+          <Property Name="categoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryName" Type="varchar" MaxLength="50" />
+          <Property Name="categoryDescr" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="contributor">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="event">
+          <Key>
+            <PropertyRef Name="eventId" />
+          </Key>
+          <Property Name="eventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roomId" Type="int" Nullable="false" />
+          <Property Name="activityId" Type="int" Nullable="false" />
+          <Property Name="eventName" Type="varchar" MaxLength="30" />
+          <Property Name="eventPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="eventDurationHours" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="eventMaxPeople" Type="int" />
+          <Property Name="eventDescription" Type="varchar" MaxLength="300" />
+          <Property Name="timeBegin" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="eventRegistration">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="eventId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="eventId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="manager">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="member">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="dateMembership" Type="datetime" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="notificationId" />
+          </Key>
+          <Property Name="notificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="message" Type="varchar" MaxLength="100" />
+          <Property Name="userId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ponctualEvent">
+          <Key>
+            <PropertyRef Name="eventId" />
+          </Key>
+          <Property Name="eventId" Type="int" Nullable="false" />
+          <Property Name="eventDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="productId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryId" Type="int" Nullable="false" />
+          <Property Name="productName" Type="varchar" MaxLength="50" />
+          <Property Name="productDescr" Type="varchar" MaxLength="100" />
+          <Property Name="productPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="availableQty" Type="int" />
+          <Property Name="memberReduction" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="purchase">
+          <Key>
+            <PropertyRef Name="purchaseId" />
+          </Key>
+          <Property Name="purchaseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="purchaseDate" Type="datetime" />
+          <Property Name="userId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="purchaseContent">
+          <Key>
+            <PropertyRef Name="productId" />
+            <PropertyRef Name="purchaseId" />
+          </Key>
+          <Property Name="productId" Type="int" Nullable="false" />
+          <Property Name="purchaseId" Type="int" Nullable="false" />
+          <Property Name="productQuantity" Type="int" />
+        </EntityType>
+        <EntityType Name="regularEvent">
+          <Key>
+            <PropertyRef Name="eventId" />
+          </Key>
+          <Property Name="eventId" Type="int" Nullable="false" />
+          <Property Name="dateEnd" Type="datetime" />
+          <Property Name="dateDay" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="room">
+          <Key>
+            <PropertyRef Name="roomId" />
+          </Key>
+          <Property Name="roomId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roomName" Type="varchar" MaxLength="30" />
+          <Property Name="roomSuperficy" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="maxCapacity" Type="int" />
+        </EntityType>
+        <EntityType Name="roomContent">
+          <Key>
+            <PropertyRef Name="roomId" />
+            <PropertyRef Name="accessoryId" />
+          </Key>
+          <Property Name="roomId" Type="int" Nullable="false" />
+          <Property Name="accessoryId" Type="int" Nullable="false" />
+          <Property Name="accessoryQuantityInRoom" Type="int" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="adr1" Type="varchar" MaxLength="50" />
+          <Property Name="adr2" Type="varchar" MaxLength="50" />
+          <Property Name="pc" Type="varchar" MaxLength="20" />
+          <Property Name="town" Type="varchar" MaxLength="30" />
+          <Property Name="mail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="fk_accesRAcces">
+          <End Role="accessory" Type="Self.accessory" Multiplicity="1" />
+          <End Role="roomContent" Type="Self.roomContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accessory">
+              <PropertyRef Name="accessoryId" />
+            </Principal>
+            <Dependent Role="roomContent">
+              <PropertyRef Name="accessoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ActivEven">
+          <End Role="activity" Type="Self.activity" Multiplicity="1" />
+          <End Role="event" Type="Self.event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="activity">
+              <PropertyRef Name="activityId" />
+            </Principal>
+            <Dependent Role="event">
+              <PropertyRef Name="activityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ActivManag">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="activity" Type="Self.activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="activity">
+              <PropertyRef Name="managerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CatProd">
+          <End Role="category" Type="Self.category" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EvenEvenReg">
+          <End Role="event" Type="Self.event" Multiplicity="1" />
+          <End Role="eventRegistration" Type="Self.eventRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="event">
+              <PropertyRef Name="eventId" />
+            </Principal>
+            <Dependent Role="eventRegistration">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EvtPonctEv">
+          <End Role="event" Type="Self.event" Multiplicity="1" />
+          <End Role="ponctualEvent" Type="Self.ponctualEvent" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="event">
+              <PropertyRef Name="eventId" />
+            </Principal>
+            <Dependent Role="ponctualEvent">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EvtRegEv">
+          <End Role="event" Type="Self.event" Multiplicity="1" />
+          <End Role="regularEvent" Type="Self.regularEvent" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="event">
+              <PropertyRef Name="eventId" />
+            </Principal>
+            <Dependent Role="regularEvent">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ProdCartC">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="CartContent" Type="Self.CartContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="CartContent">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ProdPurchCont">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="purchaseContent" Type="Self.purchaseContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="purchaseContent">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Purchase">
+          <End Role="purchase" Type="Self.purchase" Multiplicity="1" />
+          <End Role="purchaseContent" Type="Self.purchaseContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="purchase">
+              <PropertyRef Name="purchaseId" />
+            </Principal>
+            <Dependent Role="purchaseContent">
+              <PropertyRef Name="purchaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RoomEvent">
+          <End Role="room" Type="Self.room" Multiplicity="1" />
+          <End Role="event" Type="Self.event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="room">
+              <PropertyRef Name="roomId" />
+            </Principal>
+            <Dependent Role="event">
+              <PropertyRef Name="roomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RoomRAcces">
+          <End Role="room" Type="Self.room" Multiplicity="1" />
+          <End Role="roomContent" Type="Self.roomContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="room">
+              <PropertyRef Name="roomId" />
+            </Principal>
+            <Dependent Role="roomContent">
+              <PropertyRef Name="roomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UNotif">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="notification" Type="Self.notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="notification">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UPurch">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="purchase" Type="Self.purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="purchase">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserAdmin">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="admin" Type="Self.admin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="admin">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserCartC">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="CartContent" Type="Self.CartContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="CartContent">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserContrib">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="contributor" Type="Self.contributor" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="contributor">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserManag">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="manager" Type="Self.manager" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="manager">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserMember">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="member" Type="Self.member" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="member">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UsEvenReg">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="eventRegistration" Type="Self.eventRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="eventRegistration">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="zenergyModelStoreContainer">
+          <EntitySet Name="accessory" EntityType="Self.accessory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="activity" EntityType="Self.activity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CartContent" EntityType="Self.CartContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contributor" EntityType="Self.contributor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="event" EntityType="Self.event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="eventRegistration" EntityType="Self.eventRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="manager" EntityType="Self.manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="member" EntityType="Self.member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="notification" EntityType="Self.notification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ponctualEvent" EntityType="Self.ponctualEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="purchase" EntityType="Self.purchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="purchaseContent" EntityType="Self.purchaseContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="regularEvent" EntityType="Self.regularEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="room" EntityType="Self.room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roomContent" EntityType="Self.roomContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_accesRAcces" Association="Self.fk_accesRAcces">
+            <End Role="accessory" EntitySet="accessory" />
+            <End Role="roomContent" EntitySet="roomContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ActivEven" Association="Self.fk_ActivEven">
+            <End Role="activity" EntitySet="activity" />
+            <End Role="event" EntitySet="event" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ActivManag" Association="Self.fk_ActivManag">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="activity" EntitySet="activity" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CatProd" Association="Self.fk_CatProd">
+            <End Role="category" EntitySet="category" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EvenEvenReg" Association="Self.fk_EvenEvenReg">
+            <End Role="event" EntitySet="event" />
+            <End Role="eventRegistration" EntitySet="eventRegistration" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EvtPonctEv" Association="Self.fk_EvtPonctEv">
+            <End Role="event" EntitySet="event" />
+            <End Role="ponctualEvent" EntitySet="ponctualEvent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EvtRegEv" Association="Self.fk_EvtRegEv">
+            <End Role="event" EntitySet="event" />
+            <End Role="regularEvent" EntitySet="regularEvent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ProdCartC" Association="Self.fk_ProdCartC">
+            <End Role="product" EntitySet="product" />
+            <End Role="CartContent" EntitySet="CartContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ProdPurchCont" Association="Self.fk_ProdPurchCont">
+            <End Role="product" EntitySet="product" />
+            <End Role="purchaseContent" EntitySet="purchaseContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Purchase" Association="Self.fk_Purchase">
+            <End Role="purchase" EntitySet="purchase" />
+            <End Role="purchaseContent" EntitySet="purchaseContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoomEvent" Association="Self.fk_RoomEvent">
+            <End Role="room" EntitySet="room" />
+            <End Role="event" EntitySet="event" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoomRAcces" Association="Self.fk_RoomRAcces">
+            <End Role="room" EntitySet="room" />
+            <End Role="roomContent" EntitySet="roomContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UNotif" Association="Self.fk_UNotif">
+            <End Role="user" EntitySet="user" />
+            <End Role="notification" EntitySet="notification" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UPurch" Association="Self.fk_UPurch">
+            <End Role="user" EntitySet="user" />
+            <End Role="purchase" EntitySet="purchase" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserAdmin" Association="Self.fk_UserAdmin">
+            <End Role="user" EntitySet="user" />
+            <End Role="admin" EntitySet="admin" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserCartC" Association="Self.fk_UserCartC">
+            <End Role="user" EntitySet="user" />
+            <End Role="CartContent" EntitySet="CartContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserContrib" Association="Self.fk_UserContrib">
+            <End Role="user" EntitySet="user" />
+            <End Role="contributor" EntitySet="contributor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserManag" Association="Self.fk_UserManag">
+            <End Role="user" EntitySet="user" />
+            <End Role="manager" EntitySet="manager" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserMember" Association="Self.fk_UserMember">
+            <End Role="user" EntitySet="user" />
+            <End Role="member" EntitySet="member" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UsEvenReg" Association="Self.fk_UsEvenReg">
+            <End Role="user" EntitySet="user" />
+            <End Role="eventRegistration" EntitySet="eventRegistration" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="zenergyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="accessory">
+          <Key>
+            <PropertyRef Name="accessoryId" />
+          </Key>
+          <Property Name="accessoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accessoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="accessoryTotalQuantity" Type="Int32" />
+          <NavigationProperty Name="roomContent" Relationship="Self.fk_accesRAcces" FromRole="accessory" ToRole="roomContent" />
+        </EntityType>
+        <EntityType Name="activity">
+          <Key>
+            <PropertyRef Name="activityId" />
+          </Key>
+          <Property Name="activityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="activityName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="activityShortDescription" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="activityLongDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="managerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="event" Relationship="Self.fk_ActivEven" FromRole="activity" ToRole="event" />
+          <NavigationProperty Name="manager" Relationship="Self.fk_ActivManag" FromRole="activity" ToRole="manager" />
+        </EntityType>
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.fk_UserAdmin" FromRole="admin" ToRole="user" />
+        </EntityType>
+        <EntityType Name="CartContent">
+          <Key>
+            <PropertyRef Name="productId" />
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="productId" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="productQuantity" Type="Int32" />
+          <NavigationProperty Name="product" Relationship="Self.fk_ProdCartC" FromRole="CartContent" ToRole="product" />
+          <NavigationProperty Name="user" Relationship="Self.fk_UserCartC" FromRole="CartContent" ToRole="user" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="categoryId" />
+          </Key>
+          <Property Name="categoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="categoryDescr" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="product" Relationship="Self.fk_CatProd" FromRole="category" ToRole="product" />
+        </EntityType>
+        <EntityType Name="contributor">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.fk_UserContrib" FromRole="contributor" ToRole="user" />
+        </EntityType>
+        <EntityType Name="event">
+          <Key>
+            <PropertyRef Name="eventId" />
+          </Key>
+          <Property Name="eventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roomId" Type="Int32" Nullable="false" />
+          <Property Name="activityId" Type="Int32" Nullable="false" />
+          <Property Name="eventName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="eventPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="eventDurationHours" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="eventMaxPeople" Type="Int32" />
+          <Property Name="eventDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="timeBegin" Type="Time" Precision="7" />
+          <NavigationProperty Name="activity" Relationship="Self.fk_ActivEven" FromRole="event" ToRole="activity" />
+          <NavigationProperty Name="ponctualEvent" Relationship="Self.fk_EvtPonctEv" FromRole="event" ToRole="ponctualEvent" />
+          <NavigationProperty Name="regularEvent" Relationship="Self.fk_EvtRegEv" FromRole="event" ToRole="regularEvent" />
+          <NavigationProperty Name="room" Relationship="Self.fk_RoomEvent" FromRole="event" ToRole="room" />
+          <NavigationProperty Name="user" Relationship="Self.eventRegistration" FromRole="event" ToRole="user" />
+        </EntityType>
+        <EntityType Name="manager">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="activity" Relationship="Self.fk_ActivManag" FromRole="manager" ToRole="activity" />
+          <NavigationProperty Name="user" Relationship="Self.fk_UserManag" FromRole="manager" ToRole="user" />
+        </EntityType>
+        <EntityType Name="member">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="dateMembership" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="user" Relationship="Self.fk_UserMember" FromRole="member" ToRole="user" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="notificationId" />
+          </Key>
+          <Property Name="notificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="message" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.fk_UNotif" FromRole="notification" ToRole="user" />
+        </EntityType>
+        <EntityType Name="ponctualEvent">
+          <Key>
+            <PropertyRef Name="eventId" />
+          </Key>
+          <Property Name="eventId" Type="Int32" Nullable="false" />
+          <Property Name="eventDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="event" Relationship="Self.fk_EvtPonctEv" FromRole="ponctualEvent" ToRole="event" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="productId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryId" Type="Int32" Nullable="false" />
+          <Property Name="productName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="productDescr" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="productPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="availableQty" Type="Int32" />
+          <Property Name="memberReduction" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="CartContent" Relationship="Self.fk_ProdCartC" FromRole="product" ToRole="CartContent" />
+          <NavigationProperty Name="category" Relationship="Self.fk_CatProd" FromRole="product" ToRole="category" />
+          <NavigationProperty Name="purchaseContent" Relationship="Self.fk_ProdPurchCont" FromRole="product" ToRole="purchaseContent" />
+        </EntityType>
+        <EntityType Name="purchase">
+          <Key>
+            <PropertyRef Name="purchaseId" />
+          </Key>
+          <Property Name="purchaseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="purchaseDate" Type="DateTime" Precision="3" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="purchaseContent" Relationship="Self.fk_Purchase" FromRole="purchase" ToRole="purchaseContent" />
+          <NavigationProperty Name="user" Relationship="Self.fk_UPurch" FromRole="purchase" ToRole="user" />
+        </EntityType>
+        <EntityType Name="purchaseContent">
+          <Key>
+            <PropertyRef Name="productId" />
+            <PropertyRef Name="purchaseId" />
+          </Key>
+          <Property Name="productId" Type="Int32" Nullable="false" />
+          <Property Name="purchaseId" Type="Int32" Nullable="false" />
+          <Property Name="productQuantity" Type="Int32" />
+          <NavigationProperty Name="product" Relationship="Self.fk_ProdPurchCont" FromRole="purchaseContent" ToRole="product" />
+          <NavigationProperty Name="purchase" Relationship="Self.fk_Purchase" FromRole="purchaseContent" ToRole="purchase" />
+        </EntityType>
+        <EntityType Name="regularEvent">
+          <Key>
+            <PropertyRef Name="eventId" />
+          </Key>
+          <Property Name="eventId" Type="Int32" Nullable="false" />
+          <Property Name="dateEnd" Type="DateTime" Precision="3" />
+          <Property Name="dateDay" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="event" Relationship="Self.fk_EvtRegEv" FromRole="regularEvent" ToRole="event" />
+        </EntityType>
+        <EntityType Name="room">
+          <Key>
+            <PropertyRef Name="roomId" />
+          </Key>
+          <Property Name="roomId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roomName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="roomSuperficy" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="maxCapacity" Type="Int32" />
+          <NavigationProperty Name="event" Relationship="Self.fk_RoomEvent" FromRole="room" ToRole="event" />
+          <NavigationProperty Name="roomContent" Relationship="Self.fk_RoomRAcces" FromRole="room" ToRole="roomContent" />
+        </EntityType>
+        <EntityType Name="roomContent">
+          <Key>
+            <PropertyRef Name="roomId" />
+            <PropertyRef Name="accessoryId" />
+          </Key>
+          <Property Name="roomId" Type="Int32" Nullable="false" />
+          <Property Name="accessoryId" Type="Int32" Nullable="false" />
+          <Property Name="accessoryQuantityInRoom" Type="Int32" />
+          <NavigationProperty Name="accessory" Relationship="Self.fk_accesRAcces" FromRole="roomContent" ToRole="accessory" />
+          <NavigationProperty Name="room" Relationship="Self.fk_RoomRAcces" FromRole="roomContent" ToRole="room" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="adr1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="adr2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="town" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="admin" Relationship="Self.fk_UserAdmin" FromRole="user" ToRole="admin" />
+          <NavigationProperty Name="CartContent" Relationship="Self.fk_UserCartC" FromRole="user" ToRole="CartContent" />
+          <NavigationProperty Name="contributor" Relationship="Self.fk_UserContrib" FromRole="user" ToRole="contributor" />
+          <NavigationProperty Name="manager" Relationship="Self.fk_UserManag" FromRole="user" ToRole="manager" />
+          <NavigationProperty Name="member" Relationship="Self.fk_UserMember" FromRole="user" ToRole="member" />
+          <NavigationProperty Name="notification" Relationship="Self.fk_UNotif" FromRole="user" ToRole="notification" />
+          <NavigationProperty Name="purchase" Relationship="Self.fk_UPurch" FromRole="user" ToRole="purchase" />
+          <NavigationProperty Name="event" Relationship="Self.eventRegistration" FromRole="user" ToRole="event" />
+        </EntityType>
+        <Association Name="fk_accesRAcces">
+          <End Role="accessory" Type="Self.accessory" Multiplicity="1" />
+          <End Role="roomContent" Type="Self.roomContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accessory">
+              <PropertyRef Name="accessoryId" />
+            </Principal>
+            <Dependent Role="roomContent">
+              <PropertyRef Name="accessoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ActivEven">
+          <End Role="activity" Type="Self.activity" Multiplicity="1" />
+          <End Role="event" Type="Self.event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="activity">
+              <PropertyRef Name="activityId" />
+            </Principal>
+            <Dependent Role="event">
+              <PropertyRef Name="activityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ActivManag">
+          <End Role="manager" Type="Self.manager" Multiplicity="1" />
+          <End Role="activity" Type="Self.activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manager">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="activity">
+              <PropertyRef Name="managerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserAdmin">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="admin" Type="Self.admin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="admin">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ProdCartC">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="CartContent" Type="Self.CartContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="CartContent">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserCartC">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="CartContent" Type="Self.CartContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="CartContent">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CatProd">
+          <End Role="category" Type="Self.category" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserContrib">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="contributor" Type="Self.contributor" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="contributor">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EvtPonctEv">
+          <End Role="event" Type="Self.event" Multiplicity="1" />
+          <End Role="ponctualEvent" Type="Self.ponctualEvent" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="event">
+              <PropertyRef Name="eventId" />
+            </Principal>
+            <Dependent Role="ponctualEvent">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EvtRegEv">
+          <End Role="event" Type="Self.event" Multiplicity="1" />
+          <End Role="regularEvent" Type="Self.regularEvent" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="event">
+              <PropertyRef Name="eventId" />
+            </Principal>
+            <Dependent Role="regularEvent">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RoomEvent">
+          <End Role="room" Type="Self.room" Multiplicity="1" />
+          <End Role="event" Type="Self.event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="room">
+              <PropertyRef Name="roomId" />
+            </Principal>
+            <Dependent Role="event">
+              <PropertyRef Name="roomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserManag">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="manager" Type="Self.manager" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="manager">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserMember">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="member" Type="Self.member" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="member">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UNotif">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="notification" Type="Self.notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="notification">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ProdPurchCont">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="purchaseContent" Type="Self.purchaseContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="purchaseContent">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Purchase">
+          <End Role="purchase" Type="Self.purchase" Multiplicity="1" />
+          <End Role="purchaseContent" Type="Self.purchaseContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="purchase">
+              <PropertyRef Name="purchaseId" />
+            </Principal>
+            <Dependent Role="purchaseContent">
+              <PropertyRef Name="purchaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UPurch">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="purchase" Type="Self.purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="purchase">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RoomRAcces">
+          <End Role="room" Type="Self.room" Multiplicity="1" />
+          <End Role="roomContent" Type="Self.roomContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="room">
+              <PropertyRef Name="roomId" />
+            </Principal>
+            <Dependent Role="roomContent">
+              <PropertyRef Name="roomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="eventRegistration">
+          <End Role="event" Type="Self.event" Multiplicity="*" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ZenergyContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="accessory" EntityType="Self.accessory" />
+          <EntitySet Name="activity" EntityType="Self.activity" />
+          <EntitySet Name="admin" EntityType="Self.admin" />
+          <EntitySet Name="CartContent" EntityType="Self.CartContent" />
+          <EntitySet Name="category" EntityType="Self.category" />
+          <EntitySet Name="contributor" EntityType="Self.contributor" />
+          <EntitySet Name="event" EntityType="Self.event" />
+          <EntitySet Name="manager" EntityType="Self.manager" />
+          <EntitySet Name="member" EntityType="Self.member" />
+          <EntitySet Name="notification" EntityType="Self.notification" />
+          <EntitySet Name="ponctualEvent" EntityType="Self.ponctualEvent" />
+          <EntitySet Name="product" EntityType="Self.product" />
+          <EntitySet Name="purchase" EntityType="Self.purchase" />
+          <EntitySet Name="purchaseContent" EntityType="Self.purchaseContent" />
+          <EntitySet Name="regularEvent" EntityType="Self.regularEvent" />
+          <EntitySet Name="room" EntityType="Self.room" />
+          <EntitySet Name="roomContent" EntityType="Self.roomContent" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <AssociationSet Name="fk_accesRAcces" Association="Self.fk_accesRAcces">
+            <End Role="accessory" EntitySet="accessory" />
+            <End Role="roomContent" EntitySet="roomContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ActivEven" Association="Self.fk_ActivEven">
+            <End Role="activity" EntitySet="activity" />
+            <End Role="event" EntitySet="event" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ActivManag" Association="Self.fk_ActivManag">
+            <End Role="manager" EntitySet="manager" />
+            <End Role="activity" EntitySet="activity" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserAdmin" Association="Self.fk_UserAdmin">
+            <End Role="user" EntitySet="user" />
+            <End Role="admin" EntitySet="admin" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ProdCartC" Association="Self.fk_ProdCartC">
+            <End Role="product" EntitySet="product" />
+            <End Role="CartContent" EntitySet="CartContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserCartC" Association="Self.fk_UserCartC">
+            <End Role="user" EntitySet="user" />
+            <End Role="CartContent" EntitySet="CartContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CatProd" Association="Self.fk_CatProd">
+            <End Role="category" EntitySet="category" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserContrib" Association="Self.fk_UserContrib">
+            <End Role="user" EntitySet="user" />
+            <End Role="contributor" EntitySet="contributor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EvtPonctEv" Association="Self.fk_EvtPonctEv">
+            <End Role="event" EntitySet="event" />
+            <End Role="ponctualEvent" EntitySet="ponctualEvent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EvtRegEv" Association="Self.fk_EvtRegEv">
+            <End Role="event" EntitySet="event" />
+            <End Role="regularEvent" EntitySet="regularEvent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoomEvent" Association="Self.fk_RoomEvent">
+            <End Role="room" EntitySet="room" />
+            <End Role="event" EntitySet="event" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserManag" Association="Self.fk_UserManag">
+            <End Role="user" EntitySet="user" />
+            <End Role="manager" EntitySet="manager" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserMember" Association="Self.fk_UserMember">
+            <End Role="user" EntitySet="user" />
+            <End Role="member" EntitySet="member" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UNotif" Association="Self.fk_UNotif">
+            <End Role="user" EntitySet="user" />
+            <End Role="notification" EntitySet="notification" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ProdPurchCont" Association="Self.fk_ProdPurchCont">
+            <End Role="product" EntitySet="product" />
+            <End Role="purchaseContent" EntitySet="purchaseContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Purchase" Association="Self.fk_Purchase">
+            <End Role="purchase" EntitySet="purchase" />
+            <End Role="purchaseContent" EntitySet="purchaseContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UPurch" Association="Self.fk_UPurch">
+            <End Role="user" EntitySet="user" />
+            <End Role="purchase" EntitySet="purchase" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoomRAcces" Association="Self.fk_RoomRAcces">
+            <End Role="room" EntitySet="room" />
+            <End Role="roomContent" EntitySet="roomContent" />
+          </AssociationSet>
+          <AssociationSet Name="eventRegistration" Association="Self.eventRegistration">
+            <End Role="event" EntitySet="event" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="zenergyModelStoreContainer" CdmEntityContainer="ZenergyContext">
+          <EntitySetMapping Name="accessory">
+            <EntityTypeMapping TypeName="zenergyModel.accessory">
+              <MappingFragment StoreEntitySet="accessory">
+                <ScalarProperty Name="accessoryId" ColumnName="accessoryId" />
+                <ScalarProperty Name="accessoryName" ColumnName="accessoryName" />
+                <ScalarProperty Name="accessoryTotalQuantity" ColumnName="accessoryTotalQuantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="activity">
+            <EntityTypeMapping TypeName="zenergyModel.activity">
+              <MappingFragment StoreEntitySet="activity">
+                <ScalarProperty Name="activityId" ColumnName="activityId" />
+                <ScalarProperty Name="activityName" ColumnName="activityName" />
+                <ScalarProperty Name="activityShortDescription" ColumnName="activityShortDescription" />
+                <ScalarProperty Name="activityLongDescription" ColumnName="activityLongDescription" />
+                <ScalarProperty Name="managerId" ColumnName="managerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="admin">
+            <EntityTypeMapping TypeName="zenergyModel.admin">
+              <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CartContent">
+            <EntityTypeMapping TypeName="zenergyModel.CartContent">
+              <MappingFragment StoreEntitySet="CartContent">
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="productQuantity" ColumnName="productQuantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="category">
+            <EntityTypeMapping TypeName="zenergyModel.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+                <ScalarProperty Name="categoryDescr" ColumnName="categoryDescr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contributor">
+            <EntityTypeMapping TypeName="zenergyModel.contributor">
+              <MappingFragment StoreEntitySet="contributor">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="event">
+            <EntityTypeMapping TypeName="zenergyModel.event">
+              <MappingFragment StoreEntitySet="event">
+                <ScalarProperty Name="eventId" ColumnName="eventId" />
+                <ScalarProperty Name="roomId" ColumnName="roomId" />
+                <ScalarProperty Name="activityId" ColumnName="activityId" />
+                <ScalarProperty Name="eventName" ColumnName="eventName" />
+                <ScalarProperty Name="eventPrice" ColumnName="eventPrice" />
+                <ScalarProperty Name="eventDurationHours" ColumnName="eventDurationHours" />
+                <ScalarProperty Name="eventMaxPeople" ColumnName="eventMaxPeople" />
+                <ScalarProperty Name="eventDescription" ColumnName="eventDescription" />
+                <ScalarProperty Name="timeBegin" ColumnName="timeBegin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="manager">
+            <EntityTypeMapping TypeName="zenergyModel.manager">
+              <MappingFragment StoreEntitySet="manager">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="member">
+            <EntityTypeMapping TypeName="zenergyModel.member">
+              <MappingFragment StoreEntitySet="member">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="dateMembership" ColumnName="dateMembership" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notification">
+            <EntityTypeMapping TypeName="zenergyModel.notification">
+              <MappingFragment StoreEntitySet="notification">
+                <ScalarProperty Name="notificationId" ColumnName="notificationId" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ponctualEvent">
+            <EntityTypeMapping TypeName="zenergyModel.ponctualEvent">
+              <MappingFragment StoreEntitySet="ponctualEvent">
+                <ScalarProperty Name="eventId" ColumnName="eventId" />
+                <ScalarProperty Name="eventDate" ColumnName="eventDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product">
+            <EntityTypeMapping TypeName="zenergyModel.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="productName" ColumnName="productName" />
+                <ScalarProperty Name="productDescr" ColumnName="productDescr" />
+                <ScalarProperty Name="productPrice" ColumnName="productPrice" />
+                <ScalarProperty Name="availableQty" ColumnName="availableQty" />
+                <ScalarProperty Name="memberReduction" ColumnName="memberReduction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="purchase">
+            <EntityTypeMapping TypeName="zenergyModel.purchase">
+              <MappingFragment StoreEntitySet="purchase">
+                <ScalarProperty Name="purchaseId" ColumnName="purchaseId" />
+                <ScalarProperty Name="purchaseDate" ColumnName="purchaseDate" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="purchaseContent">
+            <EntityTypeMapping TypeName="zenergyModel.purchaseContent">
+              <MappingFragment StoreEntitySet="purchaseContent">
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="purchaseId" ColumnName="purchaseId" />
+                <ScalarProperty Name="productQuantity" ColumnName="productQuantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="regularEvent">
+            <EntityTypeMapping TypeName="zenergyModel.regularEvent">
+              <MappingFragment StoreEntitySet="regularEvent">
+                <ScalarProperty Name="eventId" ColumnName="eventId" />
+                <ScalarProperty Name="dateEnd" ColumnName="dateEnd" />
+                <ScalarProperty Name="dateDay" ColumnName="dateDay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="room">
+            <EntityTypeMapping TypeName="zenergyModel.room">
+              <MappingFragment StoreEntitySet="room">
+                <ScalarProperty Name="roomId" ColumnName="roomId" />
+                <ScalarProperty Name="roomName" ColumnName="roomName" />
+                <ScalarProperty Name="roomSuperficy" ColumnName="roomSuperficy" />
+                <ScalarProperty Name="maxCapacity" ColumnName="maxCapacity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roomContent">
+            <EntityTypeMapping TypeName="zenergyModel.roomContent">
+              <MappingFragment StoreEntitySet="roomContent">
+                <ScalarProperty Name="roomId" ColumnName="roomId" />
+                <ScalarProperty Name="accessoryId" ColumnName="accessoryId" />
+                <ScalarProperty Name="accessoryQuantityInRoom" ColumnName="accessoryQuantityInRoom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="zenergyModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="adr1" ColumnName="adr1" />
+                <ScalarProperty Name="adr2" ColumnName="adr2" />
+                <ScalarProperty Name="pc" ColumnName="pc" />
+                <ScalarProperty Name="town" ColumnName="town" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="eventRegistration" TypeName="zenergyModel.eventRegistration" StoreEntitySet="eventRegistration">
+            <EndProperty Name="event">
+              <ScalarProperty Name="eventId" ColumnName="eventId" />
+            </EndProperty>
+            <EndProperty Name="user">
+              <ScalarProperty Name="userId" ColumnName="userId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
