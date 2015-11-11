@@ -11,7 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Zenergy.Models;
 
-namespace Zenergy.Controllers.ApiControllers
+namespace Zenergy.Controllers.APIControllers
 {
     public class usersController : ApiController
     {

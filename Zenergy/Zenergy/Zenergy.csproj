@@ -172,7 +172,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ApiControllers\usersController.cs" />
+    <Compile Include="Controllers\APIControllers\usersController.cs" />
     <Compile Include="Models\accessory.cs">
       <DependentUpon>ZenergyModel.tt</DependentUpon>
     </Compile>
