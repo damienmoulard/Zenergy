@@ -269,6 +269,7 @@
     <Compile Include="Models\roomContent.cs">
       <DependentUpon>ZenergyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\UserServices.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Models\user.cs">
       <DependentUpon>ZenergyModel.tt</DependentUpon>

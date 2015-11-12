@@ -10,12 +10,19 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Zenergy.Models;
+using Zenergy.Services;
 
 namespace Zenergy.Controllers.ApiControllers
 {
     public class usersController : ApiController
     {
         private ZenergyContext db = new ZenergyContext();
+        private UserServices userServices;
+
+        public usersController()
+        {
+            userServices = new UserServices(db);
+        }
 
         // GET: api/users
         public IQueryable<user> Getuser()
@@ -34,6 +41,38 @@ namespace Zenergy.Controllers.ApiControllers
             }
 
             return Ok(user);
+        }
+
+        // GET: api/users/findByRole
+        // Return all the users of a role
+        [Route("api/users/findByRole")]
+        [HttpGet]
+        [ResponseType(typeof(user[]))]
+        public async Task<IHttpActionResult> FindByRole(string role) {
+            user[] users = null;
+
+            if (role == "Administrator")
+            {
+                users = await userServices.getAdmins();
+            }
+            else if (role == "Manager")
+            {
+                users = await userServices.getManagers();
+            }
+            else if (role == "Contributor")
+            {
+                users = await userServices.getManagers();
+            }
+            else if (role == "Member")
+            {
+                users = await userServices.getMembers();
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+            return Ok(users);
         }
 
         // PUT: api/users/5

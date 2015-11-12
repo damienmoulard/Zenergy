@@ -38,13 +38,17 @@ namespace Zenergy
                 TokenEndpointPath = new PathString("/Token"),
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 // Jeu de modes en production AllowInsecureHttp = false
                 AllowInsecureHttp = true
             };
 
             // Activer l'application pour utiliser les jetons du porteur afin d'authentifier les utilisateurs
             app.UseOAuthBearerTokens(OAuthOptions);
+
+            // Token Generation
+            app.UseOAuthAuthorizationServer(OAuthOptions);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
             // Décommenter les lignes suivantes pour activer la connexion avec des fournisseurs de connexion tiers
             //app.UseMicrosoftAccountAuthentication(
