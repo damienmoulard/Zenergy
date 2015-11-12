@@ -6,12 +6,10 @@ using System.Web.Mvc;
 
 namespace Zenergy.Controllers
 {
-    public class HomeController : Controller
+    public class LoginController : Controller
     {
         public ActionResult Index()
         {
-            //ViewBag.Title = "Home Page";
-
             return View();
         }
     }

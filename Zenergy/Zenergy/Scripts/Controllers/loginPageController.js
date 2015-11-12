@@ -1,14 +1,12 @@
-﻿var homePageController = function ($scope,$resource) {
+﻿var loginPageController = function ($scope, $resource) {
 
-    $scope.mail="";
-    $scope.paswword="";
     $scope.empty = "yes";
 
 
-    var Users = $resource('api/users/2');
-    $scope.user = Users.query();
+    var User = $resource('api/users/:id');
+    $scope.user = User.get({id:2});
 
-    $scope.connexion = function(){
+    $scope.connexion = function () {
         if ($scope.mail && $scope.password) {
             // get authentification
             // create token and cookies ?

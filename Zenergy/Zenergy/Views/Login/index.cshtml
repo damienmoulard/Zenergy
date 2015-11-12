@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+<div class="jumbotron" ng-controller="loginPageController">
+    {{user}}
+    <h1>Sign in</h1>
+    <form ng-submit="connexion()">
+        <input type="text" ng-model="user.mail" placeholder="Email"/><br>
+        <input type="password" ng-model="user.password" placeholder="Password"/><br>
+        <input type="submit" id="submit" value="Submit" />
+    </form>
+</div>
