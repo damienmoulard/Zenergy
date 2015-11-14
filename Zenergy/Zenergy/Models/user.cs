@@ -33,7 +33,7 @@ namespace Zenergy.Models
         public string town { get; set; }
         public string mail { get; set; }
         public string phone { get; set; }
-    
+        
         public virtual admin admin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CartContent> CartContent { get; set; }

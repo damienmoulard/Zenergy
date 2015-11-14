@@ -1,2 +1,2 @@
-﻿var zenergyApp = angular.module('zenergyApp', []);
-zenergyApp.controller('homePageController', homePageController);
+﻿var zenergyApp = angular.module('zenergyApp', ['ngResource']);
+

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html ng-app="zenergyApp">
+<html ng-app="zenergyApp" ng-controller="mainController">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
@@ -18,12 +18,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nom de l'application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Zenergy", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Accueil", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                </ul>
+                <ul ng-cloak class="nav navbar-nav navbar-right" ng-show="isConnected">
+                    <li><a href="#" ng-click="logoff()">Log Off</a></li>
+                </ul>
+                <ul ng-cloak  class="nav navbar-nav navbar-right" ng-hide="isConnected">
+                    <li>@Html.ActionLink("Sign in", "Index", "Login", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Create account", "Index", "Register", new { area = "" }, null)</li>
                 </ul>
             </div>
         </div>
@@ -32,7 +39,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Zenergy IG5 - Ana Maria - Lyvia - Antoine - Clément - Damien</p>
         </footer>
     </div>
 
@@ -40,6 +47,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/zenergyApp")
+    @Scripts.Render("~/bundles/angular-resource")
     @RenderSection("scripts", required: false)
 </body>
 </html>

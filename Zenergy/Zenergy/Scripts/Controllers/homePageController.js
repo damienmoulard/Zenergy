@@ -1,5 +1,3 @@
-﻿var homePageController = function ($scope) {
-    $scope.models = {
-        helloAngular: 'Angular ça déchire !!'
-    };
-}
+﻿zenergyApp.controller("homePageController", ["$scope", "tokenService",  function ($scope, tokenService) {
+    $scope.name = tokenService.getUserName();
+}]);

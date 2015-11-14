@@ -10,6 +10,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Zenergy.Models;
+using Zenergy.Services;
 
 namespace Zenergy.Providers
 {
@@ -29,9 +30,11 @@ namespace Zenergy.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
+            //var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
+            var userManager = new UserServices(new ZenergyContext());
 
-            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
+            //ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
+            user user = await userManager.findByMailAndPassword(context.UserName, context.Password);
 
             if (user == null)
             {
@@ -39,15 +42,21 @@ namespace Zenergy.Providers
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
+            /*ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
                OAuthDefaults.AuthenticationType);
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-                CookieAuthenticationDefaults.AuthenticationType);
+                CookieAuthenticationDefaults.AuthenticationType);*/
 
-            AuthenticationProperties properties = CreateProperties(user.UserName);
-            AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
+            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+            identity.AddClaim(new Claim("mail", context.UserName));
+            identity.AddClaim(new Claim("role", "user"));
+            identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+
+            AuthenticationProperties properties = CreateProperties(user.mail);
+            AuthenticationTicket ticket = new AuthenticationTicket(identity, properties);
             context.Validated(ticket);
-            context.Request.Context.Authentication.SignIn(cookiesIdentity);
+            //context.Request.Context.Authentication.SignIn(cookiesIdentity);
+            context.Request.Context.Authentication.SignIn(identity);
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)

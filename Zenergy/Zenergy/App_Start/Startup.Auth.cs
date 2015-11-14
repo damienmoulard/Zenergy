@@ -35,16 +35,20 @@ namespace Zenergy
             PublicClientId = "self";
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
-                TokenEndpointPath = new PathString("/Token"),
+                TokenEndpointPath = new PathString("/api/login"),
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 // Jeu de modes en production AllowInsecureHttp = false
                 AllowInsecureHttp = true
             };
 
             // Activer l'application pour utiliser les jetons du porteur afin d'authentifier les utilisateurs
-            app.UseOAuthBearerTokens(OAuthOptions);
+            //app.UseOAuthAuthorizationServer(OAuthOptions);
+
+            // Token Generation
+            app.UseOAuthAuthorizationServer(OAuthOptions);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
             // Décommenter les lignes suivantes pour activer la connexion avec des fournisseurs de connexion tiers
             //app.UseMicrosoftAccountAuthentication(
@@ -55,9 +59,9 @@ namespace Zenergy
             //    consumerKey: "",
             //    consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //    appId: "",
-            //    appSecret: "");
+            app.UseFacebookAuthentication(
+                appId: "429380533932654",
+                appSecret: "ce6476f6a182519fee61ee17db94556d");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
