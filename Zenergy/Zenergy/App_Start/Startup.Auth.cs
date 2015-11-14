@@ -44,7 +44,7 @@ namespace Zenergy
             };
 
             // Activer l'application pour utiliser les jetons du porteur afin d'authentifier les utilisateurs
-            app.UseOAuthBearerTokens(OAuthOptions);
+            //app.UseOAuthAuthorizationServer(OAuthOptions);
 
             // Token Generation
             app.UseOAuthAuthorizationServer(OAuthOptions);

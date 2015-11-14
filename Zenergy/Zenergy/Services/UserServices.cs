@@ -41,8 +41,16 @@ namespace Zenergy.Services
 
         public async Task<user> findByMailAndPassword(string userMail, string userPass)
         {
-            user user = await db.user.Where(u => u.mail == userMail && u.password == userPass).FirstAsync();
-            return user;
+            try
+            {
+                user user = await db.user.Where(u => u.mail == userMail && u.password == userPass).FirstAsync();
+                return user;
+            }
+            catch (InvalidOperationException e)
+            {
+                return null;
+            }
+
         }
 
     }

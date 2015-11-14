@@ -25,6 +25,7 @@ namespace Zenergy.Controllers.ApiControllers
         }
 
         // GET: api/users
+        [Authorize]
         public IQueryable<user> Getuser()
         {
             return db.user;
