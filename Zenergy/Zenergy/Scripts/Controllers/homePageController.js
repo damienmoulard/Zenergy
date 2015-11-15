@@ -2,11 +2,13 @@
     $scope.name = tokenService.getUserName();
 
     $http({
-        url: 'api/Account/ExternalLogin',
+        url: '/api/Account/ExternalLogins?returnUrl=%2F&generateState=true',
         method: 'GET'
     }).then(function successCallback(response) {
-        console.log(response.data);
-        $scope.users = response.data;
+        angular.forEach(response.data, function (value, key) {
+            console.log(value);
+        });
     }, function errorCallback(response) {
     });
+
 }]);

@@ -2,6 +2,15 @@
 
     $scope.user = { mail: '', password: '' };
     $scope.hasError = false;
+    $http({
+        url: '/api/Account/ExternalLogins?returnUrl=%2F&generateState=true',
+        method: 'GET'
+    }).then(function successCallback(response) {
+        $scope.networks = response.data;
+    }, function errorCallback(response) {
+    });
+
+
     $scope.connexion = function () {
         var response = $http({
             url: 'api/login',
@@ -21,6 +30,5 @@
             $scope.user.mail = '';
             $scope.user.password = '';
         });
-        
     };
 }]);

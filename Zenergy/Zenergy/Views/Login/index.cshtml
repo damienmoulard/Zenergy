@@ -4,7 +4,7 @@
 }
 <div class="container " ng-controller="loginPageController">
     <div class="row">
-        <div class="col-md-3 col-lg-offset-4">
+        <div class="col-md-3 col-lg-offset-2">
             <h1>Sign in</h1>
             <form ng-submit="connexion()">
                 <div class="form-group" ng-class="{ 'has-error': hasError}">
@@ -16,6 +16,12 @@
                 <p ng-cloak class="text-danger" ng-if="hasError">Invalid email or password</p>
                 <input type="submit" id="submit" value="Sign in" class="btn btn-primary" />
             </form>
+        </div>
+        <div ng-cloak class="col-md-4 col-lg-offset-1">
+            <h3>Or use a social network</h3>
+                <a ng-repeat="(key, value) in networks" href="{{value.Url}}">
+                    <input type="button" value="{{value.Name}}" class="btn"/>
+                </a> 
         </div>
     </div>
 </div>
