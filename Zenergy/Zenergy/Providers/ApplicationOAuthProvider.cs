@@ -54,6 +54,24 @@ namespace Zenergy.Providers
             //identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.userId.ToString()));
             identity.AddClaim(new Claim("UserId", user.userId.ToString()));
 
+            /*
+            if (user.member != null)
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, "Member"));
+            }
+            if (user.contributor != null)
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, "Contributor"));
+            }
+            if (user.manager != null)
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, "Manager"));
+            }
+            if (user.admin != null)
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, "Admin"));
+            }       */
+
             if (user.member != null)
             {
                 identity.AddClaim(new Claim(ClaimTypes.Role, "Member"));
