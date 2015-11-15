@@ -48,6 +48,7 @@ namespace Zenergy.Services
             }
             catch (InvalidOperationException e)
             {
+                System.Diagnostics.Debug.WriteLine(e.StackTrace);
                 return null;
             }
 
