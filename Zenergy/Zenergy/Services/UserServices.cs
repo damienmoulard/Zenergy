@@ -51,7 +51,20 @@ namespace Zenergy.Services
                 System.Diagnostics.Debug.WriteLine(e.StackTrace);
                 return null;
             }
+        }
 
+        public async Task<user> findByMail(string userMail)
+        {
+            try
+            {
+                user user = await db.user.Where(u => u.mail == userMail).FirstAsync();
+                return user;
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.StackTrace);
+                return null;
+            }
         }
 
     }
