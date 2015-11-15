@@ -51,10 +51,10 @@ namespace Zenergy.Providers
             identity.AddClaim(new Claim("mail", context.UserName));
             identity.AddClaim(new Claim("role", "user"));
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+
             //identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.userId.ToString()));
             identity.AddClaim(new Claim("UserId", user.userId.ToString()));
 
-            /*
             if (user.member != null)
             {
                 identity.AddClaim(new Claim(ClaimTypes.Role, "Member"));
@@ -70,7 +70,7 @@ namespace Zenergy.Providers
             if (user.admin != null)
             {
                 identity.AddClaim(new Claim(ClaimTypes.Role, "Admin"));
-            }       */
+            }
 
             if (user.member != null)
             {
