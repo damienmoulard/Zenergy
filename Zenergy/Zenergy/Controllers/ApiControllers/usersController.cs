@@ -32,10 +32,25 @@ namespace Zenergy.Controllers.ApiControllers
         }
 
         // GET: api/users/5
+        //[Authorize(Roles = "Admin")]
         [ResponseType(typeof(user))]
         public async Task<IHttpActionResult> Getuser(int id)
         {
             user user = await db.user.FindAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
+        [Route("api/users/findByMail")]
+        [HttpGet]
+        [ResponseType(typeof(user))]
+        public async Task<IHttpActionResult> findByMail(string userMail)
+        {
+            user user = await userServices.findByMail(userMail);
             if (user == null)
             {
                 return NotFound();
@@ -49,7 +64,7 @@ namespace Zenergy.Controllers.ApiControllers
         [Route("api/users/findByRole")]
         [HttpGet]
         [ResponseType(typeof(user[]))]
-        public async Task<IHttpActionResult> FindByRole(string role) {
+        public async Task<IHttpActionResult> findByRole(string role) {
             user[] users = null;
 
             if (role == "Administrator")
