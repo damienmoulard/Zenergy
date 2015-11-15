@@ -26,6 +26,7 @@
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
                 </ul>
                 <ul ng-cloak class="nav navbar-nav navbar-right" ng-show="isConnected">
+                    <li>@Html.ActionLink("Profile", "Index", "Profile", new { area = "" }, null)</li>
                     <li><a href="#" ng-click="logoff()">Log Off</a></li>
                 </ul>
                 <ul ng-cloak  class="nav navbar-nav navbar-right" ng-hide="isConnected">
