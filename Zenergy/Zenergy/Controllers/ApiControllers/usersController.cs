@@ -14,6 +14,7 @@ using Zenergy.Services;
 
 namespace Zenergy.Controllers.ApiControllers
 {
+    [Authorize]
     public class usersController : ApiController
     {
         private ZenergyContext db = new ZenergyContext();
@@ -25,14 +26,12 @@ namespace Zenergy.Controllers.ApiControllers
         }
 
         // GET: api/users
-        [Authorize]
         public IQueryable<user> Getuser()
         {
             return db.user;
         }
 
         // GET: api/users/5
-        //[Authorize(Roles = "Admin")]
         [ResponseType(typeof(user))]
         public async Task<IHttpActionResult> Getuser(int id)
         {
@@ -55,7 +54,6 @@ namespace Zenergy.Controllers.ApiControllers
             {
                 return NotFound();
             }
-
             return Ok(user);
         }
 
