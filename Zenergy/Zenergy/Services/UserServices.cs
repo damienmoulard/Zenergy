@@ -7,6 +7,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Threading.Tasks;
 using Zenergy.Models;
+using System.Web.Mvc;
 
 namespace Zenergy.Services
 {
@@ -51,6 +52,13 @@ namespace Zenergy.Services
                 return null;
             }
 
+        }
+
+        public async Task<int> CreateUser(user u)
+        {
+            db.user.Add(u);
+            return await db.SaveChangesAsync();
+            ;
         }
 
     }
