@@ -15,7 +15,6 @@
 
     var _responseError = function (rejection) {
         if (rejection.status === 401) {
-            console.log("Not connected");
         }
         return $q.reject(rejection);
     }

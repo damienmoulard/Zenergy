@@ -2,14 +2,6 @@
 
     $scope.user = { mail: '', password: '' };
     $scope.hasError = false;
-    $http({
-        url: '/api/Account/ExternalLogins?returnUrl=%2F&generateState=true',
-        method: 'GET'
-    }).then(function successCallback(response) {
-        $scope.networks = response.data;
-    }, function errorCallback(response) {
-    });
-
 
     $scope.connexion = function () {
         var response = $http({
@@ -31,4 +23,49 @@
             $scope.user.password = '';
         });
     };
+
+    var auth_response_change_callback = function (response) {
+        if (response.status === 'connected') {
+            FB.api('/me', function (response) {
+                console.log(response);
+            });
+        }
+        //window.location.replace("/Home");
+    }
+
+    $window.fbAsyncInit = function () {
+        // Executed when the SDK is loaded
+
+        FB.init({
+
+            appId: '429380533932654',
+            channelUrl: 'app/channel.html',
+            status: true,
+            cookie: true,
+            xfbml: true
+        });
+
+        FB.Event.subscribe('auth.authResponseChange', auth_response_change_callback);
+    };
+
+    (function (d) {
+        // load the Facebook javascript SDK
+
+        var js,
+        id = 'facebook-jssdk',
+        ref = d.getElementsByTagName('script')[0];
+
+        if (d.getElementById(id)) {
+            return;
+        }
+
+        js = d.createElement('script');
+        js.id = id;
+        js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+
+        ref.parentNode.insertBefore(js, ref);
+
+    }(document));
+
 }]);
