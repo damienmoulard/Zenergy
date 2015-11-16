@@ -26,12 +26,14 @@ namespace Zenergy.Controllers.ApiControllers
         }
 
         // GET: api/users
+        [Authorize(Roles = "Admin")]
         public IQueryable<user> Getuser()
         {
             return db.user;
         }
 
         // GET: api/users/5
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(user))]
         public async Task<IHttpActionResult> Getuser(int id)
         {
@@ -62,6 +64,7 @@ namespace Zenergy.Controllers.ApiControllers
         [Route("api/users/findByRole")]
         [HttpGet]
         [ResponseType(typeof(user[]))]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IHttpActionResult> findByRole(string role) {
             user[] users = null;
 
@@ -126,6 +129,7 @@ namespace Zenergy.Controllers.ApiControllers
 
         // POST: api/users
         [ResponseType(typeof(user))]
+        [AllowAnonymous]
         public async Task<IHttpActionResult> Postuser(user user)
         {
             if (!ModelState.IsValid)
@@ -141,6 +145,7 @@ namespace Zenergy.Controllers.ApiControllers
 
         // DELETE: api/users/5
         [ResponseType(typeof(user))]
+        [Authorize(Roles = "Admin")]
         public async Task<IHttpActionResult> Deleteuser(int id)
         {
             user user = await db.user.FindAsync(id);
