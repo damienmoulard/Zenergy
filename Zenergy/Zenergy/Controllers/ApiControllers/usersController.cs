@@ -26,7 +26,6 @@ namespace Zenergy.Controllers.ApiControllers
         }
 
         // GET: api/users
-
         [Authorize(Roles = "Admin")]
         public IQueryable<user> Getuser()
         {
@@ -34,6 +33,7 @@ namespace Zenergy.Controllers.ApiControllers
         }
 
         // GET: api/users/5
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(user))]
         public async Task<IHttpActionResult> Getuser(int id)
         {
