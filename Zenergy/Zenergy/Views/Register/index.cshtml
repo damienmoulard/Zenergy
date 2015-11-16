@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "index";
+}
+
+<h2>Registration</h2>
+<div class="container " ng-controller="loginPageController">
+    <div class="row">
+        <div class="col-md-3 col-lg-offset-4">
+            <h1>Sign in</h1>
+            <form ng-submit="signIn()">
+
+                <div class="form-group" ng-class="{ 'has-error': hasError}">
+                    <input type="email" class="form-control" ng-model="user.mail" placeholder="Email">
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error': hasError}">
+                    <input type="password" class="form-control" ng-model="user.password" placeholder="Password">
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error': hasError}">
+                    <input type="password" class="form-control" ng-model="user.passwordBis" placeholder="Password Confirmation">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="user.firstName" placeholder="Firstname">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="user.lastName" placeholder="Lastname">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="user.adr1" placeholder="Adress">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="user.adr2" placeholder="Rest of the adress ">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="user.pc" placeholder="Postal Code ">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="user.town" placeholder="Town ">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="user.phone" placeholder="Phone ">
+                </div>
+
+                <p class="text-danger" ng-if="hasError">Invalid email or password</p>
+                <input type="submit" id="submit" value="Sign in" class="btn btn-primary" />
+            </form>
+        </div>
+    </div>
+</div>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+
