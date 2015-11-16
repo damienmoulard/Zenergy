@@ -1133,6 +1133,7 @@
     <Content Include="Scripts\Lib\modernizr-2.6.2.js" />
     <Content Include="Scripts\Lib\respond.js" />
     <Content Include="Scripts\Lib\respond.min.js" />
+    <Content Include="Scripts\Tools\facebookApiTools.js" />
     <Content Include="Scripts\zenergyApp.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -24,6 +24,7 @@
         });
     };
 
+    /*
     var auth_response_change_callback = function (response) {
         if (response.status === 'connected') {
             FB.api('/me', function (response) {
@@ -67,5 +68,5 @@
         ref.parentNode.insertBefore(js, ref);
 
     }(document));
-
+    */
 }]);

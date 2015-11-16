@@ -20,10 +20,13 @@
         </div>
         <div ng-cloak class="col-md-4 col-lg-offset-1">
             <h3>Or use a social network</h3>
-            <fb:login-button scope="public_profile,email" show-faces="true" max-rows="1"
-                             size="large" ></fb:login-button>
+
+            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+            </fb:login-button>
+            <div id="status">
+            </div>
         </div>
     </div>
 </div>
 <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
-
+<script src="~/Scripts/Tools/facebookApiTools.js"></script>
