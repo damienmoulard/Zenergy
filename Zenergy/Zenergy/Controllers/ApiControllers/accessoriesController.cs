@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Zenergy.Models;
@@ -73,13 +75,12 @@ namespace Zenergy.Controllers.ApiControllers
 
         // POST: api/accessories
         [ResponseType(typeof(accessory))]
-        public async Task<IHttpActionResult> Postaccessory(accessory accessory)
+        public async Task<IHttpActionResult> Postaccessory()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
+            var context = HttpContext.Current;
+            var data = HttpContext.Current.Request.Form;
+            string postData = new System.IO.StreamReader(context.Request.InputStream).ReadToEnd();
+            accessory accessory = JsonConvert.DeserializeObject<accessory>(postData);
             db.accessory.Add(accessory);
             await db.SaveChangesAsync();
 
