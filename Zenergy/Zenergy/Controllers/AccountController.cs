@@ -16,6 +16,10 @@ using Microsoft.Owin.Security.OAuth;
 using Zenergy.Models;
 using Zenergy.Providers;
 using Zenergy.Results;
+using Zenergy.Services;
+using System.Net;
+using Newtonsoft.Json;
+using System.Web.Http.Results;
 
 namespace Zenergy.Controllers
 {
@@ -25,9 +29,12 @@ namespace Zenergy.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+        private ZenergyContext db = new ZenergyContext();
+        private UserServices userServices;
 
         public AccountController()
         {
+            userServices = new UserServices(db);
         }
 
         public AccountController(ApplicationUserManager userManager,
@@ -321,24 +328,35 @@ namespace Zenergy.Controllers
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
-        public async Task<IHttpActionResult> Register(RegisterBindingModel model)
+        [HttpPost]
+        public async Task<IHttpActionResult> Register(user userModel)
         {
-            if (!ModelState.IsValid)
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+
+            var context = HttpContext.Current;
+            var data = HttpContext.Current.Request.Form;
+            string postData = new System.IO.StreamReader(context.Request.InputStream).ReadToEnd();
+            user user = JsonConvert.DeserializeObject<user>(postData);
+
+
+            try {
+               await userServices.CreateUser(userModel);
+            }
+            catch(InvalidOperationException e)
             {
-                return BadRequest(ModelState);
+                context.Response.Write("Il y a eu une erreur lors de l'opération veuillez réessayer");
+                context.Response.StatusCode = 500;
+                return StatusCode(HttpStatusCode.InternalServerError);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
-
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
-            if (!result.Succeeded)
-            {
-                return GetErrorResult(result);
-            }
-
+           // GrantResourceOwnerCredentials(context);
             return Ok();
         }
+
+
 
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]
