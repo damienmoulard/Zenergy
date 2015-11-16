@@ -63,6 +63,7 @@ namespace Zenergy.Controllers.ApiControllers
 
         // DELETE: api/members/5
         [ResponseType(typeof(member))]
+        [Authorize(Roles = "Admin")]
         public async Task<IHttpActionResult> Deletemember(int id)
         {
             member member = await db.member.FindAsync(id);
