@@ -329,13 +329,8 @@ namespace Zenergy.Controllers
         [AllowAnonymous]
         [Route("Register")]
         [HttpPost]
-        public async Task<IHttpActionResult> Register(user userModel)
+        public async Task<IHttpActionResult> Register()
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-
             var context = HttpContext.Current;
             var data = HttpContext.Current.Request.Form;
             string postData = new System.IO.StreamReader(context.Request.InputStream).ReadToEnd();
@@ -343,7 +338,7 @@ namespace Zenergy.Controllers
 
 
             try {
-               await userServices.CreateUser(userModel);
+               await userServices.CreateUser(user);
             }
             catch(InvalidOperationException e)
             {
@@ -352,7 +347,6 @@ namespace Zenergy.Controllers
                 return StatusCode(HttpStatusCode.InternalServerError);
             }
 
-           // GrantResourceOwnerCredentials(context);
             return Ok();
         }
 
