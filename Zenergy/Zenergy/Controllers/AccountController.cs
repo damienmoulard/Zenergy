@@ -6,7 +6,6 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -19,7 +18,7 @@ using Zenergy.Results;
 using Zenergy.Services;
 using System.Net;
 using Newtonsoft.Json;
-using System.Web.Http.Results;
+
 
 namespace Zenergy.Controllers
 {
@@ -502,5 +501,18 @@ namespace Zenergy.Controllers
         }
 
         #endregion
+    }
+}
+
+
+
+namespace Zenergy.Controllers
+{
+    public class AccountManagementController : System.Web.Mvc.Controller
+    {
+        public System.Web.Mvc.ActionResult Index()
+        {
+            return View();
+        }
     }
 }
