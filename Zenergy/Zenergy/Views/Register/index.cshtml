@@ -6,7 +6,7 @@
 <h2>Registration</h2>
 <div class="container " ng-controller="registerPageController">
     <div class="row">
-        <div class="col-md-3 col-lg-offset-4">
+        <div name="formRegistration" class="col-md-3 col-lg-offset-4">
             <h1>Register</h1>
             <form ng-submit="register()">
 
@@ -15,13 +15,13 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="password" class="form-control" ng-model="user.password" placeholder="Password" required >
+                    <input type="password" id="password" name="user.password" class="form-control" ng-model="user.password" placeholder="Password" required >
                 </div>
 
                 <div class="form-group" >
-                    <input type="password" class="form-control" ng-model="user.passwordBis" placeholder="Password Confirmation" required samepassword>
+                    <input type="password" id="passwordBis" name="passwordBis" class="form-control" ng-model="user.passwordBis" placeholder="Password Confirmation" required samepassword="password">
                 </div>
-                <span ng-show="form.name.$error.samepassword">The password must be equal</span>
+                <p class="text-danger" ng-if="passNotMatch">Passwords don't match</p>
 
                 <div class="form-group">
                     <input type="text" class="form-control" ng-model="user.firstName" placeholder="Firstname">
@@ -32,11 +32,11 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" ng-model="user.adr1" placeholder="Adress">
+                    <input type="text" class="form-control" ng-model="user.adr1" placeholder="Address">
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" ng-model="user.adr2" placeholder="Rest of the adress ">
+                    <input type="text" class="form-control" ng-model="user.adr2" placeholder="Rest of the address ">
                 </div>
 
                 <div class="form-group">
