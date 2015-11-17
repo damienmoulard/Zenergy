@@ -25,7 +25,8 @@ namespace Zenergy
             bundles.Add(new ScriptBundle("~/bundles/zenergyApp")
             .Include("~/Scripts/zenergyApp.js")
             .IncludeDirectory("~/Scripts/Controllers", "*.js")
-            .IncludeDirectory("~/Scripts/Factories", "*.js"));
+            .IncludeDirectory("~/Scripts/Factories", "*.js")
+            .IncludeDirectory("~/Scripts/Tools", "*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/Lib/bootstrap.js",

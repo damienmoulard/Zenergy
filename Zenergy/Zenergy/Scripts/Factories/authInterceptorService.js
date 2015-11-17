@@ -4,6 +4,7 @@
 
     var _request = function (config) {
 
+        //TODO : vérifier les id sur api/users/{:id}
         config.headers = config.headers || {};
 
         if (tokenService.tokenExists()) {

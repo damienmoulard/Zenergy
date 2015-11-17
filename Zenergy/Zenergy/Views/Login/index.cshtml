@@ -18,7 +18,7 @@
                 <input type="submit" id="submit" value="Sign in" class="btn btn-primary" />
             </form>
         </div>
-        <div ng-cloak class="col-md-4 col-lg-offset-1">
+        <div ng-controller="facebookApiTools" ng-cloak class="col-md-4 col-lg-offset-1">
             <h3>Or use a social network</h3>
 
             <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
@@ -29,4 +29,3 @@
     </div>
 </div>
 <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
-<script src="~/Scripts/Tools/facebookApiTools.js"></script>
