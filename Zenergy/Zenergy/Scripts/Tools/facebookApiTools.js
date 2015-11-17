@@ -1,4 +1,4 @@
-﻿zenergyApp.controller("facebookApiTools", ["$scope", "$http", "$httpParamSerializerJQLike", "tokenService","$window", function ($scope,$http, $httpParamSerializerJQLike, tokenService, $window) {
+﻿zenergyApp.controller("facebookApiTools", ["$scope", "$http", "$httpParamSerializerJQLike", "tokenService","$window","$location", function ($scope,$http, $httpParamSerializerJQLike, tokenService, $window,$location) {
 
 
     // This is called with the results from from FB.getLoginStatus().
@@ -56,7 +56,7 @@
                 }
             }).then(function successCallback(response) {
                 tokenService.saveToken(response.data.access_token, user.email);
-                window.location.replace("/Home");
+                $location.path('/');
             }, function errorCallback(response) {
                 //TODO: inscrire le user
                 console.log(response);

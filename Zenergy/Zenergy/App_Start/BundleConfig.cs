@@ -22,6 +22,9 @@ namespace Zenergy
             bundles.Add(new ScriptBundle("~/bundles/angular-resource").Include(
             "~/Scripts/Lib/angular-resource.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular-route").Include(
+            "~/Scripts/Lib/angular-route.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/zenergyApp")
             .Include("~/Scripts/zenergyApp.js")
             .IncludeDirectory("~/Scripts/Controllers", "*.js")

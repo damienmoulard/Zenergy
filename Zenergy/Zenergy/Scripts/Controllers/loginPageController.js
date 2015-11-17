@@ -1,4 +1,4 @@
-﻿zenergyApp.controller("loginPageController", ["$scope", "$http", "$httpParamSerializerJQLike", "tokenService","$window", function ($scope,$http, $httpParamSerializerJQLike, tokenService, $window) {
+﻿zenergyApp.controller("loginPageController", ["$scope", "$http", "$httpParamSerializerJQLike", "tokenService","$window", "$location", function ($scope,$http, $httpParamSerializerJQLike, tokenService, $window, $location) {
 
     $scope.user = { mail: '', password: '' };
     $scope.hasError = false;
@@ -15,7 +15,7 @@
         }).then(function successCallback(response) {
             $scope.hasError = false;
             tokenService.saveToken(response.data.access_token, response.data.userName);
-            window.location.replace("/Home");
+            $location.path('/');
         }, function errorCallback(response) {
             $scope.hasError = true;
             tokenService.deleteToken();
