@@ -300,6 +300,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\Controllers\accountManagementPageController.js" />
     <Content Include="Scripts\Controllers\homePageController.js" />
     <Content Include="Scripts\Controllers\loginPageController.js" />
     <Content Include="Scripts\Controllers\mainController.js" />
@@ -1156,6 +1157,7 @@
     </Content>
     <Content Include="Views\Login\index.cshtml" />
     <Content Include="Views\Register\index.cshtml" />
+    <Content Include="Views\AccountManagement\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "index";
+}
+
+<h2>Account Management</h2>
+
+<div class="container " ng-controller="accountManagementPageController">
+    <div class="row">
+        <div name="formInformation" class="col-md-3 col-lg-offset-4">
+            <h1>Register</h1>
+            <form ng-submit="changeInformations()">
+                <!--
+                <div class="form-group">
+                    <input type="email" class="form-control" ng-model="user.mail" placeholder="Email"required>{{user.mail}}</input>
+                </div>
+                -->
+
+                <div class="form-group">
+                    <input type="password" id="password" class="form-control" ng-model="user.password" placeholder="Password" required>{{user.password}}</input>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="passwordBis" class="form-control" ng-model="user.passwordBis" placeholder="Confirm Password" required samepassword="password">
+                </div>
+                <p class="text-danger" ng-if="passNotMatch">Passwords don't match</p>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="user.firstName" placeholder="Firstname">{{user.firstname}}</input>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="user.lastName" placeholder="Lastname">{{user.Lastname}}</input>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="user.adr1" placeholder="Address">{{user.adr1}}</input>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="user.adr2" placeholder="Rest of the address ">{{user.adr2}}</input>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="user.pc" placeholder="Postal Code ">{{user.pc}}</input>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="user.town" placeholder="Town ">{{user.town}}</input>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="user.phone" placeholder="Phone ">{{user.phone}}</input>
+                </div>
+
+                <button type="button" id="cancel" value="Cancel" class="btn btn-danger"  />
+                <input type="submit" id="submit" value="Apply changes" class="btn btn-primary" />
+            </form>
+            <button type="button" id="submit" value="Become Member" class="btn btn-success btn-lg" />
+        </div>
+    </div>
+</div>
+
