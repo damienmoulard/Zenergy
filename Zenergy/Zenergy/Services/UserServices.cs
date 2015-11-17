@@ -55,24 +55,10 @@ namespace Zenergy.Services
             }
         }
 
-        public async Task<user> findByMail(string userMail)
-        {
-            try
-            {
-                user user = await db.user.Where(u => u.mail == userMail).FirstAsync();
-                return user;
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Debug.WriteLine(e.StackTrace);
-                return null;
-            }
-        }
-
         public async Task CreateUser(user u)
         {
-                db.user.Add(u);
-                await db.SaveChangesAsync();
+            db.user.Add(u);
+            await db.SaveChangesAsync();
         }
 
     }
