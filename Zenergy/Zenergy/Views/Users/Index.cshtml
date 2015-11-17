@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Users managment";
+}
+
+<h2>Users managment</h2>
+<div ng-controller="usersPageController">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="cursor: pointer;" ng-repeat="u in users" ng-click="test()">
+                <td>{{u.id}}</td>
+                <td>{{u.firstname}}</td>
+                <td>{{u.lastname}}</td>
+                <td>{{u.mail}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

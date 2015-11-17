@@ -177,6 +177,7 @@
     <Compile Include="Controllers\ApiControllers\managersController.cs" />
     <Compile Include="Controllers\ApiControllers\usersController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Models\accessory.cs">
       <DependentUpon>ZenergyModel.tt</DependentUpon>
     </Compile>
@@ -304,6 +305,7 @@
     <Content Include="Scripts\Controllers\homePageController.js" />
     <Content Include="Scripts\Controllers\loginPageController.js" />
     <Content Include="Scripts\Controllers\mainController.js" />
+    <Content Include="Scripts\Controllers\usersPageController.js" />
     <Content Include="Scripts\Factories\authInterceptorService.js" />
     <Content Include="Scripts\Factories\tokenService.js" />
     <Content Include="Scripts\Lib\angular-animate.js" />
@@ -1155,6 +1157,7 @@
       <DependentUpon>ZenergyModel.edmx</DependentUpon>
     </Content>
     <Content Include="Views\Login\index.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
