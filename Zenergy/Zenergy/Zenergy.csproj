@@ -178,7 +178,6 @@
   <ItemGroup>
     <Compile Include="Controllers\ApiControllers\usersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Models\accessory.cs">
       <DependentUpon>ZenergyModel.tt</DependentUpon>
     </Compile>
