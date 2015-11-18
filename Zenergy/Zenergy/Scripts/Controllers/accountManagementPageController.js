@@ -16,7 +16,7 @@
                 }
             }).then(function successCallback(response) {
                 $scope.hasError = false;
-                window.location.replace("/home");
+                window.location.replace("/home"); // $location.path("/#");
             }, function errorCallback(response) {
                 $scope.hasError = true;
                 $scope.user.mail = '';
