@@ -19,12 +19,23 @@ namespace Zenergy.Controllers.ApiControllers
     {
         private ZenergyContext db = new ZenergyContext();
 
+
+        /// <summary>
+        /// Get all the room from the database.
+        /// </summary>
+        /// <returns></returns>
         // GET: api/rooms
         public IQueryable<room> Getroom()
         {
             return db.room;
         }
 
+
+        /// <summary>
+        /// Get room by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: api/rooms/5
         [ResponseType(typeof(room))]
         public async Task<IHttpActionResult> Getroom(int id)
@@ -38,6 +49,13 @@ namespace Zenergy.Controllers.ApiControllers
             return Ok(room);
         }
 
+
+        /// <summary>
+        /// Edit the room which primary key is id using the room parameter.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="room"></param>
+        /// <returns></returns>
         // PUT: api/rooms/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> Putroom(int id, room room)
@@ -73,6 +91,12 @@ namespace Zenergy.Controllers.ApiControllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+
+        /// <summary>
+        /// Create room in the database.
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
         // POST: api/rooms
         [ResponseType(typeof(room))]
         public async Task<IHttpActionResult> Postroom(room room)
@@ -88,6 +112,12 @@ namespace Zenergy.Controllers.ApiControllers
             return CreatedAtRoute("DefaultApi", new { id = room.roomId }, room);
         }
 
+
+        /// <summary>
+        /// Delete the room by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // DELETE: api/rooms/5
         [ResponseType(typeof(room))]
         public async Task<IHttpActionResult> Deleteroom(int id)

@@ -17,12 +17,21 @@ namespace Zenergy.Controllers.ApiControllers
     {
         private ZenergyContext db = new ZenergyContext();
 
+
+        /// <summary>
+        /// Get all roomContents from the database.
+        /// </summary>
+        /// <returns></returns>
         // GET: api/roomContents
         public IQueryable<roomContent> GetroomContent()
         {
             return db.roomContent;
         }
-
+        /// <summary>
+        /// Get the roomContent by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: api/roomContents/5
         [ResponseType(typeof(roomContent))]
         public async Task<IHttpActionResult> GetroomContent(int id)
@@ -36,6 +45,14 @@ namespace Zenergy.Controllers.ApiControllers
             return Ok(roomContent);
         }
 
+
+        /// <summary>
+        /// Edit the roomContent which primary key is (roomId,accessoryId) with roomContent parameter.
+        /// </summary>
+        /// <param name="roomId"></param>
+        /// <param name="accessoryId"></param>
+        /// <param name="roomContent"></param>
+        /// <returns></returns>
         // PUT: api/roomContents/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutroomContent(int roomId,int accessoryId, roomContent roomContent)
@@ -71,6 +88,12 @@ namespace Zenergy.Controllers.ApiControllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+
+        /// <summary>
+        /// Create the roomContent in the database.
+        /// </summary>
+        /// <param name="roomContent"></param>
+        /// <returns></returns>
         // POST: api/roomContents
         [ResponseType(typeof(roomContent))]
         public async Task<IHttpActionResult> PostroomContent(roomContent roomContent)
@@ -101,6 +124,13 @@ namespace Zenergy.Controllers.ApiControllers
             return CreatedAtRoute("DefaultApi", new { id = roomContent.roomId }, roomContent);
         }
 
+
+        /// <summary>
+        /// Delete the roomContent which primary key is (roomId,accessory).
+        /// </summary>
+        /// <param name="roomId"></param>
+        /// <param name="accessoryId"></param>
+        /// <returns></returns>
         // DELETE: api/roomContents?roomId=2&accessoryId=1
         [ResponseType(typeof(roomContent))]
         public async Task<IHttpActionResult> DeleteroomContent(int roomId, int accessoryId)
