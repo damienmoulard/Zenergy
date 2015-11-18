@@ -63,11 +63,11 @@ namespace Zenergy
                 appId: "429380533932654",
                 appSecret: "ce6476f6a182519fee61ee17db94556d");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "444754422502-l5urcdutcrgoedvdtrrbbvml2boq6eg2.apps.googleusercontent.com",
+                ClientSecret = "mzj_gvPmB-pkCca_6U1VLkBE"
+            });
         }
     }
 }

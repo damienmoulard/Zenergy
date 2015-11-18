@@ -1,4 +1,4 @@
-﻿zenergyApp.controller("registerPageController", ["$scope", "$http", "$window", function ($scope, $http, $window) {
+﻿zenergyApp.controller("registerPageController", ["$scope", "$http", "$window", "$location", function ($scope, $http, $window, $location) {
   
     $scope.user = {mail: '', password: '', passwordBis: '',  lastName:'', firstName:'', adr1:'', adr2:'', pc:'', town:'', phone:''};
     $scope.hasError = false;
@@ -28,7 +28,7 @@
                 }
             }).then(function successCallback(response) {
                 $scope.hasError = false;
-                window.location.replace("/Login");
+                $location.path("/");
             }, function errorCallback(response) {
                 $scope.hasError = true;
                 $scope.user.mail = '';
