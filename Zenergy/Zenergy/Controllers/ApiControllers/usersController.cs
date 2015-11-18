@@ -45,18 +45,6 @@ namespace Zenergy.Controllers.ApiControllers
             return Ok(user);
         }
 
-        [Route("api/users/findByMail")]
-        [HttpGet]
-        [ResponseType(typeof(user))]
-        public async Task<IHttpActionResult> findByMail(string userMail)
-        {
-            user user = await userServices.findByMail(userMail);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return Ok(user);
-        }
 
         // GET: api/users/findByRole
         // Return all the users of a role

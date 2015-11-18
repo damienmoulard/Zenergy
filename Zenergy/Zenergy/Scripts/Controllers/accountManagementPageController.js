@@ -6,6 +6,27 @@
 
     $scope.changeInformations = function () {
 
+        if (!$scope.hasError) {
+            var response = $http({
+                url: '/api/Account/update',
+                method: 'POST',
+                data: { userId: 1, password: CryptoJS.MD5($scope.user.password).toString(), lastName: $scope.user.lastName, firstName: $scope.user.firstName, adr1: $scope.user.adr1, adr2: $scope.user.adr2, pc: $scope.user.pc, town: $scope.user.town, mail: $scope.user.mail, phone: $scope.user.phone },
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function successCallback(response) {
+                $scope.hasError = false;
+                window.location.replace("/home");
+            }, function errorCallback(response) {
+                $scope.hasError = true;
+                $scope.user.mail = '';
+                $scope.user.password = '';
+            });
+        }
+    };
+
+    $scope.changePassword = function () {
+
         if ($scope.user.password != $scope.user.passwordBis) {
             $scope.hasError = true;
             $scope.passNotMatch = true;
