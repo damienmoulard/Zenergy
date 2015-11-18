@@ -173,7 +173,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ApiControllers\usersController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Models\accessory.cs">
       <DependentUpon>ZenergyModel.tt</DependentUpon>
@@ -1153,7 +1152,6 @@
     <Content Include="Models\ZenergyModel.edmx.diagram">
       <DependentUpon>ZenergyModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\Login\index.cshtml" />
     <Content Include="Views\Register\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
