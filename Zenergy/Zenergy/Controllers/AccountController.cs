@@ -73,6 +73,11 @@ namespace Zenergy.Controllers
             };
         }
 
+
+        /// <summary>
+        /// Log out the current user.
+        /// </summary>
+        /// <returns></returns>
         // POST api/Account/Logout
         [Route("Logout")]
         public IHttpActionResult Logout()
@@ -325,6 +330,12 @@ namespace Zenergy.Controllers
             return logins;
         }
 
+
+        /// <summary>
+        /// Login the user.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
