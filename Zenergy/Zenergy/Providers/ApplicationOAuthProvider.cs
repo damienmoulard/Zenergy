@@ -54,7 +54,6 @@ namespace Zenergy.Providers
             //identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.userId.ToString()));
             identity.AddClaim(new Claim("UserId", user.userId.ToString()));
 
-<<<<<<< HEAD
             //identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.userId.ToString()));
             identity.AddClaim(new Claim("UserId", user.userId.ToString()));
 
@@ -78,9 +77,6 @@ namespace Zenergy.Providers
             //identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.userId.ToString()));
             identity.AddClaim(new Claim("UserId", user.userId.ToString()));
 
-
-=======
->>>>>>> origin/accountManagement
             if (user.member != null)
             {
                 identity.AddClaim(new Claim(ClaimTypes.Role, "Member"));
