@@ -5,7 +5,6 @@
     function statusChangeCallback(response) {
         if (response.status === 'connected') {
             facebookLogin(response.authResponse.accessToken);
-            console.log(response);
         } else if (response.status === 'not_authorized') {
             document.getElementById('status').innerHTML = 'Please log ' +
               'into this app.';
@@ -42,24 +41,47 @@
     }(document, 'script', 'facebook-jssdk'));
 
     function facebookLogin(token) {
-        console.log('Welcome!  Fetching your information.... ');
         FB.api('/me', 'get', { access_token: token, fields: 'id,email,first_name,last_name' }, function (response) {
             var user = response;
-            console.log(user);
+            //Try to login
             $http({
                 url: 'api/login',
                 method: 'POST',
-                data: $httpParamSerializerJQLike({ grant_type: 'password', username: user.email, password: user.id }),
-                //data: $httpParamSerializerJQLike({ grant_type: 'password', username: $scope.user.mail, password: CryptoJS.MD5($scope.user.password).toString() }),
+                data: $httpParamSerializerJQLike({ grant_type: 'password', username: user.email, password: CryptoJS.MD5(user.id).toString() }),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             }).then(function successCallback(response) {
-                tokenService.saveToken(response.data.access_token, user.email);
+                //Success
+                console.log(response);
+                tokenService.saveToken(response.data.access_token,  response.data.userName);
                 $location.path('/');
             }, function errorCallback(response) {
-                //TODO: inscrire le user
-                console.log(response);
+                //Error
+                //Try to register
+                $http({
+                    url: '/api/Account/register',
+                    method: 'POST',
+                    data: { userId: 1, password: CryptoJS.MD5(user.id).toString(), lastName: user.last_name, firstName: user.first_name, mail: user.email },
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function successCallback(response) {
+                    $http({
+                        url: 'api/login',
+                        method: 'POST',
+                        data: $httpParamSerializerJQLike({ grant_type: 'password', username: user.email, password: CryptoJS.MD5(user.id).toString() }),
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    }).then(function successCallback(response) {
+                        tokenService.saveToken(response.data.access_token,  response.data.userName);
+                        $location.path('/');
+                    }, function errorCallback(response) {
+                    });
+                }, function errorCallback(response) {
+                });
+                
             });
         });
     }

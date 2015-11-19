@@ -176,7 +176,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ApiControllers\membersController.cs" />
+    <Compile Include="Controllers\ApiControllers\roomContentsController.cs" />
+    <Compile Include="Controllers\ApiControllers\roomsController.cs" />
+    <Compile Include="Controllers\ApiControllers\accessoriesController.cs" />
     <Compile Include="Controllers\ApiControllers\usersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Models\accessory.cs">
@@ -302,15 +304,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-<<<<<<< HEAD
-<<<<<<< HEAD
     <Content Include="Pages\profile.html" />
-=======
     <Content Include="Scripts\Controllers\accountManagementPageController.js" />
->>>>>>> adding view/controller and BE controller
-=======
-    <Content Include="Scripts\Controllers\accountManagementPageController.js" />
->>>>>>> origin/accountManagement
     <Content Include="Scripts\Controllers\homePageController.js" />
     <Content Include="Scripts\Controllers\loginPageController.js" />
     <Content Include="Scripts\Controllers\mainController.js" />
@@ -1165,18 +1160,10 @@
     <Content Include="Models\ZenergyModel.edmx.diagram">
       <DependentUpon>ZenergyModel.edmx</DependentUpon>
     </Content>
-<<<<<<< HEAD
     <Content Include="Pages\login.html" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Pages\register.html" />
-=======
-    <Content Include="Views\Login\index.cshtml" />
-    <Content Include="Views\Register\index.cshtml" />
     <Content Include="Views\AccountManagement\index.cshtml" />
-<<<<<<< HEAD
->>>>>>> adding view/controller and BE controller
-=======
->>>>>>> origin/accountManagement
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
