@@ -9,4 +9,8 @@
         tokenService.deleteToken();
     };
 
+    $scope.getUserName = function () {
+        return tokenService.getUserName();
+    };
+
 }]);
