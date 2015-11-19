@@ -176,6 +176,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ApiControllers\roomsController.cs" />
     <Compile Include="Controllers\ApiControllers\usersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Models\accessory.cs">
