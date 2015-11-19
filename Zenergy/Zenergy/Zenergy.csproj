@@ -303,10 +303,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Content Include="Pages\profile.html" />
 =======
     <Content Include="Scripts\Controllers\accountManagementPageController.js" />
 >>>>>>> adding view/controller and BE controller
+=======
+    <Content Include="Scripts\Controllers\accountManagementPageController.js" />
+>>>>>>> origin/accountManagement
     <Content Include="Scripts\Controllers\homePageController.js" />
     <Content Include="Scripts\Controllers\loginPageController.js" />
     <Content Include="Scripts\Controllers\mainController.js" />
@@ -1169,7 +1173,10 @@
     <Content Include="Views\Login\index.cshtml" />
     <Content Include="Views\Register\index.cshtml" />
     <Content Include="Views\AccountManagement\index.cshtml" />
+<<<<<<< HEAD
 >>>>>>> adding view/controller and BE controller
+=======
+>>>>>>> origin/accountManagement
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

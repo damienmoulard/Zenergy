@@ -53,6 +53,7 @@ namespace Zenergy.Services
                 System.Diagnostics.Debug.WriteLine(e.StackTrace);
                 return null;
             }
+<<<<<<< HEAD
         }
 
         public async Task<user> findByMail(string userMail)
@@ -67,12 +68,14 @@ namespace Zenergy.Services
                 System.Diagnostics.Debug.WriteLine(e.StackTrace);
                 return null;
             }
+=======
+>>>>>>> origin/accountManagement
         }
 
         public async Task CreateUser(user u)
         {
-                db.user.Add(u);
-                await db.SaveChangesAsync();
+            db.user.Add(u);
+            await db.SaveChangesAsync();
         }
 
     }

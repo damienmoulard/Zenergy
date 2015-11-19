@@ -515,4 +515,8 @@ namespace Zenergy.Controllers
             return View();
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/accountManagement
