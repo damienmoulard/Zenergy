@@ -74,6 +74,24 @@ namespace Zenergy.Controllers.ApiControllers
             return Ok(myUser.@event);
         }
 
+        [HttpGet]
+        [ResponseType(typeof(@event))]
+        [Route("SortUserEventByActivity")]
+        public async Task<IHttpActionResult> SortUserEventByActivity(int userId)
+        {
+            var user = await db.user.FindAsync(userId);
+            if(user == null)
+            {
+                return BadRequest("This user does not exist.");
+            }
+            if (!user.@event.Any())
+            {
+                return BadRequest("User has not registered to event yet.");
+            }
+            return Ok(user.@event.OrderBy(e => e.activity.activityName));
+        }
+
+
 
 
         /// <summary>
