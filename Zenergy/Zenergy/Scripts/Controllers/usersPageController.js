@@ -35,23 +35,28 @@
     $scope.validate = function()
     {
         angular.forEach($scope.users, function (u, key) {
+
             if (!u.admin && u.adminChecked)
-                u.admin = { UserId: u.userId };
-            else
-                u.admin = null;
+                u.admin = { UserId: u.userId }; //admin role added
+            else if (u.admin && !u.adminChecked)
+                u.admin = null;                 //admin role removed
+
             if (!u.manager && u.managerChecked)
-                u.manager = { UserId: u.userId };
-            else
-                u.manager = null;
+                u.manager = { UserId: u.userId };//manager role added
+            else if (u.manager && !u.managerChecked)
+                u.manager = null;                 //manager role removed
+
             if (!u.contributor && u.contributorChecked)
-                u.contributor = { UserId: u.userId };
-            else
-                u.contributor = null;
+                u.contributor = { UserId: u.userId };//contributor role added
+            else if (u.contributor && !u.contributorChecked)
+                u.contributor = null;                 //contributor role removed
+
             if (!u.member && u.memberChecked)
-                u.member = { UserId: u.userId, dateMembership: new Date() };
-            else
-                u.contributor = null;
-            //u.$update({ userId: u.userId });
+                u.member = { UserId: u.userId, dateMembership: new Date() };//member role added
+            else if (u.member && !u.memberChecked)
+                u.member = null;                                             //member role removed
+
+            u.$update({ userId: u.userId });
         });
         console.log($scope.users);
     }
