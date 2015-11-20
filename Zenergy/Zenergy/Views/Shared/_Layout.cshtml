@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html ng-app="zenergyApp" ng-controller="mainController">
+<html ng-app="zenergyApp">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
@@ -9,7 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<body>
+<body ng-controller="mainController">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -18,47 +18,39 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Zenergy", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a class = "navbar-brand" href="#/">Zenergy</a>
             </div>
-            <div ng-cloak class="navbar-collapse collapse">
+            <div  class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                    <li><a href="#/">Home</a></li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right" ng-show="user!=undefined">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            {{user.firstname}}
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" ng-click="logoff()">Log Off</a></li>
-                            <li><a href="#">Page 1-2</a></li>
-                        </ul>
-                    </li>
+                <ul ng-show="isAuthanticated()" class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                                {{getUserName()}}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#/" ng-click="logoff()">Log Off</a></li>
+                            </ul>
+                        </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right" ng-show="user.admin">
+                <ul class="nav navbar-nav navbar-right" ng-show="isAuthanticated()"><!--&& user.admin -->
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="">
                             Admin Panel
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Users managment", "Index", "Users", new { area = "" }, null)</li>
-                            <li>@Html.ActionLink("Rooms managment", "Index", "Rooms", new { area = "" }, null)</li>
-                            <li>@Html.ActionLink("etcccc", "Index", "Admin", new { area = "" }, null)</li>
+                            <li><a href="#Users">Users management</a></li>
+                            <li><a href="#Rooms">Rooms management</a></li>
                         </ul>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right" ng-show="user.manager">
-                    <li>@Html.ActionLink("Contributor panel", "Index", "Admin", new { area = "" }, null)</li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right" ng-show="user.contributor">
-                    <li>@Html.ActionLink("Manager panel", "Index", "Admin", new { area = "" }, null)</li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right" ng-hide="user!=undefined">
-                    <li>@Html.ActionLink("Sign in", "Index", "Login", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Create account", "Index", "Register", new { area = "" }, null)</li>
+                <ul ng-hide="isAuthanticated()" class="nav navbar-nav navbar-right" >
+                    <li><a href="#Login">Login</a></li>
+                    <li><a href="#Register">Create account</a></li>
                 </ul>
             </div>
         </div>
@@ -76,6 +68,8 @@
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/zenergyApp")
     @Scripts.Render("~/bundles/angular-resource")
+    @Scripts.Render("~/bundles/angular-route")
+    @Scripts.Render("~/bundles/ui-bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

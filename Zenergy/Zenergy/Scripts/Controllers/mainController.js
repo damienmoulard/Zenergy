@@ -1,18 +1,16 @@
-﻿zenergyApp.controller("mainController", ["$scope", "tokenService", "$window", "$resource",  function ($scope, tokenService, $window,$resource) {
-  
+﻿zenergyApp.controller("mainController", ["$scope", "tokenService", "$window",  function ($scope, tokenService, $window) {
 
-    if (tokenService.tokenExists()) {
-        var User = $resource('api/users/:userId', { userId: '@id' });
-        //TODO : remplacer 2 par le vrai id
-        $scope.user = User.get({ userId: 2 }, function () {
-        });
+    $scope.isAuthanticated = function()
+    {
+        return tokenService.tokenExists();
     }
-
 
     $scope.logoff = function () {
         tokenService.deleteToken();
-        $window.location.reload();
-        $scope.user = null;
+    };
+
+    $scope.getUserName = function () {
+        return tokenService.getUserName();
     };
 
 }]);

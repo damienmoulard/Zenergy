@@ -24,6 +24,11 @@ namespace Zenergy.Controllers.ApiControllers
             userServices = new UserServices(db);
         }
 
+
+        /// <summary>
+        /// Get all users.
+        /// </summary>
+        /// <returns></returns>
         // GET: api/users
         [Authorize]
         public IQueryable<user> Getuser()
@@ -31,6 +36,12 @@ namespace Zenergy.Controllers.ApiControllers
             return db.user;
         }
 
+
+        /// <summary>
+        /// Get user by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: api/users/5
         [ResponseType(typeof(user))]
         public async Task<IHttpActionResult> Getuser(int id)
@@ -44,8 +55,13 @@ namespace Zenergy.Controllers.ApiControllers
             return Ok(user);
         }
 
+
+        /// <summary>
+        /// Return all the users of a role.
+        /// </summary>
+        /// <param name="role"></param>
+        /// <returns></returns>
         // GET: api/users/findByRole
-        // Return all the users of a role
         [Route("api/users/findByRole")]
         [HttpGet]
         [ResponseType(typeof(user[]))]
@@ -76,6 +92,13 @@ namespace Zenergy.Controllers.ApiControllers
             return Ok(users);
         }
 
+
+        /// <summary>
+        /// Edit user.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
         // PUT: api/users/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> Putuser(int id, user user)
@@ -111,6 +134,12 @@ namespace Zenergy.Controllers.ApiControllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+
+        /// <summary>
+        /// Create user.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         // POST: api/users
         [ResponseType(typeof(user))]
         public async Task<IHttpActionResult> Postuser(user user)
@@ -126,6 +155,12 @@ namespace Zenergy.Controllers.ApiControllers
             return CreatedAtRoute("DefaultApi", new { id = user.userId }, user);
         }
 
+
+        /// <summary>
+        /// Delete user by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // DELETE: api/users/5
         [ResponseType(typeof(user))]
         public async Task<IHttpActionResult> Deleteuser(int id)

@@ -53,6 +53,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -175,9 +179,11 @@
     <Compile Include="Controllers\ApiControllers\adminsController.cs" />
     <Compile Include="Controllers\ApiControllers\contributorsController.cs" />
     <Compile Include="Controllers\ApiControllers\managersController.cs" />
+    <Compile Include="Controllers\ApiControllers\roomContentsController.cs" />
+    <Compile Include="Controllers\ApiControllers\roomsController.cs" />
+    <Compile Include="Controllers\ApiControllers\accessoriesController.cs" />
     <Compile Include="Controllers\ApiControllers\usersController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Models\accessory.cs">
       <DependentUpon>ZenergyModel.tt</DependentUpon>
     </Compile>
@@ -231,7 +237,6 @@
       <DependentUpon>ZenergyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Models\event.cs">
       <DependentUpon>ZenergyModel.tt</DependentUpon>
     </Compile>
@@ -302,9 +307,13 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Pages\profile.html" />
+    <Content Include="Pages\users.html" />
     <Content Include="Scripts\Controllers\homePageController.js" />
     <Content Include="Scripts\Controllers\loginPageController.js" />
     <Content Include="Scripts\Controllers\mainController.js" />
+    <Content Include="Scripts\Controllers\registerPageController.js" />
+    <Content Include="Scripts\Controllers\profilePageController.js" />
     <Content Include="Scripts\Controllers\usersPageController.js" />
     <Content Include="Scripts\Factories\authInterceptorService.js" />
     <Content Include="Scripts\Factories\tokenService.js" />
@@ -1132,7 +1141,10 @@
     <Content Include="Scripts\Lib\modernizr-2.6.2.js" />
     <Content Include="Scripts\Lib\respond.js" />
     <Content Include="Scripts\Lib\respond.min.js" />
+    <Content Include="Scripts\Lib\ui-bootstrap-tpls-0.14.3.min.js" />
+    <Content Include="Scripts\Tools\facebookApiTools.js" />
     <Content Include="Scripts\zenergyApp.js" />
+    <Content Include="Pages\home.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1144,10 +1156,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\Lib\_references.js" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\Lib\version.json" />
     <EntityDeploy Include="Models\ZenergyModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -1156,11 +1165,13 @@
     <Content Include="Models\ZenergyModel.edmx.diagram">
       <DependentUpon>ZenergyModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\Login\index.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Pages\login.html" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Pages\register.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
