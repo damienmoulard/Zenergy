@@ -28,7 +28,9 @@
                 }
             }).then(function successCallback(response) {
                 $scope.hasError = false;
-                $location.path("/");
+                bootbox.alert("Yay! Your are now registered!", function () {
+                    $location.path("/");
+                });
             }, function errorCallback(response) {
                 $scope.hasError = true;
                 $scope.user.mail = '';
