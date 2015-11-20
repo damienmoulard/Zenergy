@@ -176,6 +176,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ApiControllers\membersController.cs" />
     <Compile Include="Controllers\ApiControllers\roomContentsController.cs" />
     <Compile Include="Controllers\ApiControllers\roomsController.cs" />
     <Compile Include="Controllers\ApiControllers\accessoriesController.cs" />
@@ -339,6 +340,7 @@
     <Content Include="Scripts\Lib\angular-touch.min.js" />
     <Content Include="Scripts\Lib\angular.js" />
     <Content Include="Scripts\Lib\angular.min.js" />
+    <Content Include="Scripts\Lib\bootbox.js" />
     <Content Include="Scripts\Lib\bootstrap.js" />
     <Content Include="Scripts\Lib\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />

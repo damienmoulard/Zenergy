@@ -13,10 +13,6 @@ using Zenergy.Models;
 
 namespace Zenergy.Controllers.ApiControllers
 {
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/accountManagement
     [Authorize]
     public class membersController : ApiController
     {
