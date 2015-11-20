@@ -18,9 +18,12 @@ namespace Zenergy.Controllers.ApiControllers
     {
         private ZenergyContext db = new ZenergyContext();
 
-
-        // POST: api/regularEvents/RegisterToEvent
-        [ActionName("Register")]
+        /// <summary>
+        /// Register user to the event.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        // POST: api/events/PostRegisterToEvent
         [HttpPost]
         [ResponseType(typeof(EventRegistrationModel))]
         public async Task<IHttpActionResult> PostRegisterToEvent(EventRegistrationModel model)
@@ -48,6 +51,28 @@ namespace Zenergy.Controllers.ApiControllers
             }
             else return BadRequest("This event does not exist.");
 
+        }
+
+
+
+        // DELETE: api/events/DeleteRegistration
+        [HttpDelete]
+        [ResponseType(typeof(EventRegistrationModel))]
+        public async Task<IHttpActionResult> DeleteRegistration(int eventId, int userId)
+        {
+            if (EventExists(eventId))
+            {
+                if(UserAlreadyRegisteredToEvent(userId, eventId))
+                {
+                    var myEvent = await db.@event.FindAsync(eventId);
+                    var myUser = await db.user.FindAsync(userId);
+                    myEvent.user.Remove(myUser);
+                    await db.SaveChangesAsync();
+                    return Ok(new EventRegistrationModel() { eventId = eventId, userId = userId });
+                }
+                return BadRequest("You are not registered to this event.");
+            }
+            return BadRequest("The event does not exist.");
         }
 
 
