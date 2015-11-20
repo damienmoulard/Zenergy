@@ -57,6 +57,23 @@ namespace Zenergy.Controllers.ApiControllers
         }
 
 
+        [HttpGet]
+        [ResponseType(typeof(@event))]
+        [Route("GetMyEvents")]
+        public async Task<IHttpActionResult> GetMyEvent(int userId)
+        {
+            var myUser = await db.user.FindAsync(userId);
+            if(myUser == null)
+            {
+                return NotFound();
+            }
+            if (!myUser.@event.Any())
+            {
+                return BadRequest("User has not registered to event yet.");
+            }
+            return Ok(myUser.@event);
+        }
+
 
 
         /// <summary>
