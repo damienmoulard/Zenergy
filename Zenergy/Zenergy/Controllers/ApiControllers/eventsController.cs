@@ -17,6 +17,32 @@ namespace Zenergy.Controllers.ApiControllers
     public class eventsController : ApiController
     {
         private ZenergyContext db = new ZenergyContext();
+        
+
+        // GET: api/ponctualEvents
+        [HttpGet]
+        public IQueryable<@event> GetAllEventRegistrations()
+        {
+            return db.@event.Where(e => e.user.Count != 0);
+        }
+
+
+        //GET: api/events/GetRegistrationsByEvent?eventId=1
+        [HttpGet]
+        [ResponseType(typeof(EventRegistrationModel))]
+        public async Task<IHttpActionResult> GetRegistrationsByEvent(int eventId)
+        {
+            var myEvent = db.@event.Where(e => e.eventId == eventId && e.user.Count != 0);
+            if (!myEvent.Any())
+            {
+                return NotFound();
+            }
+            var registeredUsers = myEvent.FirstAsync().Result.user.ToList();
+            return Ok(new EventRegistrationByEventModel() { eventId = eventId, registeredUsers = registeredUsers });
+        }
+
+
+
 
         /// <summary>
         /// Register user to the event.
