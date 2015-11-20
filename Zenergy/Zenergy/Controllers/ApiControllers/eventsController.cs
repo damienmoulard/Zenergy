@@ -14,13 +14,16 @@ using Zenergy.Services;
 
 namespace Zenergy.Controllers.ApiControllers
 {
+    [RoutePrefix("api/events")]
     public class eventsController : ApiController
     {
         private ZenergyContext db = new ZenergyContext();
-        
 
-        // GET: api/ponctualEvents
+
+        // GET: api/events/GetAllEventRegistrations
         [HttpGet]
+        [ActionName("GetAllEventRegistration")]
+        [Route("GetAllEventRegistration")]
         public IQueryable<@event> GetAllEventRegistrations()
         {
             return db.@event.Where(e => e.user.Count != 0);
@@ -30,6 +33,8 @@ namespace Zenergy.Controllers.ApiControllers
         //GET: api/events/GetRegistrationsByEvent?eventId=1
         [HttpGet]
         [ResponseType(typeof(EventRegistrationModel))]
+        [ActionName("GetRegistrationByEvent")]
+
         public async Task<IHttpActionResult> GetRegistrationsByEvent(int eventId)
         {
             var myEvent = db.@event.Where(e => e.eventId == eventId && e.user.Count != 0);
@@ -39,6 +44,16 @@ namespace Zenergy.Controllers.ApiControllers
             }
             var registeredUsers = myEvent.FirstAsync().Result.user.ToList();
             return Ok(new EventRegistrationByEventModel() { eventId = eventId, registeredUsers = registeredUsers });
+        }
+
+
+        [HttpGet]
+        [ResponseType(typeof(@event))]
+        [ActionName("SortByActivity")]
+        [Route("SortByActivity")]
+        public IOrderedQueryable<@event> SortEventsByActivity()
+        {
+            return db.@event.OrderBy(a => a.activity.activityName);
         }
 
 
