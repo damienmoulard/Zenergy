@@ -54,7 +54,12 @@ namespace Zenergy.Controllers.ApiControllers
         }
 
 
-
+        /// <summary>
+        /// Unsubscribe a user to an event.
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         // DELETE: api/events/DeleteRegistration
         [HttpDelete]
         [ResponseType(typeof(EventRegistrationModel))]
