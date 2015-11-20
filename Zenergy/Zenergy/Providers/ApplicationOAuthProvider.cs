@@ -51,10 +51,6 @@ namespace Zenergy.Providers
             identity.AddClaim(new Claim("mail", context.UserName));
             identity.AddClaim(new Claim("role", "user"));
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-            //identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.userId.ToString()));
-            identity.AddClaim(new Claim("UserId", user.userId.ToString()));
-
-            //identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.userId.ToString()));
             identity.AddClaim(new Claim("UserId", user.userId.ToString()));
 
             if (user.member != null)
@@ -72,27 +68,7 @@ namespace Zenergy.Providers
             if (user.admin != null)
             {
                 identity.AddClaim(new Claim(ClaimTypes.Role, "Admin"));
-            }
-
-            //identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.userId.ToString()));
-            identity.AddClaim(new Claim("UserId", user.userId.ToString()));
-
-            if (user.member != null)
-            {
-                identity.AddClaim(new Claim(ClaimTypes.Role, "Member"));
-            }
-            if (user.contributor != null)
-            {
-                identity.AddClaim(new Claim(ClaimTypes.Role, "Contributor"));
-            }
-            if (user.manager != null)
-            {
-                identity.AddClaim(new Claim(ClaimTypes.Role, "Manager"));
-            }
-            if (user.admin != null)
-            {
-                identity.AddClaim(new Claim(ClaimTypes.Role, "Admin"));
-            }
+            }      
 
             AuthenticationProperties properties = CreateProperties(user.userId.ToString(), user.mail);
             AuthenticationTicket ticket = new AuthenticationTicket(identity, properties);

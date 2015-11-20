@@ -23,6 +23,11 @@ zenergyApp.config(function ($routeProvider) {
             templateUrl: 'Pages/register.html',
             controller: 'registerPageController'
         })
+
+        .when('/Account', {
+            templateUrl: 'Pages/accountManagement.html',
+            controller: 'accountManagementPageController'
+        })
 });
 
 

@@ -1,15 +1,35 @@
-﻿zenergyApp.controller("accountManagementPageController", ["$scope", "$http", "$window", function ($scope, $http, $window) {
+﻿zenergyApp.controller("accountManagementPageController", ["$scope", "$http", "tokenService", "$window", function ($scope, $http, $window) {
+
+    console.log(tokenService.userId);
+
+       /* var response = $http({
+            url: '/api/users/',
+            method: 'GET',
+            data: { userId: 1, password: CryptoJS.MD5($scope.user.password).toString(), lastName: $scope.user.lastName, firstName: $scope.user.firstName, adr1: $scope.user.adr1, adr2: $scope.user.adr2, pc: $scope.user.pc, town: $scope.user.town, mail: $scope.user.mail, phone: $scope.user.phone },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function successCallback(response) {
+            $scope.hasError = false;
+            window.location.replace("/home"); // $location.path("/#");
+        }, function errorCallback(response) {
+            $scope.hasError = true;
+            $scope.user.mail = '';
+            $scope.user.password = '';
+        });*/
 
     $scope.user = { mail: '', password: '', passwordBis: '', lastName: '', firstName: '', adr1: '', adr2: '', pc: '', town: '', phone: '' };
     $scope.hasError = false;
     $scope.passNotMatch = false;
+
+
 
     $scope.changeInformations = function () {
 
         if (!$scope.hasError) {
             var response = $http({
                 url: '/api/Account/update',
-                method: 'POST',
+                method: 'PUT',
                 data: { userId: 1, password: CryptoJS.MD5($scope.user.password).toString(), lastName: $scope.user.lastName, firstName: $scope.user.firstName, adr1: $scope.user.adr1, adr2: $scope.user.adr2, pc: $scope.user.pc, town: $scope.user.town, mail: $scope.user.mail, phone: $scope.user.phone },
                 headers: {
                     'Content-Type': 'application/json'

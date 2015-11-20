@@ -14,7 +14,7 @@
         }).then(function successCallback(response) {
             $scope.hasError = false;
             console.log(response);
-            tokenService.saveToken(response.data.access_token, response.data.userName);
+            tokenService.saveToken(response.data.access_token, response.data.userName, response.data.userId);
             $location.path('/');
         }, function errorCallback(response) {
             $scope.hasError = true;
