@@ -176,10 +176,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ApiControllers\eventsController.cs" />
     <Compile Include="Controllers\ApiControllers\membersController.cs" />
     <Compile Include="Controllers\ApiControllers\roomContentsController.cs" />
     <Compile Include="Controllers\ApiControllers\roomsController.cs" />
     <Compile Include="Controllers\ApiControllers\accessoriesController.cs" />
+    <Compile Include="Controllers\ApiControllers\ponctualEventsController.cs" />
+    <Compile Include="Controllers\ApiControllers\regularEventsController.cs" />
     <Compile Include="Controllers\ApiControllers\usersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Models\accessory.cs">
@@ -241,6 +244,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EventRegistrationModel.cs" />
     <Compile Include="Models\manager.cs">
       <DependentUpon>ZenergyModel.tt</DependentUpon>
     </Compile>
@@ -1169,6 +1173,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\events\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
