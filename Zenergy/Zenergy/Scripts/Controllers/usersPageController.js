@@ -4,7 +4,7 @@
 
         $scope.sortType = 'userId'; // set the default sort type
         $scope.sortReverse = false;  // set the default sort order
-        $scope.searchFish = '';     // set the default search/filter term
+        $scope.searchUser = '';     // set the default search/filter term
 
 
         var User = $resource('api/users/:userId', { userId: '@id' }, {

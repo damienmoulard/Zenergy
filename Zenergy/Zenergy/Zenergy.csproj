@@ -177,9 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ApiControllers\adminsController.cs" />
+    <Compile Include="Controllers\ApiControllers\categoriesController.cs" />
     <Compile Include="Controllers\ApiControllers\contributorsController.cs" />
     <Compile Include="Controllers\ApiControllers\managersController.cs" />
-    <Compile Include="Controllers\ApiControllers\eventsController.cs" />
     <Compile Include="Controllers\ApiControllers\eventRegistrationsController.cs" />
     <Compile Include="Controllers\ApiControllers\membersController.cs" />
     <Compile Include="Controllers\ApiControllers\roomContentsController.cs" />
@@ -316,12 +316,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Pages\accountManagement.html" />
+    <Content Include="Pages\products.html" />
     <Content Include="Pages\profile.html" />
     <Content Include="Pages\users.html" />
     <Content Include="Scripts\Controllers\accountManagementPageController.js" />
     <Content Include="Scripts\Controllers\homePageController.js" />
     <Content Include="Scripts\Controllers\loginPageController.js" />
     <Content Include="Scripts\Controllers\mainController.js" />
+    <Content Include="Scripts\Controllers\productsPageController.js" />
     <Content Include="Scripts\Controllers\registerPageController.js" />
     <Content Include="Scripts\Controllers\profilePageController.js" />
     <Content Include="Scripts\Controllers\usersPageController.js" />
