@@ -185,6 +185,7 @@
     <Compile Include="Controllers\ApiControllers\regularEventsController.cs" />
     <Compile Include="Controllers\ApiControllers\usersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ApiControllers\productsController.cs" />
     <Compile Include="Models\accessory.cs">
       <DependentUpon>ZenergyModel.tt</DependentUpon>
     </Compile>
