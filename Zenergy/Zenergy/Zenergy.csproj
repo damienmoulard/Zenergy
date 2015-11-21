@@ -176,7 +176,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ApiControllers\eventsController.cs" />
+    <Compile Include="Controllers\ApiControllers\eventRegistrationController.cs" />
     <Compile Include="Controllers\ApiControllers\membersController.cs" />
     <Compile Include="Controllers\ApiControllers\roomContentsController.cs" />
     <Compile Include="Controllers\ApiControllers\roomsController.cs" />
