@@ -1,8 +1,32 @@
 ﻿<h2>Events</h2>
-<div class="container " ng-controller="registerPageController">
+
+<div ="container " ng-controller="eventRegistrationPageController">
+
+    <div id="datepicker"></div>
+    <h2>{{dateSelected}}</h2>
+    <br/>
     <div class="row">
-        <div name="planning" class="col-md-3 col-lg-offset-4">
- 
+        <div ng-controller="eventRegistrationPageController">
+            <table class="table">
+                <tr>
+                    <th>Time</th>
+                    <th>Name</th>
+                    <th>Room</th>
+                    <th>Price</th>
+                    <th>Register</th>                  
+                </tr>
+                <tr ng-repeat="e in events">
+                    <td>{{e.time}}</td>
+                    <td>{{e.Name}}</td>
+                    <td>{{e.Room}}</td>
+                    <td>{{e.Price}}</td>
+                    <td> <button onclick="" class="btn btn-default">Join</button> </td>
+
+                </tr>
+
+               
+            </table>
+           
         </div>
     </div>
 </div>

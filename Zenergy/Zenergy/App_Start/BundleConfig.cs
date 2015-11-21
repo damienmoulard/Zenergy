@@ -9,7 +9,8 @@ namespace Zenergy
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/Lib/jquery-{version}.js"));
+                        "~/Scripts/Lib/jquery-{version}.js",
+                       "~/Scripts/Lib/jquery-ui.js"));
 
             // Utilisez la version de développement de Modernizr pour développer et apprendre. Puis, lorsque vous êtes
             // prêt pour la production, utilisez l’outil de génération sur http://modernizr.com pour sélectionner uniquement les tests dont vous avez besoin.
@@ -37,6 +38,7 @@ namespace Zenergy
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                       "~/Content/jquery-ui.css",
                       "~/Content/site.css"));
         }
     }
