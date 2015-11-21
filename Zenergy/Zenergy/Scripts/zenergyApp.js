@@ -28,6 +28,11 @@ zenergyApp.config(function ($routeProvider) {
             templateUrl: 'Pages/accountManagement.html',
             controller: 'accountManagementPageController'
         })
+    
+        .when('/MyEvents', {
+            templateUrl: 'Pages/eventsManagement.html',
+            controller: 'eventsManagementPageController'
+        })
 });
 
 

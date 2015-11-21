@@ -1,0 +1,52 @@
+﻿<h2>My events</h2>
+
+<div class="container " ng-controller="accountManagementPageController">
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Here are the events you created</div>
+
+        <!-- Table -->
+        <table class="table">
+            <tr>
+                <th>Event Name</th>
+                <th>Activity</th>
+                <th>Room</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+            <tr ng-repeat="ponctual in filtered = (ponctualEvents | filter: query)">
+                <td>{{ponctual.event.eventName}}</td>
+                <td>{{ponctual.event.activity.activityName}}</td>
+                <td>{{ponctual.event.room.roomName}}</td>
+                <td>{{ponctual.eventDate | date:'yyyy-MM-dd'}}</td>
+                <td>{{ponctual.event.timeBegin}}</td>
+                <td><form ng-submit="updateEvent($index)"><input value="Update" type="submit" class="btn btn-warning"/></form></td>
+                <td><button type="button" class="btn btn-danger">Delete</button></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Update my event</h4>
+            </div>
+            <div class="modal-body">
+
+                <!--update form here-->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!--<td><form ng-submit="commitUpdateEvent()"><input value="Save changes" type="submit" class="btn btn-primary" /></form></td> onclick="commitUpdateEvent();"-->
+                <!----><button type="button" id="commitUpdateButton" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
