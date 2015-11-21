@@ -33,6 +33,16 @@ zenergyApp.config(function ($routeProvider) {
             templateUrl: 'Pages/eventsManagement.html',
             controller: 'eventsManagementPageController'
         })
+
+        .when('/CreatePonctualEvent', {
+            templateUrl: 'Pages/ponctualEventCreation.html',
+            controller: 'ponctualEventCreationPageController'
+        })
+
+        .when('/CreateRegularEvent', {
+            templateUrl: 'Pages/regularEventCreation.html',
+            controller: 'regularEventCreationPageController'
+        })
 });
 
 

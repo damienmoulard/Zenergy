@@ -1,32 +1,37 @@
 ﻿<h2>My events</h2>
 
 <div class="container " ng-controller="accountManagementPageController">
+    <div class="row">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Here are the events you created</div>
 
-    <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading">Here are the events you created</div>
-
-        <!-- Table -->
-        <table class="table">
-            <tr>
-                <th>Event Name</th>
-                <th>Activity</th>
-                <th>Room</th>
-                <th>Date</th>
-                <th>Time</th>
-            </tr>
-            <tr ng-repeat="ponctual in filtered = (ponctualEvents | filter: query)">
-                <td>{{ponctual.event.eventName}}</td>
-                <td>{{ponctual.event.activity.activityName}}</td>
-                <td>{{ponctual.event.room.roomName}}</td>
-                <td>{{ponctual.eventDate | date:'yyyy-MM-dd'}}</td>
-                <td>{{ponctual.event.timeBegin}}</td>
-                <td><form ng-submit="updateEvent($index)"><input value="Update" type="submit" class="btn btn-warning"/></form></td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
-            </tr>
-        </table>
+            <!-- Table -->
+            <table class="table">
+                <tr>
+                    <th>Event Name</th>
+                    <th>Activity</th>
+                    <th>Room</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="ponctual in filtered = (ponctualEvents | filter: query)">
+                    <td>{{ponctual.event.eventName}}</td>
+                    <td>{{ponctual.event.activity.activityName}}</td>
+                    <td>{{ponctual.event.room.roomName}}</td>
+                    <td>{{ponctual.eventDate | date:'yyyy-MM-dd'}}</td>
+                    <td>{{ponctual.event.timeBegin}}</td>
+                    <td><form ng-submit="updateEvent($index)"><input value="Update" type="submit" class="btn btn-warning" /></form></td>
+                    <td><button type="button" class="btn btn-danger">Delete</button></td>
+                </tr>
+            </table>
+        </div>
     </div>
-
+    <div class="row">
+        <a href="#/CreatePonctualEvent" class="btn btn-success btn-lg">Create a new ponctual event!</a>
+    </div>
 </div>
 
 <!-- Modal -->
