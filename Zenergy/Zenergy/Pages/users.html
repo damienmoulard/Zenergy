@@ -1,7 +1,7 @@
-﻿<div ng-controller="usersPageController" class="container ">
+﻿<div class="container ">
     <div class="row">
         <div class="col-md-12">
-            <h2>Users managment{{checkBoxModel}}</h2>
+            <h2>Users managment</h2>
             <form>
                 <div class="form-group">
                     <div class="input-group">
@@ -12,17 +12,15 @@
                     </div>
                 </div>
             </form>
-                <script type="text/ng-template" id="myModalContent.html">
-                    <div class="modal-header">
-                        <h3 class="modal-title">{{modifiedUser.firstname}}</h3>
-                    </div>
-                    <div class="modal-body">
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-                        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-                    </div>
-                </script>
+            <script type="text/ng-template" id="myModalContent.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">Are you sur you want to delete {{userTodelete.firstname}} ?</h3>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                </div>
+            </script>
 
 
                 <table class="table table-striped">
@@ -63,15 +61,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="u in users | orderBy:sortType:sortReverse| filter:searchUser" ng-init="u.adminChecked=(u.admin!=undefined); u.managerChecked=(u.manager!=undefined); u.contributorChecked=(u.contributor!=undefined); u.memberChecked=(u.member!=undefined)">
+                        <tr ng-repeat="u in users | orderBy:sortType:sortReverse| filter:searchUser" id="tr{{u.userId}}" ng-init="u.adminChecked=(u.admin!=undefined); u.managerChecked=(u.manager!=undefined); u.contributorChecked=(u.contributor!=undefined); u.memberChecked=(u.member!=undefined)">
                             <td>{{u.userId}}</td>
                             <td>{{u.firstname}}</td>
                             <td>{{u.lastname}}</td>
                             <td>{{u.mail}}</td>
-                            <td><label><input type="checkbox" ng-checked="u.admin" ng-model="u.adminChecked"></label></td>
-                            <td><label><input type="checkbox" ng-checked="u.manager" ng-model="u.managerChecked"></label></td>
-                            <td><label><input type="checkbox" ng-checked="u.contributor" ng-model="u.contributorChecked"></label></td>
-                            <td><label><input type="checkbox" ng-checked="u.member" ng-model="u.memberChecked"></label></td>
+                            <td><label><input type="checkbox" ng-checked="u.admin" ng-model="u.adminChecked"/></label></td>
+                            <td><label><input type="checkbox" ng-checked="u.manager" ng-model="u.managerChecked"/></label></td>
+                            <td><label><input type="checkbox" ng-checked="u.contributor" ng-model="u.contributorChecked"/></label></td>
+                            <td><label><input type="checkbox" ng-checked="u.member" ng-model="u.memberChecked"/></label></td>
+                            <td><input class="btn btn-danger btn-sm" value="delete" ng-click="open(u)"/></td>
                         </tr>
                     </tbody>
                 </table>
