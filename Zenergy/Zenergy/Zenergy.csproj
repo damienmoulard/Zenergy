@@ -177,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ApiControllers\eventsController.cs" />
+    <Compile Include="Controllers\ApiControllers\membersController.cs" />
     <Compile Include="Controllers\ApiControllers\roomContentsController.cs" />
     <Compile Include="Controllers\ApiControllers\roomsController.cs" />
     <Compile Include="Controllers\ApiControllers\accessoriesController.cs" />
@@ -309,7 +310,9 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Pages\accountManagement.html" />
     <Content Include="Pages\profile.html" />
+    <Content Include="Scripts\Controllers\accountManagementPageController.js" />
     <Content Include="Scripts\Controllers\homePageController.js" />
     <Content Include="Scripts\Controllers\loginPageController.js" />
     <Content Include="Scripts\Controllers\mainController.js" />
@@ -342,6 +345,7 @@
     <Content Include="Scripts\Lib\angular-touch.min.js" />
     <Content Include="Scripts\Lib\angular.js" />
     <Content Include="Scripts\Lib\angular.min.js" />
+    <Content Include="Scripts\Lib\bootbox.js" />
     <Content Include="Scripts\Lib\bootstrap.js" />
     <Content Include="Scripts\Lib\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
