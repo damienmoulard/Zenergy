@@ -52,6 +52,7 @@ namespace Zenergy.Providers
             identity.AddClaim(new Claim("role", "user"));
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
             identity.AddClaim(new Claim("UserId", user.userId.ToString()));
+            identity.AddClaim(new Claim(ClaimTypes.Role, "User"));
 
             if (user.member != null)
             {
