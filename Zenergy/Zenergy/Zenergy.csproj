@@ -176,6 +176,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ApiControllers\adminsController.cs" />
+    <Compile Include="Controllers\ApiControllers\contributorsController.cs" />
+    <Compile Include="Controllers\ApiControllers\managersController.cs" />
+    <Compile Include="Controllers\ApiControllers\eventsController.cs" />
     <Compile Include="Controllers\ApiControllers\eventRegistrationsController.cs" />
     <Compile Include="Controllers\ApiControllers\membersController.cs" />
     <Compile Include="Controllers\ApiControllers\roomContentsController.cs" />
@@ -313,12 +317,14 @@
     <Content Include="Global.asax" />
     <Content Include="Pages\accountManagement.html" />
     <Content Include="Pages\profile.html" />
+    <Content Include="Pages\users.html" />
     <Content Include="Scripts\Controllers\accountManagementPageController.js" />
     <Content Include="Scripts\Controllers\homePageController.js" />
     <Content Include="Scripts\Controllers\loginPageController.js" />
     <Content Include="Scripts\Controllers\mainController.js" />
     <Content Include="Scripts\Controllers\registerPageController.js" />
     <Content Include="Scripts\Controllers\profilePageController.js" />
+    <Content Include="Scripts\Controllers\usersPageController.js" />
     <Content Include="Scripts\Factories\authInterceptorService.js" />
     <Content Include="Scripts\Factories\tokenService.js" />
     <Content Include="Scripts\Lib\angular-animate.js" />
@@ -1146,6 +1152,7 @@
     <Content Include="Scripts\Lib\modernizr-2.6.2.js" />
     <Content Include="Scripts\Lib\respond.js" />
     <Content Include="Scripts\Lib\respond.min.js" />
+    <Content Include="Scripts\Lib\ui-bootstrap-tpls-0.14.3.min.js" />
     <Content Include="Scripts\Tools\facebookApiTools.js" />
     <Content Include="Scripts\zenergyApp.js" />
     <Content Include="Pages\home.html" />
