@@ -19,8 +19,8 @@ namespace Zenergy.Controllers
 
         // GET: api/products
         [HttpGet]
-        [Route("api/product")]
-        [Authorize(Roles = "User")]
+        [Route("api/products")]
+        [Authorize]
         public IQueryable<product> Getproduct()
         {
             return db.product;
@@ -28,7 +28,7 @@ namespace Zenergy.Controllers
 
         // GET: api/products/5
         [HttpGet]
-        [Route("api/products/{productId}")]
+        [Route("api/product/{productId}")]
         [Authorize(Roles = "User")]
         [ResponseType(typeof(product))]
         public async Task<IHttpActionResult> Getproduct(int productId)
@@ -44,7 +44,7 @@ namespace Zenergy.Controllers
 
         // PUT: api/products/5
         [HttpPut]
-        [Route("api//products/{productId}")]
+        [Route("api/products/{productId}")]
         [Authorize(Roles = "Admin")]
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> Putproduct(int productId, product product)
@@ -82,7 +82,7 @@ namespace Zenergy.Controllers
 
         // POST: api/products
         [HttpPost]
-        [Route("api/product")]
+        [Route("api/products")]
         [ResponseType(typeof(product))]
         [Authorize(Roles = "Admin")]
         public async Task<IHttpActionResult> Postproduct(product product)
@@ -95,7 +95,7 @@ namespace Zenergy.Controllers
             db.product.Add(product);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = product.productId }, product);
+            return Created("api/products", product);
         }
 
         // DELETE: api/products/5
