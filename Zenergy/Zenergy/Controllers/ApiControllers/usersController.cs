@@ -14,6 +14,7 @@ using Zenergy.Services;
 
 namespace Zenergy.Controllers.ApiControllers
 {
+    [Authorize]
     public class usersController : ApiController
     {
         private ZenergyContext db = new ZenergyContext();
@@ -30,7 +31,7 @@ namespace Zenergy.Controllers.ApiControllers
         /// </summary>
         /// <returns></returns>
         // GET: api/users
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IQueryable<user> Getuser()
         {
             return db.user;
@@ -65,7 +66,8 @@ namespace Zenergy.Controllers.ApiControllers
         [Route("api/users/findByRole")]
         [HttpGet]
         [ResponseType(typeof(user[]))]
-        public async Task<IHttpActionResult> FindByRole(string role) {
+        [Authorize(Roles = "Admin, Manager")]
+        public async Task<IHttpActionResult> findByRole(string role) {
             user[] users = null;
 
             if (role == "Administrator")
@@ -142,6 +144,7 @@ namespace Zenergy.Controllers.ApiControllers
         /// <returns></returns>
         // POST: api/users
         [ResponseType(typeof(user))]
+        [AllowAnonymous]
         public async Task<IHttpActionResult> Postuser(user user)
         {
             if (!ModelState.IsValid)
@@ -163,6 +166,7 @@ namespace Zenergy.Controllers.ApiControllers
         /// <returns></returns>
         // DELETE: api/users/5
         [ResponseType(typeof(user))]
+        [Authorize(Roles = "Admin")]
         public async Task<IHttpActionResult> Deleteuser(int id)
         {
             user user = await db.user.FindAsync(id);

@@ -23,7 +23,6 @@
             <div  class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="#/">Home</a></li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
                 </ul>
                 <ul ng-show="isAuthanticated()" class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -32,6 +31,7 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
+                                <li><a href="#/Account" ng-click="account()">My Account</a></li>
                                 <li><a href="#/" ng-click="logoff()">Log Off</a></li>
                             </ul>
                         </li>
@@ -73,3 +73,5 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+<script src="~/Scripts/Lib/bootbox.js"></script>

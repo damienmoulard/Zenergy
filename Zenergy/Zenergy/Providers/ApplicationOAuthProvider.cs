@@ -51,8 +51,26 @@ namespace Zenergy.Providers
             identity.AddClaim(new Claim("mail", context.UserName));
             identity.AddClaim(new Claim("role", "user"));
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+            identity.AddClaim(new Claim("UserId", user.userId.ToString()));
 
-            AuthenticationProperties properties = CreateProperties(user.mail);
+            if (user.member != null)
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, "Member"));
+            }
+            if (user.contributor != null)
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, "Contributor"));
+            }
+            if (user.manager != null)
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, "Manager"));
+            }
+            if (user.admin != null)
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, "Admin"));
+            }      
+
+            AuthenticationProperties properties = CreateProperties(user.userId.ToString(), user.mail);
             AuthenticationTicket ticket = new AuthenticationTicket(identity, properties);
             context.Validated(ticket);
             //context.Request.Context.Authentication.SignIn(cookiesIdentity);
@@ -65,6 +83,8 @@ namespace Zenergy.Providers
             {
                 context.AdditionalResponseParameters.Add(property.Key, property.Value);
             }
+
+            context.AdditionalResponseParameters.Add("userID", context.Identity.GetUserId());
 
             return Task.FromResult<object>(null);
         }
@@ -95,10 +115,11 @@ namespace Zenergy.Providers
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName)
+        public static AuthenticationProperties CreateProperties(string userId, string userName)
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
+                { "userId", userId },
                 { "userName", userName }
             };
             return new AuthenticationProperties(data);
