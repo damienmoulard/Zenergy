@@ -52,9 +52,6 @@
         });
     }
 
-
-
-
     $scope.open = function (u) {
 
         $scope.userTodelete = u;
