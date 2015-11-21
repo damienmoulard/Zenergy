@@ -24,6 +24,7 @@ namespace Zenergy.Controllers.ApiControllers
         [HttpGet]
         [ActionName("GetAllEventRegistration")]
         [Route("GetAllEventRegistration")]
+        [Authorize(Roles = "Admin, Manager")]
         public IQueryable<@event> GetAllEventRegistrations()
         {
             return db.@event.Where(e => e.user.Count != 0);
@@ -34,7 +35,7 @@ namespace Zenergy.Controllers.ApiControllers
         [HttpGet]
         [ResponseType(typeof(EventRegistrationModel))]
         [ActionName("GetRegistrationByEvent")]
-
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IHttpActionResult> GetRegistrationsByEvent(int eventId)
         {
             var myEvent = db.@event.Where(e => e.eventId == eventId && e.user.Count != 0);
@@ -51,6 +52,7 @@ namespace Zenergy.Controllers.ApiControllers
         [ResponseType(typeof(@event))]
         [ActionName("SortByActivity")]
         [Route("SortByActivity")]
+        [Authorize(Roles = "Admin, Manager, User, Member")]
         public IOrderedQueryable<@event> SortEventsByActivity()
         {
             return db.@event.OrderBy(a => a.activity.activityName);
@@ -60,6 +62,7 @@ namespace Zenergy.Controllers.ApiControllers
         [HttpGet]
         [ResponseType(typeof(@event))]
         [Route("GetMyEvents")]
+        [Authorize(Roles = "Member")]
         public async Task<IHttpActionResult> GetMyEvent(int userId)
         {
             var myUser = await db.user.FindAsync(userId);
@@ -77,6 +80,7 @@ namespace Zenergy.Controllers.ApiControllers
         [HttpGet]
         [ResponseType(typeof(@event))]
         [Route("SortUserEventByActivity")]
+        [Authorize(Roles = "Member")]
         public async Task<IHttpActionResult> SortUserEventByActivity(int userId)
         {
             var user = await db.user.FindAsync(userId);
@@ -92,8 +96,6 @@ namespace Zenergy.Controllers.ApiControllers
         }
 
 
-
-
         /// <summary>
         /// Register user to the event.
         /// </summary>
@@ -102,6 +104,7 @@ namespace Zenergy.Controllers.ApiControllers
         // POST: api/events/PostRegisterToEvent
         [HttpPost]
         [ResponseType(typeof(EventRegistrationModel))]
+        [Authorize(Roles = "Member")]
         public async Task<IHttpActionResult> PostRegisterToEvent(EventRegistrationModel model)
         {
             if (EventExists(model.eventId))
@@ -139,6 +142,7 @@ namespace Zenergy.Controllers.ApiControllers
         // DELETE: api/events/DeleteRegistration
         [HttpDelete]
         [ResponseType(typeof(EventRegistrationModel))]
+        [Authorize(Roles = "Admin, Manager, Member")]
         public async Task<IHttpActionResult> DeleteRegistration(int eventId, int userId)
         {
             if (EventExists(eventId))
