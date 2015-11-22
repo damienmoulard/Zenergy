@@ -22,13 +22,13 @@ zenergyApp.controller("eventRegistrationPageController", ["$scope", "$http", "to
     $scope.getEvent = function () {
         $scope.events = [];
 
-        // var dateselected = new Date($scope.dateSelected).toJSON();
+        var dateselected = new Date($scope.dateSelected).toJSON();
 
         var responseEvent = $http({
-            // url: '/api/events/bydate',
-            url: '/api/ponctualEvents',
-            method: 'GET',
-           // data: { eventdate: dateselected },
+            url: '/api/events/bydate',
+            //url: '/api/ponctualEvents',
+            method: 'POST',
+            data: { eventdate: dateselected },
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -47,13 +47,11 @@ zenergyApp.controller("eventRegistrationPageController", ["$scope", "$http", "to
            for (var e in responseEvent.data) {               
                 $scope.events.push({
                     Id: responseEvent.data[e].eventId,
-                    roomName: responseEvent.data[e].event.room.roomName,
-                    Description: responseEvent.data[e].event.eventDescription,
-                    timeBegin: responseEvent.data[e].event.timeBegin,
-                    duration: responseEvent.data[e].event.eventDurationHours,
-                    price: responseEvent.data[e].event.eventPrice,
-                    name: responseEvent.data[e].event.eventName,
-                    activity: responseEvent.data[e].event.activity.activityName
+                    description: responseEvent.data[e].eventDescription,
+                    timeBegin: responseEvent.data[e].timeBegin,
+                    duration: responseEvent.data[e].eventDurationHours,
+                    price: responseEvent.data[e].eventPrice,
+                    name: responseEvent.data[e].eventName,
                 });
            
             }

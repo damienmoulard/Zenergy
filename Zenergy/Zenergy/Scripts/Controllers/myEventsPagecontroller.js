@@ -38,20 +38,21 @@
             }
             for (var e in responseEvent.data) {
 
-                var date = new Date(responseEvent.data[e].ponctualEvent.eventDate);
-                date = date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
+              var date = responseEvent.data[e].ponctualEvent.eventDate;
+                // date = date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
+                console.log(responseEvent.data[e].ponctualEvent.eventDate);
+                var dateselected = new Date($scope.dateSelected).toJSON();
+                console.log(dateselected);
 
                 // add this event to the list if it's current date
-                if (date == $scope.dateSelected) {
+                if (date == dateselected) {
                     $scope.events.push({
                         Id: responseEvent.data[e].eventId,
-                        roomName: responseEvent.data[e].room.roomName,
-                        Description: responseEvent.data[e].eventDescription,
+                        description: responseEvent.data[e].eventDescription,
                         timeBegin: responseEvent.data[e].timeBegin,
                         duration: responseEvent.data[e].eventDurationHours,
                         price: responseEvent.data[e].eventPrice,
                         name: responseEvent.data[e].eventName,
-                        activity: responseEvent.data[e].activity.activityName
                     });
                 }
             }
@@ -77,7 +78,7 @@
     };
 
     $scope.getEvent();
-
+   // $scope.unjoinEvent(4);
 
 
 }]);

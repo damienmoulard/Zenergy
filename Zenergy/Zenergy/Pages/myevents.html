@@ -11,16 +11,16 @@
                 <tr>
                     <th>Time</th>
                     <th>Name</th>
-                    <th>Room</th>
-                    <th>Activity</th>
+                    <th>Description</th>
+                    <th>Duration</th>
                     <th>Price</th>
-                    <th>Register</th>
+                    <th>Register</th> 
                 </tr>
                 <tr ng-repeat="e in events">
                     <td>{{e.timeBegin}}</td>
                     <td>{{e.name}}</td>
-                    <td>{{e.roomName}}</td>
-                    <td>{{e.activity}}</td>
+                    <td>{{e.description}}</td>
+                    <td>{{e.duration}}</td>
                     <td>{{e.price}}</td>
                     <td> <button ng-click="unjoinEvent(e.Id)" class="btn btn-default">Unjoin</button></td>
 
