@@ -1,0 +1,140 @@
+﻿<div class="container ">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Products managment</h2>
+            <form>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+
+                        <input type="text" class="form-control" placeholder="Search for a product (by name)" ng-model="searchProduct.productName">
+                    </div>
+                </div>
+            </form>
+
+            <script type="text/ng-template" id="deleteProductContent.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">Are you sur you want to delete product n° {{productToDelete.productId}} ?</h3>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                </div>
+            </script>
+
+            <script type="text/ng-template" id="updateProductContent.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">Edit product n° {{productToUpdate.productId}} ?</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" class="form-control" ng-model="productToUpdate.productName">
+                    </div>
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <input type="text" class="form-control" ng-model="productToUpdate.productDescr">
+                    </div>
+                    <div class="form-group">
+                        <label>Price:</label>
+                        <input type="number" class="form-control" ng-model="productToUpdate.productPrice">
+                    </div>
+                    <div class="form-group">
+                        <label>Member reduction:</label>
+                        <input type="number" class="form-control" ng-model="productToUpdate.memberReduction">
+                    </div>
+                    <div class="form-group">
+                        <label>Available quantity:</label>
+                        <input type="number" class="form-control" ng-model="productToUpdate.availableQty">
+                    </div>
+                    <div class="form-group">
+                        <label>Category:</label>
+                        <select name="mySelect" id="mySelect"
+                                ng-options="c.categoryName for c in categories track by c.categoryId"
+                                ng-model="productToUpdate.category"></select>         
+                    </div>
+ 
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                </div>
+            </script>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            <a href="" ng-click="sortType = 'productId' ; sortReverse = !sortReverse">
+                                Product ID
+                                <span ng-show="sortType == 'productId' && sortReverse" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                                <span ng-show="sortType == 'productId' && !sortReverse" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="" ng-click="sortType = 'productName'; sortReverse = !sortReverse">
+                                Name
+                                <span ng-show="sortType == 'productName' && sortReverse" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                                <span ng-show="sortType == 'productName' && !sortReverse" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="" ng-click="sortType = 'productDescr'; sortReverse = !sortReverse">
+                                Description
+                                <span ng-show="sortType == 'productDescr' && sortReverse" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                                <span ng-show="sortType == 'productDescr' && !sortReverse" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="" ng-click="sortType = 'productPrice'; sortReverse = !sortReverse">
+                                Price
+                                <span ng-show="sortType == 'productPrice' && sortReverse" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                                <span ng-show="sortType == 'productPrice' && !sortReverse" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="" ng-click="sortType = 'memberReduction'; sortReverse = !sortReverse">
+                                Reduction
+                                <span ng-show="sortType == 'memberReduction' && sortReverse" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                                <span ng-show="sortType == 'memberReduction' && !sortReverse" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="" ng-click="sortType = 'availableQty'; sortReverse = !sortReverse">
+                                Quantity
+                                <span ng-show="sortType == 'availableQty' && sortReverse" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                                <span ng-show="sortType == 'availableQty' && !sortReverse" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in products | orderBy:sortType:sortReverse| filter:searchProduct" id="tr{{p.productId}}">
+                        <td>{{p.productId}}</td>
+                        <td>{{p.productName}}</td>
+                        <td>{{p.productDescr}}</td>
+                        <td>{{p.productPrice}} €</td>
+                        <td>{{p.memberReduction}} €</td>
+                        <td>{{p.availableQty}}</td>
+                        <td width="100px"><input class="btn btn-primary btn-sm" value="Edit" ng-click="update(p)" /></td>
+                        <td width="100px"><input class="btn btn-danger btn-sm" value="Delete" ng-click="delete(p)" /></td>
+                    </tr>
+                    <tr ng-show="showInputs">
+                        <td></td>
+                        <td><input placeholder="Name" ng-model="newProduct.productName"/></td>
+                        <td><input placeholder="Descritpion" ng-model="newProduct.productDescr"/></td>
+                        <td><input placeholder="Price" type="number" ng-model="newProduct.productPrice"/></td>
+                        <td><input placeholder="Reduction" type="number" ng-model="newProduct.memberReduction"/></td>
+                        <td><input placeholder="Quantity" type="number" ng-model="newProduct.availableQty"/></td>
+                        <td>
+                            <select name="singleSelect" id="singleSelect" ng-model="newProduct.categoryId">
+                                <option value="" disabled selected>Category</option>
+                                <option ng-repeat="c in categories" value="{{c.categoryId}}">{{c.categoryName}}</option>
+                            </select>
+                        </td>
+                     </tr>
+                </tbody>
+            </table>
+            <input ng-hide="showInputs" class="btn btn-success btn-lg" value="Add one" ng-click="add()" />
+            <input ng-disabled="newProduct.categoryId==null || newProduct.productName==null" ng-show="showInputs" class="btn btn-success btn-sm" value="Add" ng-click="confirm()" />
+        </div>
+    </div>
+</div>

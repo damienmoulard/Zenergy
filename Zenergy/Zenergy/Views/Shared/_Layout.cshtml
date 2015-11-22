@@ -36,6 +36,20 @@
                             </ul>
                         </li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right" ng-show="isAuthanticated() && isAdmin()">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                            Admin Panel
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#Users">Users management</a></li>
+                            <li><a href="#Rooms">Rooms management</a></li>
+                            <li><a href="#Products">Products management</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
                 <ul ng-hide="isAuthanticated()" class="nav navbar-nav navbar-right" >
                     <li><a href="#Login">Login</a></li>
                     <li><a href="#Register">Create account</a></li>
@@ -57,6 +71,7 @@
     @Scripts.Render("~/bundles/zenergyApp")
     @Scripts.Render("~/bundles/angular-resource")
     @Scripts.Render("~/bundles/angular-route")
+    @Scripts.Render("~/bundles/ui-bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
