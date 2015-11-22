@@ -22,28 +22,63 @@ namespace Zenergy.Controllers.ApiControllers
 
         // GET: api/events
         [HttpGet]
-        [Route("api/events")]
+        [Route("api/eventregistrations")]
         [Authorize(Roles = "Admin, Manager")]
-        public IQueryable<@event> GetAllEventRegistrations()
+        [ResponseType(typeof(EventRegistrationModel))]
+        public async Task<List<EventRegistrationModel>> GetAllEventRegistrations()
         {
-            return db.@event.Where(e => e.user.Count != 0);
+            var registeredUsers = await db.user.Where(u => u.@event.Count != 0).ToListAsync();
+            var events = new List<EventRegistrationModel>();
+            if (registeredUsers.Any())
+            {
+                foreach (user registeredUser in registeredUsers)
+                {
+                    foreach (@event evt in registeredUser.@event)
+                    {
+                        var myevent = new EventRegistrationModel()
+                        {
+                            eventId = evt.eventId,
+                            eventname = evt.eventName,
+                            userId = registeredUser.userId,
+                            username = string.Format("{0} {1}", registeredUser.firstname, registeredUser.lastname)
+                        };
+                        events.Add(myevent);
+                    }
+                }
+            }
+            return events;
+        
         }
 
 
         //GET: api/events/GetRegistrationsByEvent?eventId=1
         [HttpGet]
-        [ResponseType(typeof(EventRegistrationModel))]
+        [ResponseType(typeof(EventRegistrationByEventModel))]
         [Authorize(Roles = "Admin, Manager")]
         [Route("api/eventsregistration/{eventId}")]
         public async Task<IHttpActionResult> GetRegistrationsByEvent(int eventId)
         {
-            var myEvent = db.@event.Where(e => e.eventId == eventId && e.user.Count != 0);
-            if (!myEvent.Any())
+            var myEvent = db.@event.Where(e => e.eventId == eventId && e.user.Count != 0).FirstOrDefaultAsync().Result;
+            if (myEvent == null)
             {
-                return NotFound();
+                return BadRequest("There are not registration to this event yet or event does not exist.");
             }
-            var registeredUsers = myEvent.FirstAsync().Result.user.ToList();
-            return Ok(new EventRegistrationByEventModel() { eventId = eventId, registeredUsers = registeredUsers });
+
+            var registrations = new EventRegistrationByEventModel() { eventId = myEvent.eventId, eventname = myEvent.eventName, registeredUsers = new List<RegisteredUser>() };
+
+            var users = myEvent.user.ToList();
+            foreach(user usr in users)
+            {
+                var registeredUser = new RegisteredUser()
+                {
+                    userId = usr.userId,
+                    firstname = usr.firstname,
+                    lastname = usr.lastname
+                };
+                registrations.registeredUsers.Add(registeredUser);
+            }
+            
+            return Ok(registrations);
         }
 
 
