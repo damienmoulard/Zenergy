@@ -48,15 +48,13 @@
         }
 
         $scope.proceed = function () {
-
-            /*var BasketValidation = $resource('api/users/1/basket/validate', { userId: '@id' }, {
+            var BasketValidation = $resource('api/users/'+tokenService.getUserId()+'/basket/validate', {}, {
                 update: {
                     method: 'PUT' // this method issues a PUT request		
                 }
             });
 
-            BasketValidation.update({});*/
-
+            BasketValidation.update({});
         };
 
 
