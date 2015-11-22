@@ -1,55 +1,68 @@
 ﻿<h1>Create a new ponctual event</h1>
 <div class="container " ng-controller="ponctualEventCreationPageController">
+
     <div class="row">
-       <!--
-        <div name="formRegistration" class="col-md-3 col-lg-offset-4">
-            <form ng-submit="register()">
 
+        <div name="formPonctualEvent" class="col-md-3 col-lg-offset-4">
+
+            <form ng-submit="createEvent()">
+                
                 <div class="form-group">
-                    <input type="email" class="form-control" ng-model="user.mail" placeholder="Event name" required>
+                    <input class="form-control" ng-model="ponctualEvent.event.eventName" placeholder="Event name" required>
                 </div>
 
                 <div class="form-group">
-                    <input type="password" id="password" name="user.password" class="form-control" ng-model="user.password" placeholder="Password" required>
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select an activity <span class="caret"></span></button>
+                            <ul class="dropdown-menu" ng-repeat="activity in filtered = (activities | filter: query)">
+                                <li><a ng-click="activitySelected(activity)">{{activity.activityName}}</a></li>
+                            </ul>
+                        </div>
+                        <input type="text" class="form-control" id="selectedActivity" disabled>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <input type="password" id="passwordBis" name="passwordBis" class="form-control" ng-model="user.passwordBis" placeholder="Password Confirmation" required samepassword="password">
-                </div>
-                <p class="text-danger" ng-if="passNotMatch">Passwords don't match</p>
-
-                <div class="form-group">
-                    <input type="text" class="form-control" ng-model="user.firstName" placeholder="Firstname">
-                </div>
-
-                <div class="form-group">
-                    <input type="text" class="form-control" ng-model="user.lastName" placeholder="Lastname">
-                </div>
-
-                <div class="form-group">
-                    <input type="text" class="form-control" ng-model="user.adr1" placeholder="Address">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select a room <span class="caret"></span></button>
+                            <ul class="dropdown-menu" ng-repeat="room in filtered = (rooms | filter: query)">
+                                <li><a ng-click="roomSelected(room)">{{room.roomName}}</a></li>
+                            </ul>
+                        </div>
+                        <input type="text" class="form-control" id="selectedRoom" disabled>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" ng-model="user.adr2" placeholder="Rest of the address ">
+                    <input type="date" format="yyyy-MM-dd" name="ponctualEvent.eventDate" class="form-control" ng-model="ponctualEvent.eventDate" placeholder="Date" required>
+                    <p class="text-danger" ng-if="dateError">You can't create an event in the past. Unless you are a wizard. Which I doubt.</p>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" ng-model="user.pc" placeholder="Postal Code ">
+                    <input type="time" format="HH:mm" min="08:00" max="20:00" name="ponctualEvent.event.timeBegin" class="form-control" ng-model="ponctualEvent.event.timeBegin" placeholder="Time of the event beginning" required>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" ng-model="user.town" placeholder="Town ">
+                    <input type="number" min="0.5" step="0.5" name="ponctualEvent.event.eventDurationHours" class="form-control" ng-model="ponctualEvent.event.eventDurationHours" placeholder="Duration in hours (can be 1.5)" required>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" ng-model="user.phone" placeholder="Phone ">
+                    <input name="ponctualEvent.event.eventDescription" class="form-control" ng-model="ponctualEvent.event.eventDescription" placeholder="Description" required>
                 </div>
 
-                <input type="submit" id="submit" value="Sign in" class="btn btn-primary" />
-            </form>
+                <div class="form-group">
+                    <input type="number" min="0" step="0.01" name="ponctualEvent.event.eventPrice" class="form-control" ng-model="ponctualEvent.event.eventPrice" placeholder="Price (€)" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="number" min="0" name="ponctualEvent.event.eventMaxPeople" class="form-control" ng-model="ponctualEvent.event.eventMaxPeople" placeholder="Maximum number of participants" required>
+                </div>
+
+                <input type="submit" id="submit" value="Validate" class="btn btn-primary" />
+</form>
         </div>
--->
     </div>
 </div>
 
