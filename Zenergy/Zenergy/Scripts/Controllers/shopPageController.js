@@ -32,7 +32,13 @@
             newCC.userId = tokenService.getUserId();
             newCC.productId = p.productId;
             newCC.productQuantity = 1;
-            newCC.$save({ userId: tokenService.getUserId() });
+            newCC.$save({ userId: tokenService.getUserId() }, 
+            function(response){
+                bootbox.alert("Item added in your cart");
+            }, function (response) {
+                bootbox.alert("Item already in your cart");
+            }
+            );
         }
 
     }
