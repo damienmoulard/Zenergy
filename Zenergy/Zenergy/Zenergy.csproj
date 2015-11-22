@@ -319,6 +319,7 @@
     <Content Include="Global.asax" />
     <Content Include="Pages\accountManagement.html" />
     <Content Include="Pages\eventRegistration.html" />
+    <Content Include="Pages\myEvents.html" />
     <Content Include="Pages\products.html" />
     <Content Include="Pages\profile.html" />
     <Content Include="Pages\rooms.html" />
@@ -328,6 +329,7 @@
     <Content Include="Scripts\Controllers\homePageController.js" />
     <Content Include="Scripts\Controllers\loginPageController.js" />
     <Content Include="Scripts\Controllers\mainController.js" />
+    <Content Include="Scripts\Controllers\myEventsPagecontroller.js" />
     <Content Include="Scripts\Controllers\productsPageController.js" />
     <Content Include="Scripts\Controllers\registerPageController.js" />
     <Content Include="Scripts\Controllers\profilePageController.js" />

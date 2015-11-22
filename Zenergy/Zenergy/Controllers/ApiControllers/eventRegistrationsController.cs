@@ -118,7 +118,7 @@ namespace Zenergy.Controllers.ApiControllers
                         myEvent.user.Add(myUser);
                         db.Entry(myEvent).State = EntityState.Modified;
                         await db.SaveChangesAsync();
-                        return CreatedAtRoute("DefaultApi", new { id = userId }, new EventRegistrationModel() {userId = userId, eventId = eventId});
+                        return Created("api/users/{userId}/events/{eventId}/registration", new EventRegistrationModel() { userId = userId, eventId = eventId });
                     }
                     catch (DbUpdateException)
                     {
