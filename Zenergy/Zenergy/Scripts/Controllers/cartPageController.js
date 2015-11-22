@@ -1,4 +1,4 @@
-﻿zenergyApp.controller("cartPageController", ["$scope", "$resource", "$uibModal", "$location", "tokenService", function ($scope, $resource, $uibModal, $location, tokenService) {
+﻿zenergyApp.controller("cartPageController", ["$scope", "$resource", "$uibModal", "$location", "tokenService", "$route", function ($scope, $resource, $uibModal, $location, tokenService, $route) {
 
     if ($scope.isAuthanticated()) {
 
@@ -8,11 +8,11 @@
                 method: 'PUT' // this method issues a PUT request		
             },
             removeFromBasket: {
-                method: 'DELETE', isArray: true		
+                method: 'DELETE', isArray: true
             }
         });
 
-        $scope.cartContents = CartContents.query({userId : tokenService.getUserId()}, function () {
+        $scope.cartContents = CartContents.query({ userId: tokenService.getUserId() }, function () {
             console.log($scope.cartContents);
         });
 
@@ -21,7 +21,7 @@
             for (var i = 0; i < $scope.cartContents.length; i++) {
                 var c = $scope.cartContents[i];
                 if ($scope.isMember())
-                    total += ((c.product.productPrice -((c.product.productPrice * c.product.memberReduction) / 100)) * c.productQuantity);
+                    total += ((c.product.productPrice - ((c.product.productPrice * c.product.memberReduction) / 100)) * c.productQuantity);
                 else
                     total += (c.product.productPrice * c.productQuantity);
             }
@@ -36,10 +36,9 @@
             });
         };
 
-        $scope.setQuantity = function(c,i)
-        {
+        $scope.setQuantity = function (c, i) {
             c.productQuantity = c.productQuantity + i;
-            c.$update({ userId: c.userId }, 
+            c.$update({ userId: c.userId },
                 function (response) {
                 },
                 function (response) {
@@ -48,18 +47,23 @@
         }
 
         $scope.proceed = function () {
-            var BasketValidation = $resource('api/users/'+tokenService.getUserId()+'/basket/validate', {}, {
+            var BasketValidation = $resource('api/users/' + tokenService.getUserId() + '/basket/validate', {}, {
                 update: {
                     method: 'PUT' // this method issues a PUT request		
                 }
             });
 
-            BasketValidation.update({});
+            BasketValidation.update({},
+                function (response) {
+                    $route.reload();
+                },
+                function (response) {
+                });
         };
 
 
 
     }
     else
-        $location.path("/")
+        $location.path("/");
     }]);

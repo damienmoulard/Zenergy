@@ -62,7 +62,7 @@ namespace Zenergy.Controllers.ApiControllers
             {
                 return NotFound();
             }
-            if (cartContent.productQuantity < 0) return BadRequest("Please choose a positive product quantity!");
+            if (cartContent.productQuantity < 1) return BadRequest("Please choose a positive product quantity!");
             //Verify if the quantity in the cartContent if inferior to the available quantity for the product
             int enoughProductInStock = db.product.Where(p => p.productId == cartContent.productId).FirstAsync().Result.availableQty.Value;
             if (cartContent.productQuantity > enoughProductInStock)
