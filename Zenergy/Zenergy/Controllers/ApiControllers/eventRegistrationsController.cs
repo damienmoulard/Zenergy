@@ -22,28 +22,63 @@ namespace Zenergy.Controllers.ApiControllers
 
         // GET: api/events
         [HttpGet]
-        [Route("api/events")]
+        [Route("api/eventregistrations")]
         [Authorize(Roles = "Admin, Manager")]
-        public IQueryable<@event> GetAllEventRegistrations()
+        [ResponseType(typeof(EventRegistrationModel))]
+        public async Task<List<EventRegistrationModel>> GetAllEventRegistrations()
         {
-            return db.@event.Where(e => e.user.Count != 0);
+            var registeredUsers = await db.user.Where(u => u.@event.Count != 0).ToListAsync();
+            var events = new List<EventRegistrationModel>();
+            if (registeredUsers.Any())
+            {
+                foreach (user registeredUser in registeredUsers)
+                {
+                    foreach (@event evt in registeredUser.@event)
+                    {
+                        var myevent = new EventRegistrationModel()
+                        {
+                            eventId = evt.eventId,
+                            eventname = evt.eventName,
+                            userId = registeredUser.userId,
+                            username = string.Format("{0} {1}", registeredUser.firstname, registeredUser.lastname)
+                        };
+                        events.Add(myevent);
+                    }
+                }
+            }
+            return events;
+        
         }
 
 
         //GET: api/events/GetRegistrationsByEvent?eventId=1
         [HttpGet]
-        [ResponseType(typeof(EventRegistrationModel))]
+        [ResponseType(typeof(EventRegistrationByEventModel))]
         [Authorize(Roles = "Admin, Manager")]
         [Route("api/eventsregistration/{eventId}")]
         public async Task<IHttpActionResult> GetRegistrationsByEvent(int eventId)
         {
-            var myEvent = db.@event.Where(e => e.eventId == eventId && e.user.Count != 0);
-            if (!myEvent.Any())
+            var myEvent = db.@event.Where(e => e.eventId == eventId && e.user.Count != 0).FirstOrDefaultAsync().Result;
+            if (myEvent == null)
             {
-                return NotFound();
+                return BadRequest("There are not registration to this event yet or event does not exist.");
             }
-            var registeredUsers = myEvent.FirstAsync().Result.user.ToList();
-            return Ok(new EventRegistrationByEventModel() { eventId = eventId, registeredUsers = registeredUsers });
+
+            var registrations = new EventRegistrationByEventModel() { eventId = myEvent.eventId, eventname = myEvent.eventName, registeredUsers = new List<RegisteredUser>() };
+
+            var users = myEvent.user.ToList();
+            foreach(user usr in users)
+            {
+                var registeredUser = new RegisteredUser()
+                {
+                    userId = usr.userId,
+                    firstname = usr.firstname,
+                    lastname = usr.lastname
+                };
+                registrations.registeredUsers.Add(registeredUser);
+            }
+            
+            return Ok(registrations);
         }
 
 
@@ -57,16 +92,17 @@ namespace Zenergy.Controllers.ApiControllers
         }
 
 
-        [HttpGet]
+        [HttpPost]
         [ResponseType(typeof(List<EventModel>))]
-        [Route("api/events/bydate/{datefilter}")]
         [Authorize(Roles = "Manager, Member")]
-        public async Task<IHttpActionResult> SortEventsByDate(string filter)
+        [Route("api/events/bydate")]
+        public async Task<IHttpActionResult> SortEventsByDate(EventDateModel filter)
         {
-            var datefilter = DateTime.Parse(filter.Replace("!",":"));
+            var datefilter = filter.eventdate;
             var sortedEvents = new List<EventModel>();
             //Sorting punctual events;
-            var punctualEvents = await db.ponctualEvent.Where(pe => pe.eventDate == datefilter).ToListAsync();
+            var punctuals = await db.ponctualEvent.ToListAsync();
+            var punctualEvents = punctuals.Where(pe => pe.eventDate.Value.Date == datefilter.Date);
             if (punctualEvents.Any())
             {
                 foreach (ponctualEvent pe in punctualEvents)
@@ -88,18 +124,41 @@ namespace Zenergy.Controllers.ApiControllers
                 }
             }
 
-            //sorting regular events
-            var regularEvents = await db.regularEvent.ToListAsync();
+            //sorting regular events by day
+            var regularEvents = new List<regularEvent>();
+            if (datefilter.DayOfWeek.Equals(DayOfWeek.Monday))
+            {
+                regularEvents = await db.regularEvent.Where(re => re.dateDay.Equals("Monday")).ToListAsync();
+            }
+            else if (datefilter.Day.Equals(DayOfWeek.Tuesday))
+            {
+                regularEvents = await db.regularEvent.Where(re => re.dateDay.Equals("Tuesday")).ToListAsync();
+            }
+            else if (datefilter.Day.Equals(DayOfWeek.Wednesday))
+            {
+                regularEvents = await db.regularEvent.Where(re => re.dateDay.Equals("Wednesday")).ToListAsync();
+            }
+            else if (datefilter.Day.Equals(DayOfWeek.Thursday))
+            {
+                regularEvents = await db.regularEvent.Where(re => re.dateDay.Equals("Thursday")).ToListAsync();
+            }
+            else if (datefilter.Day.Equals(DayOfWeek.Friday))
+            {
+                regularEvents = await db.regularEvent.Where(re => re.dateDay.Equals("Friday")).ToListAsync();
+            }
+            else if (datefilter.Day.Equals(DayOfWeek.Saturday))
+            {
+                regularEvents = await db.regularEvent.Where(re => re.dateDay.Equals("Saturday")).ToListAsync();
+            }
+
             if (regularEvents.Any())
             {
                 foreach (regularEvent re in regularEvents)
                 {
                     //creating EventModel from punctaul events
                     var eventmodel = new EventModel();
-                    var eventdate = eventmodel.GetRegularEventDate(re.dateDay);
-                    if (eventdate.Equals(datefilter))
                     {
-                        eventmodel.eventDate = eventdate;
+                        eventmodel.eventDate = datefilter;
                         eventmodel.eventId = re.eventId;
                         eventmodel.activityId = re.@event.activityId;
                         eventmodel.eventDescription = re.@event.eventDescription;
@@ -108,10 +167,11 @@ namespace Zenergy.Controllers.ApiControllers
                         eventmodel.eventName = re.@event.eventName;
                         eventmodel.eventPrice = re.@event.eventPrice;
                         eventmodel.roomId = re.@event.roomId;
-                        sortedEvents.Add(eventmodel);
                     }
+                    sortedEvents.Add(eventmodel);
                 }
             }
+
             return Ok(sortedEvents);
         }
 
@@ -178,7 +238,7 @@ namespace Zenergy.Controllers.ApiControllers
                         myEvent.user.Add(myUser);
                         db.Entry(myEvent).State = EntityState.Modified;
                         await db.SaveChangesAsync();
-                        return CreatedAtRoute("DefaultApi", new { id = userId }, new EventRegistrationModel() {userId = userId, eventId = eventId});
+                        return Created("api/users/{userId}/events/{eventId}/registration", new EventRegistrationModel() {userId = userId, eventId = eventId});
                     }
                     catch (DbUpdateException)
                     {
