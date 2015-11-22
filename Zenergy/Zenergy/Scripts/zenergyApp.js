@@ -48,9 +48,20 @@ zenergyApp.config(function ($routeProvider) {
             controller: 'roomsPageController'
         })
 
+
         .when('/MyEvents', {
             templateUrl: 'Pages/myEvents.html',
             controller: 'myEventsPageController'
+        })
+
+        .when('/Shop', {
+            templateUrl: 'Pages/shop.html',
+            controller: 'shopPageController'
+        })
+
+        .when('/Cart', {
+            templateUrl: 'Pages/cart.html',
+            controller: 'cartPageController'
         })
 });
 

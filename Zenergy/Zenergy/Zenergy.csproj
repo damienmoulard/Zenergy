@@ -180,6 +180,7 @@
     <Compile Include="Controllers\ApiControllers\categoriesController.cs" />
     <Compile Include="Controllers\ApiControllers\contributorsController.cs" />
     <Compile Include="Controllers\ApiControllers\managersController.cs" />
+    <Compile Include="Controllers\ApiControllers\CartContentsController.cs" />
     <Compile Include="Controllers\ApiControllers\eventRegistrationsController.cs" />
     <Compile Include="Controllers\ApiControllers\membersController.cs" />
     <Compile Include="Controllers\ApiControllers\roomContentsController.cs" />
@@ -236,6 +237,7 @@
     <Compile Include="Models\CartContent.cs">
       <DependentUpon>ZenergyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartContentModel.cs" />
     <Compile Include="Models\category.cs">
       <DependentUpon>ZenergyModel.tt</DependentUpon>
     </Compile>
@@ -320,12 +322,15 @@
     <Content Include="Pages\accountManagement.html" />
     <Content Include="Pages\eventRegistration.html" />
     <Content Include="Pages\myEvents.html" />
+    <Content Include="Pages\cart.html" />
     <Content Include="Pages\products.html" />
     <Content Include="Pages\profile.html" />
     <Content Include="Pages\rooms.html" />
+    <Content Include="Pages\shop.html" />
     <Content Include="Pages\users.html" />
     <Content Include="Scripts\Controllers\accountManagementPageController.js" />
     <Content Include="Scripts\Controllers\eventRegistrationPageController.js" />
+    <Content Include="Scripts\Controllers\cartPageController.js" />
     <Content Include="Scripts\Controllers\homePageController.js" />
     <Content Include="Scripts\Controllers\loginPageController.js" />
     <Content Include="Scripts\Controllers\mainController.js" />
@@ -334,6 +339,7 @@
     <Content Include="Scripts\Controllers\registerPageController.js" />
     <Content Include="Scripts\Controllers\profilePageController.js" />
     <Content Include="Scripts\Controllers\roomsPageController.js" />
+    <Content Include="Scripts\Controllers\shopPageController.js" />
     <Content Include="Scripts\Controllers\usersPageController.js" />
     <Content Include="Scripts\Factories\authInterceptorService.js" />
     <Content Include="Scripts\Factories\tokenService.js" />
