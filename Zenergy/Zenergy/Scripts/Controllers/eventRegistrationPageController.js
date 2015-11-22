@@ -1,6 +1,6 @@
 ﻿zenergyApp.controller("eventRegistrationPageController", ["$scope", "$http", "$window", "$location", function ($scope, $http, $window, $location) {
 
-
+    $scope.pastevent = false;
     //date format
     var today = new Date();
     $scope.dateSelected = today.getMonth() + 1 + "/" + today.getDate() + "/" + today.getFullYear();
@@ -19,7 +19,7 @@
 
     //function get ponctual event
     $scope.getEvent = function () {
-
+        $scope.events = [];
         var responseEvent = $http({
             url: '/api/ponctualEvents',
             method: 'GET',
@@ -27,12 +27,22 @@
                 'Content-Type': 'application/json'
             }
         }).then(function successCallback(responseEvent) {
-            console.log(responseEvent)
+            console.log(responseEvent);
 
-            for (var e in responseEvent.data) {
+            //var for displaying or not the join button
+            if (new Date($scope.dateSelected) < today) {
+                $scope.pastevent = true;
+            }
+            else
+            {
+                $scope.pastevent = false;
+            }
+           for (var e in responseEvent.data) {
+
                 var date = new Date(responseEvent.data[e].eventDate);
                 date = date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
 
+               // add this event to the list if it's current date
                 if (date == $scope.dateSelected) {
                     $scope.events.push({
                         Id: responseEvent.data[e].eventId,
