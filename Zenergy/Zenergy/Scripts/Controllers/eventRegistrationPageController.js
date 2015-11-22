@@ -1,4 +1,7 @@
-﻿zenergyApp.controller("eventRegistrationPageController", ["$scope", "$http", "tokenService", "$window", "$location", function ($scope, $http, tokenService, $window, $location) {
+﻿
+
+
+zenergyApp.controller("eventRegistrationPageController", ["$scope", "$http", "tokenService", "$window", "$location", function ($scope, $http, tokenService, $window, $location) {
 
     $scope.pastevent = false;
     //date format
