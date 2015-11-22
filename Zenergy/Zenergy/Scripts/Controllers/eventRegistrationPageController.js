@@ -15,46 +15,44 @@
     //initialize array of events
     $scope.events = [];
 
-    //DateTime.Now.ToString("dd-MM-yyyy")
-
-    //function get ponctual event
+    //function get event by date
     $scope.getEvent = function () {
         $scope.events = [];
+
+        // var dateselected = new Date($scope.dateSelected).toJSON();
+
         var responseEvent = $http({
+            // url: '/api/events/bydate',
             url: '/api/ponctualEvents',
             method: 'GET',
+           // data: { eventdate: dateselected },
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then(function successCallback(responseEvent) {
             console.log(responseEvent);
+            //console.log(new Date($scope.dateSelected).toJSON());
 
             //var for displaying or not the join button
-            if (new Date($scope.dateSelected) < today) {
+           if (new Date($scope.dateSelected) < today) {
                 $scope.pastevent = true;
             }
             else
             {
                 $scope.pastevent = false;
             }
-           for (var e in responseEvent.data) {
-
-                var date = new Date(responseEvent.data[e].eventDate);
-                date = date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
-
-               // add this event to the list if it's current date
-                if (date == $scope.dateSelected) {
-                    $scope.events.push({
-                        Id: responseEvent.data[e].eventId,
-                        roomName: responseEvent.data[e].event.room.roomName,
-                        Description: responseEvent.data[e].event.eventDescription,
-                        timeBegin: responseEvent.data[e].event.timeBegin,
-                        duration: responseEvent.data[e].event.eventDurationHours,
-                        price: responseEvent.data[e].event.eventPrice,
-                        name: responseEvent.data[e].event.eventName,
-                        activity: responseEvent.data[e].event.activity.activityName
-                    });
-                }
+           for (var e in responseEvent.data) {               
+                $scope.events.push({
+                    Id: responseEvent.data[e].eventId,
+                    roomName: responseEvent.data[e].event.room.roomName,
+                    Description: responseEvent.data[e].event.eventDescription,
+                    timeBegin: responseEvent.data[e].event.timeBegin,
+                    duration: responseEvent.data[e].event.eventDurationHours,
+                    price: responseEvent.data[e].event.eventPrice,
+                    name: responseEvent.data[e].event.eventName,
+                    activity: responseEvent.data[e].event.activity.activityName
+                });
+           
             }
             if ($scope.events.length == 0) {
                 bootbox.alert("There is no event for this day");
