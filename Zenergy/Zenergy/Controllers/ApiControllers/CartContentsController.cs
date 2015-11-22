@@ -135,7 +135,7 @@ namespace Zenergy.Controllers.ApiControllers
         [Route("api/users/{userId}/basket/validate")]
         [Authorize]
         [ResponseType(typeof(purchase))]
-        public async Task<IHttpActionResult> ValidateBasket(int userId, CartContent cartContent)
+        public async Task<IHttpActionResult> ValidateBasket(int userId)
         {
             if (!ModelState.IsValid)
             {
@@ -163,18 +163,18 @@ namespace Zenergy.Controllers.ApiControllers
                 purchaseContents.Add(purchaseContent);
             }
 
-                var purchase = db.purchase.Add(new purchase() { userId = cartContent.userId, purchaseDate = DateTime.Today, user = cartContent.user, purchaseContent = purchaseContents });
+            var purchase = db.purchase.Add(new purchase() { userId = userId, purchaseDate = DateTime.Today, purchaseContent = purchaseContents });
 
-                try
-                {
-                    //Clearing the basket
-                    await ClearBasket(basket.ToListAsync().Result);
-                }
-                catch (DbUpdateException)
-                {
-                    throw;
-                }
+            try
+            {
+                //Clearing the basket
+                await ClearBasket(basket.ToListAsync().Result);
             }
+            catch (DbUpdateException)
+            {
+                throw;
+            }
+            
             return Created("api/users/{userId}/basket/validate", purchase);
         }
 
