@@ -1,0 +1,89 @@
+﻿<h2>My events</h2>
+
+<div class="container ">
+    <br />
+    <div class="row">
+        <!-- Update modal view -->
+        <script type="text/ng-template" id="updateModalContent.html">
+            <div class="modal-header">
+                <h3 class="modal-title">Update {{eventToUpdate.event.eventName}}</h3>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="roomSelect">Select a room</label>
+                    <select class="form-control" id="roomSelect">
+                        <option ng-repeat="room in filtered = (rooms | filter: query)" value="{{room.roomId}}">{{room.roomName}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" format="yyyy-MM-dd" name="eventToUpdate.eventDate" class="form-control" ng-model="eventToUpdate.eventDate" placeholder="Date" value="{{eventToUpdate.eventDate}}" required>
+                    <p class="text-danger" ng-if="dateError">You can't create an event in the past. Unless you are a wizard. Which I doubt.</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Beginning time</label>
+                    <input type="time" format="HH:mm" min="08:00" max="22:00" name="eventToUpdate.event.timeBegin" class="form-control" ng-model="eventToUpdate.event.timeBegin" placeholder="Time of the event beginning" value="{{eventToUpdate.event.timeBegin}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Duration</label>
+                    <input type="number" min="0.5" step="0.5" name="eventToUpdate.event.eventDurationHours" class="form-control" ng-model="eventToUpdate.event.eventDurationHours" placeholder="Duration in hours (can be 1.5)" value="{{eventToUpdate.event.eventDurationHours}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <input name="eventToUpdate.event.eventDescription" class="form-control" ng-model="eventToUpdate.event.eventDescription" placeholder="Description" value="{{eventToUpdate.event.eventDescription}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" min="0" step="0.01" name="eventToUpdate.event.eventPrice" class="form-control" ng-model="eventToUpdate.event.eventPrice" placeholder="Price (€)" value="{{eventToUpdate.event.eventPrice}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Maximum participants allowed</label>
+                    <input type="number" min="0" name="eventToUpdate.event.eventMaxPeople" class="form-control" ng-model="eventToUpdate.event.eventMaxPeople" placeholder="Maximum number of participants" value="{{eventToUpdate.event.eventMaxPeople}}" required>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            </div>
+        </script>
+        <!-- UpdateModal end -->
+
+
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Here are the events you created</div>
+
+            <!-- Table -->
+            <table class="table">
+                <tr>
+                    <th>Event Name</th>
+                    <th>Activity</th>
+                    <th>Room</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="ponctual in filtered = (ponctualEvents | filter: query)">
+                    <td>{{ponctual.event.eventName}}</td>
+                    <td>{{ponctual.event.activity.activityName}}</td>
+                    <td>{{ponctual.event.room.roomName}}</td>
+                    <td>{{ponctual.eventDate | date:'yyyy-MM-dd'}}</td>
+                    <td>{{ponctual.event.timeBegin}}</td>
+                    <td><input class="btn btn-warning btn-sm" value="Update" ng-click="open(ponctual)" /></td>
+                    <td><button type="button" class="btn btn-danger">Delete</button></td>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <a href="#/CreateEvent" class="btn btn-success btn-lg">Create a new event!</a>
+    </div>
+</div>

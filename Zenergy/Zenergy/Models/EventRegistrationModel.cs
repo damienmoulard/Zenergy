@@ -9,5 +9,7 @@ namespace Zenergy.Models
     {
         public int eventId { get; set; }
         public int userId { get; set; }
+        public string eventname { get; set; }
+        public string username { get; set; }
     }
 }

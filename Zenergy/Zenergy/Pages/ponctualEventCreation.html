@@ -1,0 +1,66 @@
+﻿<h1>Create a new event</h1>
+<div class="container " ng-controller="ponctualEventCreationPageController">
+
+    <br />
+    <div class="row">
+
+        <div name="formPonctualEvent" class="col-md-3 col-lg-offset-4">
+
+            <form id="createEventForm" ng-submit="createEvent()">
+                
+                <div class="form-group">
+                    <label>Your event name</label>
+                    <input class="form-control" ng-model="ponctualEvent.event.eventName" placeholder="Event name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="actSelect">Select an activity</label>
+                    <select class="form-control" id="actSelect">
+                        <option ng-repeat="activity in filtered = (activities | filter: query)" value="{{activity.activityId}}">{{activity.activityName}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="roomSelect">Select a room</label>
+                    <select class="form-control" id="roomSelect">
+                        <option ng-repeat="room in filtered = (rooms | filter: query)" value="{{room.roomId}}">{{room.roomName}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" format="yyyy-MM-dd" name="ponctualEvent.eventDate" class="form-control" ng-model="ponctualEvent.eventDate" placeholder="Date" required>
+                    <p class="text-danger" ng-if="dateError">You can't create an event in the past. Unless you are a wizard. Which I doubt.</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Beginning time</label>
+                    <input type="time" format="HH:mm" min="08:00" max="22:00" name="ponctualEvent.event.timeBegin" class="form-control" ng-model="ponctualEvent.event.timeBegin" placeholder="Time of the event beginning" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Duration</label>
+                    <input type="number" min="0.5" step="0.5" name="ponctualEvent.event.eventDurationHours" class="form-control" ng-model="ponctualEvent.event.eventDurationHours" placeholder="Duration in hours (can be 1.5)" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <input name="ponctualEvent.event.eventDescription" class="form-control" ng-model="ponctualEvent.event.eventDescription" placeholder="Description" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" min="0" step="0.01" name="ponctualEvent.event.eventPrice" class="form-control" ng-model="ponctualEvent.event.eventPrice" placeholder="Price (€)" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Maximum participants allowed</label>
+                    <input type="number" min="0" name="ponctualEvent.event.eventMaxPeople" class="form-control" ng-model="ponctualEvent.event.eventMaxPeople" placeholder="Maximum number of participants" required>
+                </div>
+
+                <input type="submit" id="submit" value="Validate" class="btn btn-primary" />
+            </form>
+        </div>
+    </div>
+</div>
+

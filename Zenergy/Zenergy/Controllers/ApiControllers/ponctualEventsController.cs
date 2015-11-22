@@ -17,6 +17,12 @@ namespace Zenergy.Controllers.ApiControllers
     public class ponctualEventsController : ApiController
     {
         private ZenergyContext db = new ZenergyContext();
+        private EventService eventServices;
+
+        public ponctualEventsController()
+        {
+            eventServices = new EventService(db);
+        }
 
         // GET: api/ponctualEvents
         public IQueryable<ponctualEvent> GetponctualEvent()
@@ -37,7 +43,24 @@ namespace Zenergy.Controllers.ApiControllers
             return Ok(ponctualEvent);
         }
 
+        // GET: api/ponctualEvents/findByManagerId/5
+        [Route("api/ponctualEvents/findByManagerId/{managerId}")]
+        [HttpGet]
+        [ResponseType(typeof(ponctualEvent[]))]
+        public async Task<IHttpActionResult> findPonctualEventsByManagerId(int managerId)
+        {
+            ponctualEvent[] ponctualEvents = await eventServices.findPonctualEventsByManagerId(managerId);
+            if (ponctualEvents == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(ponctualEvents);
+        }
+
         // PUT: api/ponctualEvents/5
+        [HttpPut]
+        [Route("api/ponctualEvents/{id}")]
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutponctualEvent(int id, ponctualEvent ponctualEvent)
         {
@@ -51,6 +74,7 @@ namespace Zenergy.Controllers.ApiControllers
                 return BadRequest();
             }
 
+            db.Entry(ponctualEvent.@event).State = EntityState.Modified;     
             db.Entry(ponctualEvent).State = EntityState.Modified;
 
             try

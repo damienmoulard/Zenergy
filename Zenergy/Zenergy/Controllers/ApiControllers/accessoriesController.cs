@@ -39,6 +39,8 @@ namespace Zenergy.Controllers.ApiControllers
         }
 
         // PUT: api/accessories/5
+        [HttpPut]
+        [Route("api/accessories/id")]
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> Putaccessory(int id, accessory accessory)
         {
@@ -49,7 +51,7 @@ namespace Zenergy.Controllers.ApiControllers
 
             if (id != accessory.accessoryId)
             {
-                return BadRequest();
+                return BadRequest("AccessoryId not the same in url and in json");
             }
 
             db.Entry(accessory).State = EntityState.Modified;
