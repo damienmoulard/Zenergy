@@ -62,6 +62,7 @@ namespace Zenergy.Controllers.ApiControllers
         [HttpPut]
         [Route("api/ponctualEvents/{id}")]
         [ResponseType(typeof(void))]
+        [Authorize(Roles = "Manager")]
         public async Task<IHttpActionResult> PutponctualEvent(int id, ponctualEvent ponctualEvent)
         {
             if (!ModelState.IsValid)
@@ -74,7 +75,7 @@ namespace Zenergy.Controllers.ApiControllers
                 return BadRequest();
             }
 
-            db.Entry(ponctualEvent.@event).State = EntityState.Modified;     
+            //db.Entry(ponctualEvent.@event).State = EntityState.Modified;     
             db.Entry(ponctualEvent).State = EntityState.Modified;
 
             try
@@ -97,6 +98,7 @@ namespace Zenergy.Controllers.ApiControllers
         }
 
         // POST: api/ponctualEvents
+        [Authorize(Roles = "Manager")]
         [ResponseType(typeof(ponctualEvent))]
         public async Task<IHttpActionResult> PostponctualEvent(ponctualEvent ponctualEvent)
         {
@@ -127,7 +129,10 @@ namespace Zenergy.Controllers.ApiControllers
         }
 
         // DELETE: api/ponctualEvents/5
+        [HttpDelete]
+        [Route("api/ponctualEvents/{id}")]
         [ResponseType(typeof(ponctualEvent))]
+        [Authorize(Roles = "Manager")]
         public async Task<IHttpActionResult> DeleteponctualEvent(int id)
         {
             ponctualEvent ponctualEvent = await db.ponctualEvent.FindAsync(id);

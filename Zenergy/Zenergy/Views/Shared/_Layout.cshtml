@@ -36,6 +36,17 @@
                             </ul>
                         </li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right" ng-show="isAuthanticated() && isManager()">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                            Manager Panel
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#MyEvents">My events</a></li>
+                        </ul>
+                    </li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right" ng-show="isAuthanticated() && isAdmin()">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="">
