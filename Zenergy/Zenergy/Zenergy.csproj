@@ -176,6 +176,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ApiControllers\CartContentsController.cs" />
     <Compile Include="Controllers\ApiControllers\eventRegistrationsController.cs" />
     <Compile Include="Controllers\ApiControllers\membersController.cs" />
     <Compile Include="Controllers\ApiControllers\roomContentsController.cs" />
@@ -232,6 +233,7 @@
     <Compile Include="Models\CartContent.cs">
       <DependentUpon>ZenergyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartContentModel.cs" />
     <Compile Include="Models\category.cs">
       <DependentUpon>ZenergyModel.tt</DependentUpon>
     </Compile>
