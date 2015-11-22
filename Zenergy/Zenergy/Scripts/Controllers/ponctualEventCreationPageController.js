@@ -30,20 +30,8 @@
 
     $scope.ponctualEvent = { eventId: 1, eventDate: new Date(), event: { eventId: 1, roomId: '', activityId: '', eventName: '', eventPrice: '', eventDurationHours: '', eventMaxPeople: '', eventDescription: '', timeBegin: '' } };
 
-    // When an activity is selected in the form
-    $scope.activitySelected = function (activity) {
-        $('#selectedActivity').attr("placeholder", activity.activityName);
-        $scope.ponctualEvent.event.activityId = activity.activityId;
-    }
-
-    // When a room is selected in the form
-    $scope.roomSelected = function (room) {
-        $('#selectedRoom').attr("placeholder", room.roomName);
-        $scope.ponctualEvent.event.roomId = room.roomId;
-    }
-
     $scope.createEvent = function () {
-        console.log($scope.ponctualEvent);
+        //console.log($scope.ponctualEvent);
 
         $scope.hasError = false;
         $scope.dateError = false;
@@ -56,8 +44,10 @@
 
         var date = new Date($scope.ponctualEvent.event.timeBegin);
         $scope.ponctualEvent.event.timeBegin = date.getHours().toString() + ":" + date.getMinutes().toString();
-        console.log($scope.ponctualEvent.event.timeBegin);
         
+        $scope.ponctualEvent.event.roomId = document.getElementById("roomSelect").value;
+        $scope.ponctualEvent.event.activityId = document.getElementById("actSelect").value;
+
         if (!$scope.hasError)
         {
             var response = $http({

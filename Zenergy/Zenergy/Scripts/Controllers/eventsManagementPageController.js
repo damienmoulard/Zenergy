@@ -39,6 +39,10 @@
                 var date = new Date(eventToUpdate.event.timeBegin);
                 eventToUpdate.event.timeBegin = date.getHours().toString() + ":" + date.getMinutes().toString();
 
+                eventToUpdate.event.roomId = document.getElementById("roomSelect").value;
+
+                console.log(eventToUpdate);
+
                 var response = $http({
                     url: '/api/ponctualEvents/' + eventToUpdate.eventId,
                     method: 'PUT',
@@ -61,10 +65,11 @@
                         'Content-Type': 'application/json'
                     }
                 }).then(function successCallback(response) {
-                    console.log("update ok");
-                    //window.location.reload(true);
+                    bootbox.alert("Your event is updated!", function () {
+                        window.location.reload(true);
+                    });
                 }, function errorCallback(response) {
-                    console.log("update error");
+                    bootbox.alert("There has been an error during the update.");
                 });
             }, function () {
             });
@@ -92,12 +97,6 @@ zenergyApp.controller('UpdateModalInstanceCtrl', function ($scope, $http, $uibMo
         $scope.rooms = $.parseJSON(JSON.stringify(response.data));
         console.log($scope.rooms);
     });
-
-    // When a room is selected in the form
-    $scope.roomSelected = function (room) {
-        $('#selectedRoom').attr("placeholder", room.roomName);
-        $scope.eventToUpdate.event.roomId = room.roomId;
-    }
 
     $scope.ok = function () {
         $uibModalInstance.close($scope.eventToUpdate);
