@@ -58,6 +58,7 @@ namespace Zenergy.Controllers
             {
                 return BadRequest();
             }
+            if (product.availableQty < 0) return BadRequest("Please choose a positive product quantity!");
 
             db.Entry(product).State = EntityState.Modified;
 
@@ -91,7 +92,7 @@ namespace Zenergy.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            if (product.availableQty < 0) return BadRequest("Please choose a positive product quantity!");
             db.product.Add(product);
             await db.SaveChangesAsync();
 
