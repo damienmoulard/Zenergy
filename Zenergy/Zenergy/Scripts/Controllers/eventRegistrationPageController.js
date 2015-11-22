@@ -67,7 +67,7 @@
     $scope.joinEvent = function (eventid) {
            // reister to an event
         var responseEvent = $http({
-            url: 'api/users/' + tokenService.getUserId() + '/events/' + eventid + '/registration',
+            url: '/api/users/' + tokenService.getUserId() + '/events/' + eventid + '/registration',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
