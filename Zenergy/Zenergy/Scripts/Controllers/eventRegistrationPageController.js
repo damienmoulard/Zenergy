@@ -1,4 +1,4 @@
-﻿zenergyApp.controller("eventRegistrationPageController", ["$scope", "$http", "$window", "$location", function ($scope, $http, $window, $location) {
+﻿zenergyApp.controller("eventRegistrationPageController", ["$scope", "$http", "tokenService", "$window", "$location", function ($scope, $http, tokenService, $window, $location) {
 
     $scope.pastevent = false;
     //date format
@@ -52,6 +52,7 @@
                         duration: responseEvent.data[e].event.eventDurationHours,
                         price: responseEvent.data[e].event.eventPrice,
                         name: responseEvent.data[e].event.eventName,
+                        activity: responseEvent.data[e].event.activity.activityName
                     });
                 }
             }
@@ -61,6 +62,19 @@
 
         });
         
+    };
+    //Register to the event
+    $scope.joinEvent = function (eventid) {
+           // reister to an event
+        var responseEvent = $http({
+            url: 'api/users/' + tokenService.getUserId() + '/events/' + eventid + '/registration',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function successCallback(responseEvent) {
+            bootbox.alert("You just join this event !");
+        });
     };
 
     $scope.getEvent();

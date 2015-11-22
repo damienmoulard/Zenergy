@@ -12,6 +12,7 @@
                     <th>Time</th>
                     <th>Name</th>
                     <th>Room</th>
+                    <th>Activity</th>
                     <th>Price</th>
                     <th>Register</th>                  
                 </tr>
@@ -19,8 +20,9 @@
                     <td>{{e.timeBegin}}</td>
                     <td>{{e.name}}</td>
                     <td>{{e.roomName}}</td>
+                    <td>{{e.activity}}</td>
                     <td>{{e.price}}</td>
-                    <td> <button onclick="" class="btn btn-default" ng-if="!pastevent">Join</button></td>
+                    <td> <button ng-click="joinEvent(e.Id)" class="btn btn-default" ng-if="!pastevent">Join</button></td>
 
                 </tr>
 
