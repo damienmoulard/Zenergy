@@ -86,7 +86,7 @@
 
         $scope.add = function () {
             $scope.showInputs = true;
-            $scope.newProduct = new Product();
+            $scope.newProduct = new Product({productName:''});
         };
 
         $scope.confirm = function () {

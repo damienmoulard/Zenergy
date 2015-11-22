@@ -39,6 +39,11 @@ zenergyApp.config(function ($routeProvider) {
             templateUrl: 'Pages/products.html',
             controller: 'productsPageController'
         })
+
+        .when('/Rooms', {
+            templateUrl: 'Pages/rooms.html',
+            controller: 'roomsPageController'
+        })
 });
 
 

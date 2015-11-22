@@ -318,6 +318,7 @@
     <Content Include="Pages\accountManagement.html" />
     <Content Include="Pages\products.html" />
     <Content Include="Pages\profile.html" />
+    <Content Include="Pages\rooms.html" />
     <Content Include="Pages\users.html" />
     <Content Include="Scripts\Controllers\accountManagementPageController.js" />
     <Content Include="Scripts\Controllers\homePageController.js" />
@@ -326,6 +327,7 @@
     <Content Include="Scripts\Controllers\productsPageController.js" />
     <Content Include="Scripts\Controllers\registerPageController.js" />
     <Content Include="Scripts\Controllers\profilePageController.js" />
+    <Content Include="Scripts\Controllers\roomsPageController.js" />
     <Content Include="Scripts\Controllers\usersPageController.js" />
     <Content Include="Scripts\Factories\authInterceptorService.js" />
     <Content Include="Scripts\Factories\tokenService.js" />
