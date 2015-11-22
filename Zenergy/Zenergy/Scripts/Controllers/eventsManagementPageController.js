@@ -1,6 +1,7 @@
 ﻿zenergyApp.controller("eventsManagementPageController", ["$scope", "$http", "tokenService", "$window", "$location", function ($scope, $http, tokenService, $window, $location) {
 
     // Get manager events
+    // TODO : get THIS MANAGER events
     var response = $http({
         url: '/api/ponctualEvents',
         method: 'GET',
@@ -19,6 +20,8 @@
 
         // Store the event rw in the events array
         $scope.eventToUpdate = eventRow;
+        // $scope.eventToUpdate = ponctualEvents[eventRow];
+        // comme ça on met ça en paramettre du put, on se fait plus chier avec les index
 
         // Show modal to update infos
         $('#myModal').modal('show');
