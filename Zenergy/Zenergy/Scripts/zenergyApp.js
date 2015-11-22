@@ -47,12 +47,6 @@ zenergyApp.config(function ($routeProvider) {
         .when('/CreateRegularEvent', {
             templateUrl: 'Pages/regularEventCreation.html',
             controller: 'regularEventCreationPageController'
-
-        
-        .when('/Products', {
-            templateUrl: 'Pages/products.html',
-            controller: 'productsPageController'
-
         })
 });
 
