@@ -53,7 +53,9 @@ namespace Zenergy.Controllers.ApiControllers
         /// <param name="accessoryId"></param>
         /// <param name="roomContent"></param>
         /// <returns></returns>
-        // PUT: api/roomContents/5
+        // PUT: api/roomContents/
+        [HttpPut]
+        [Route("api/roomContents")]
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutroomContent(int roomId,int accessoryId, roomContent roomContent)
         {

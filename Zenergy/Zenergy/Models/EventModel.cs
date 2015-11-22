@@ -19,10 +19,10 @@ namespace Zenergy.Models
 
         public DateTime eventDate { get; set; }
 
-        public DateTime GetRegularEventDate(string day)
+        public DateTime GetRegularEventDate(string day, DateTime myDate)
         {
-            var today = DateTime.Today;
-            var dayofweek = today.DayOfWeek;
+           // var myDate = DateTime.myDate;
+            var dayofweek = myDate.DayOfWeek;
             var eventdate = new DateTime();
 
             if (dayofweek.Equals(DayOfWeek.Monday))
@@ -30,22 +30,22 @@ namespace Zenergy.Models
                 switch (day)
                 {
                     case "Monday":
-                        eventdate = new DateTime(today.Year, today.Month, today.Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.Day);
                         break;
                     case "Tuesday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(1).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(1).Day);
                         break;
                     case "Wednesday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(2).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(2).Day);
                         break;
                     case "Thursday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(3).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(3).Day);
                         break;
                     case "Friday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(4).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(4).Day);
                         break;
                     case "Saturday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(5).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(5).Day);
                         break;
                 }
             }
@@ -54,22 +54,22 @@ namespace Zenergy.Models
                 switch (day)
                 {
                     case "Monday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(-1).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-1).Day);
                         break;
                     case "Tuesday":
-                        eventdate = new DateTime(today.Year, today.Month, today.Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.Day);
                         break;
                     case "Wednesday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(1).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(1).Day);
                         break;
                     case "Thursday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(2).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(2).Day);
                         break;
                     case "Friday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(3).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(3).Day);
                         break;
                     case "Saturday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(4).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(4).Day);
                         break;
                 }
             }
@@ -78,22 +78,22 @@ namespace Zenergy.Models
                 switch (day)
                 {
                     case "Monday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(-2).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-2).Day);
                         break;
                     case "Tuesday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(-1).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-1).Day);
                         break;
                     case "Wednesday":
-                        eventdate = new DateTime(today.Year, today.Month, today.Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.Day);
                         break;
                     case "Thursday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(1).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(1).Day);
                         break;
                     case "Friday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(2).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(2).Day);
                         break;
                     case "Saturday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(3).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(3).Day);
                         break;
                 }
             }
@@ -102,22 +102,22 @@ namespace Zenergy.Models
                 switch (day)
                 {
                     case "Monday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(-3).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-3).Day);
                         break;
                     case "Tuesday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(-2).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-2).Day);
                         break;
                     case "Wednesday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(-1).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-1).Day);
                         break;
                     case "Thursday":
-                        eventdate = new DateTime(today.Year, today.Month, today.Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.Day);
                         break;
                     case "Friday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(1).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(1).Day);
                         break;
                     case "Saturday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(2).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(2).Day);
                         break;
                 }
             }
@@ -126,22 +126,46 @@ namespace Zenergy.Models
                 switch (day)
                 {
                     case "Monday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(-4).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-4).Day);
                         break;
                     case "Tuesday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(-3).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-3).Day);
                         break;
                     case "Wednesday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(-2).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-2).Day);
                         break;
                     case "Thursday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(-1).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-1).Day);
                         break;
                     case "Friday":
-                        eventdate = new DateTime(today.Year, today.Month, today.Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.Day);
                         break;
                     case "Saturday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(1).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(1).Day);
+                        break;
+                }
+            }
+            else if (dayofweek.Equals(DayOfWeek.Saturday))
+            {
+                switch (day)
+                {
+                    case "Monday":
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-5).Day);
+                        break;
+                    case "Tuesday":
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-4).Day);
+                        break;
+                    case "Wednesday":
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-3).Day);
+                        break;
+                    case "Thursday":
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-2).Day);
+                        break;
+                    case "Friday":
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-1).Day);
+                        break;
+                    case "Saturday":
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.Day);
                         break;
                 }
             }
@@ -150,22 +174,22 @@ namespace Zenergy.Models
                 switch (day)
                 {
                     case "Monday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(-5).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-6).Day);
                         break;
                     case "Tuesday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(-4).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-5).Day);
                         break;
                     case "Wednesday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(-3).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-4).Day);
                         break;
                     case "Thursday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(-2).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-3).Day);
                         break;
                     case "Friday":
-                        eventdate = new DateTime(today.Year, today.Month, today.AddDays(-1).Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-2).Day);
                         break;
                     case "Saturday":
-                        eventdate = new DateTime(today.Year, today.Month, today.Day);
+                        eventdate = new DateTime(myDate.Year, myDate.Month, myDate.AddDays(-1).Day);
                         break;
                 }
             }

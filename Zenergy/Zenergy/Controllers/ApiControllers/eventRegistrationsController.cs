@@ -57,13 +57,13 @@ namespace Zenergy.Controllers.ApiControllers
         }
 
 
-        [HttpGet]
+        [HttpPost]
         [ResponseType(typeof(List<EventModel>))]
-        [Route("api/events/bydate/{datefilter}")]
         [Authorize(Roles = "Manager, Member")]
-        public async Task<IHttpActionResult> SortEventsByDate(string filter)
+        [Route("api/events/bydate")]
+        public async Task<IHttpActionResult> SortEventsByDate(EventDateModel filter)
         {
-            var datefilter = DateTime.Parse(filter.Replace("!",":"));
+            var datefilter = filter.eventdate;
             var sortedEvents = new List<EventModel>();
             //Sorting punctual events;
             var punctualEvents = await db.ponctualEvent.Where(pe => pe.eventDate == datefilter).ToListAsync();
@@ -88,18 +88,41 @@ namespace Zenergy.Controllers.ApiControllers
                 }
             }
 
-            //sorting regular events
-            var regularEvents = await db.regularEvent.ToListAsync();
+            //sorting regular events by day
+            var regularEvents = new List<regularEvent>();
+            if (datefilter.DayOfWeek.Equals(DayOfWeek.Monday))
+            {
+                regularEvents = await db.regularEvent.Where(re => re.dateDay.Equals("Monday")).ToListAsync();
+            }
+            else if (datefilter.Day.Equals(DayOfWeek.Tuesday))
+            {
+                regularEvents = await db.regularEvent.Where(re => re.dateDay.Equals("Tuesday")).ToListAsync();
+            }
+            else if (datefilter.Day.Equals(DayOfWeek.Wednesday))
+            {
+                regularEvents = await db.regularEvent.Where(re => re.dateDay.Equals("Wednesday")).ToListAsync();
+            }
+            else if (datefilter.Day.Equals(DayOfWeek.Thursday))
+            {
+                regularEvents = await db.regularEvent.Where(re => re.dateDay.Equals("Thursday")).ToListAsync();
+            }
+            else if (datefilter.Day.Equals(DayOfWeek.Friday))
+            {
+                regularEvents = await db.regularEvent.Where(re => re.dateDay.Equals("Friday")).ToListAsync();
+            }
+            else if (datefilter.Day.Equals(DayOfWeek.Saturday))
+            {
+                regularEvents = await db.regularEvent.Where(re => re.dateDay.Equals("Saturday")).ToListAsync();
+            }
+
             if (regularEvents.Any())
             {
                 foreach (regularEvent re in regularEvents)
                 {
                     //creating EventModel from punctaul events
                     var eventmodel = new EventModel();
-                    var eventdate = eventmodel.GetRegularEventDate(re.dateDay);
-                    if (eventdate.Equals(datefilter))
                     {
-                        eventmodel.eventDate = eventdate;
+                        eventmodel.eventDate = datefilter;
                         eventmodel.eventId = re.eventId;
                         eventmodel.activityId = re.@event.activityId;
                         eventmodel.eventDescription = re.@event.eventDescription;
@@ -108,10 +131,11 @@ namespace Zenergy.Controllers.ApiControllers
                         eventmodel.eventName = re.@event.eventName;
                         eventmodel.eventPrice = re.@event.eventPrice;
                         eventmodel.roomId = re.@event.roomId;
-                        sortedEvents.Add(eventmodel);
                     }
+                    sortedEvents.Add(eventmodel);
                 }
             }
+
             return Ok(sortedEvents);
         }
 
@@ -178,7 +202,7 @@ namespace Zenergy.Controllers.ApiControllers
                         myEvent.user.Add(myUser);
                         db.Entry(myEvent).State = EntityState.Modified;
                         await db.SaveChangesAsync();
-                        return CreatedAtRoute("DefaultApi", new { id = userId }, new EventRegistrationModel() {userId = userId, eventId = eventId});
+                        return Created("api/users/{userId}/events/{eventId}/registration", new EventRegistrationModel() {userId = userId, eventId = eventId});
                     }
                     catch (DbUpdateException)
                     {
