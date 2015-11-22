@@ -1,4 +1,4 @@
-﻿var zenergyApp = angular.module('zenergyApp', ['ngResource', 'ngRoute']);
+﻿var zenergyApp = angular.module('zenergyApp', ['ngResource', 'ngRoute', 'ui.bootstrap']);
 
 zenergyApp.config(function ($routeProvider) {
     $routeProvider
@@ -24,6 +24,11 @@ zenergyApp.config(function ($routeProvider) {
             controller: 'registerPageController'
         })
 
+        .when('/Users', {
+            templateUrl: 'Pages/users.html',
+            controller: 'usersPageController'
+        })
+
         .when('/Account', {
             templateUrl: 'Pages/accountManagement.html',
             controller: 'accountManagementPageController'
@@ -42,6 +47,12 @@ zenergyApp.config(function ($routeProvider) {
         .when('/CreateRegularEvent', {
             templateUrl: 'Pages/regularEventCreation.html',
             controller: 'regularEventCreationPageController'
+
+        
+        .when('/Products', {
+            templateUrl: 'Pages/products.html',
+            controller: 'productsPageController'
+
         })
 });
 

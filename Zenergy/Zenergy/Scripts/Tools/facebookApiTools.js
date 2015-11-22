@@ -32,9 +32,10 @@
 
     };
 
+    FB = null;
     (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
+        //if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
@@ -53,8 +54,8 @@
                 }
             }).then(function successCallback(response) {
                 //Success
-                console.log(response);
-                tokenService.saveToken(response.data.access_token,  response.data.userName);
+                tokenService.saveToken(response.data.access_token,  response.data.userName, response.data.userId);
+                $scope.initRoles();
                 $location.path('/');
             }, function errorCallback(response) {
                 //Error
@@ -75,7 +76,8 @@
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     }).then(function successCallback(response) {
-                        tokenService.saveToken(response.data.access_token,  response.data.userName);
+                        tokenService.saveToken(response.data.access_token, response.data.userName, response.data.userId);
+                        $scope.initRoles();
                         $location.path('/');
                     }, function errorCallback(response) {
                     });
