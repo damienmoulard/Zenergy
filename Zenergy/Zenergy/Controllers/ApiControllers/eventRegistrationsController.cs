@@ -66,7 +66,8 @@ namespace Zenergy.Controllers.ApiControllers
             var datefilter = filter.eventdate;
             var sortedEvents = new List<EventModel>();
             //Sorting punctual events;
-            var punctualEvents = await db.ponctualEvent.Where(pe => pe.eventDate == datefilter).ToListAsync();
+            var punctuals = await db.ponctualEvent.ToListAsync();
+            var punctualEvents = punctuals.Where(pe => pe.eventDate.Value.Date == datefilter.Date);
             if (punctualEvents.Any())
             {
                 foreach (ponctualEvent pe in punctualEvents)
