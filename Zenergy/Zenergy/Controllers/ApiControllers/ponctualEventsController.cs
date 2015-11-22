@@ -59,6 +59,8 @@ namespace Zenergy.Controllers.ApiControllers
         }
 
         // PUT: api/ponctualEvents/5
+        [HttpPut]
+        [Route("api/ponctualEvents/{id}")]
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutponctualEvent(int id, ponctualEvent ponctualEvent)
         {
@@ -72,8 +74,7 @@ namespace Zenergy.Controllers.ApiControllers
                 return BadRequest();
             }
 
-            //eventServices.updateEvent(ponctualEvent.@event);
-            db.ponctualEvent.SqlQuery("UPDATE event SET roomId={0}, activityId={1}, eventName={2}, eventPrice={3}, eventDurationHours={4}, eventMaxPeople={5}, eventDescription={6}, timeBegin={7} WHERE eventId={8}", ponctualEvent.@event.roomId, ponctualEvent.@event.activityId, ponctualEvent.@event.eventName, ponctualEvent.@event.eventPrice, ponctualEvent.@event.eventDurationHours, ponctualEvent.@event.eventMaxPeople, ponctualEvent.@event.eventDescription, ponctualEvent.@event.timeBegin, ponctualEvent.@event.eventId);
+            db.Entry(ponctualEvent.@event).State = EntityState.Modified;     
             db.Entry(ponctualEvent).State = EntityState.Modified;
 
             try
