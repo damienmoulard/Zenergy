@@ -1,0 +1,47 @@
+﻿Merge branch 'master' of https://github.com/damienmoulard/Zenergy into eventManagement
+
+Conflicts:
+	Zenergy/Zenergy/Scripts/Lib/_references.js
+	Zenergy/Zenergy/Scripts/zenergyApp.js
+	Zenergy/Zenergy/Zenergy.csproj
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch eventManagement
+# Your branch is up-to-date with 'origin/eventManagement'.
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   Zenergy/App_Start/BundleConfig.cs
+#	new file:   Zenergy/Controllers/ApiControllers/adminsController.cs
+#	new file:   Zenergy/Controllers/ApiControllers/categoriesController.cs
+#	new file:   Zenergy/Controllers/ApiControllers/contributorsController.cs
+#	renamed:    Zenergy/Controllers/ApiControllers/eventsController.cs -> Zenergy/Controllers/ApiControllers/eventRegistrationsController.cs
+#	new file:   Zenergy/Controllers/ApiControllers/managersController.cs
+#	new file:   Zenergy/Controllers/ApiControllers/productsController.cs
+#	new file:   Zenergy/Controllers/UsersController.cs
+#	new file:   Zenergy/Models/EventRegistrationByEventModel.cs
+#	new file:   Zenergy/Pages/products.html
+#	new file:   Zenergy/Pages/users.html
+#	modified:   Zenergy/Scripts/Controllers/loginPageController.js
+#	modified:   Zenergy/Scripts/Controllers/mainController.js
+#	new file:   Zenergy/Scripts/Controllers/productsPageController.js
+#	new file:   Zenergy/Scripts/Controllers/usersPageController.js
+#	modified:   Zenergy/Scripts/Factories/tokenService.js
+#	new file:   Zenergy/Scripts/Lib/ui-bootstrap-tpls-0.14.3.min.js
+#	modified:   Zenergy/Scripts/Tools/facebookApiTools.js
+#	modified:   Zenergy/Scripts/zenergyApp.js
+#	modified:   Zenergy/Views/Shared/_Layout.cshtml
+#	new file:   Zenergy/Views/Users/Index.cshtml
+#	modified:   Zenergy/Web.config
+#	modified:   Zenergy/Zenergy.csproj
+#	deleted:    ../user.json
+#
+

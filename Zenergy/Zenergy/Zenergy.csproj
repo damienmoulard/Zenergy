@@ -250,6 +250,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\EventRegistrationByEventModel.cs" />
     <Compile Include="Models\EventRegistrationModel.cs" />
     <Compile Include="Models\manager.cs">

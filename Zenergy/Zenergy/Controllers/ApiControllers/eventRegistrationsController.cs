@@ -58,6 +58,66 @@ namespace Zenergy.Controllers.ApiControllers
 
 
         [HttpGet]
+        [ResponseType(typeof(List<EventModel>))]
+        [Route("api/events/bydate/{datefilter}")]
+        [Authorize(Roles = "Manager, Member")]
+        public async Task<IHttpActionResult> SortEventsByDate(string filter)
+        {
+            var datefilter = DateTime.Parse(filter.Replace("!",":"));
+            var sortedEvents = new List<EventModel>();
+            //Sorting punctual events;
+            var punctualEvents = await db.ponctualEvent.Where(pe => pe.eventDate == datefilter).ToListAsync();
+            if (punctualEvents.Any())
+            {
+                foreach (ponctualEvent pe in punctualEvents)
+                {
+                    //creating EventModel from punctaul events
+                    var eventmodel = new EventModel()
+                    {
+                        eventId = pe.eventId,
+                        activityId = pe.@event.activityId,
+                        eventDate = pe.eventDate.Value,
+                        eventDescription = pe.@event.eventDescription,
+                        eventDurationHours = pe.@event.eventDurationHours,
+                        eventMaxPeople = pe.@event.eventMaxPeople,
+                        eventName = pe.@event.eventName,
+                        eventPrice = pe.@event.eventPrice,
+                        roomId = pe.@event.roomId
+                    };
+                    sortedEvents.Add(eventmodel);
+                }
+            }
+
+            //sorting regular events
+            var regularEvents = await db.regularEvent.ToListAsync();
+            if (regularEvents.Any())
+            {
+                foreach (regularEvent re in regularEvents)
+                {
+                    //creating EventModel from punctaul events
+                    var eventmodel = new EventModel();
+                    var eventdate = eventmodel.GetRegularEventDate(re.dateDay);
+                    if (eventdate.Equals(datefilter))
+                    {
+                        eventmodel.eventDate = eventdate;
+                        eventmodel.eventId = re.eventId;
+                        eventmodel.activityId = re.@event.activityId;
+                        eventmodel.eventDescription = re.@event.eventDescription;
+                        eventmodel.eventDurationHours = re.@event.eventDurationHours;
+                        eventmodel.eventMaxPeople = re.@event.eventMaxPeople;
+                        eventmodel.eventName = re.@event.eventName;
+                        eventmodel.eventPrice = re.@event.eventPrice;
+                        eventmodel.roomId = re.@event.roomId;
+                        sortedEvents.Add(eventmodel);
+                    }
+                }
+            }
+            return Ok(sortedEvents);
+        }
+
+
+
+        [HttpGet]
         [ResponseType(typeof(@event))]
         [Route("api/users/{userId}/events")]
         [Authorize(Roles = "Member")]
