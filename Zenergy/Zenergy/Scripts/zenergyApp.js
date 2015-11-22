@@ -1,4 +1,4 @@
-﻿var zenergyApp = angular.module('zenergyApp', ['ngResource', 'ngRoute']);
+﻿var zenergyApp = angular.module('zenergyApp', ['ngResource', 'ngRoute', 'mp.datePicker']);
 
 zenergyApp.config(function ($routeProvider) {
     $routeProvider

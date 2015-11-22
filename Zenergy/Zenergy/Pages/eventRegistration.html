@@ -1,12 +1,12 @@
 ﻿<h2>Events</h2>
 
-<div ="container " ng-controller="eventRegistrationPageController">
+<div="container ">
 
-    <div id="datepicker"></div>
+    <date-picker ng-model="dateSelected" format-date="formatDate" on-date-selected="getEvent()"> </date-picker>
     <h2>{{dateSelected}}</h2>
     <br/>
     <div class="row">
-        <div ng-controller="eventRegistrationPageController">
+        <div>
             <table class="table">
                 <tr>
                     <th>Time</th>
@@ -16,10 +16,10 @@
                     <th>Register</th>                  
                 </tr>
                 <tr ng-repeat="e in events">
-                    <td>{{e.time}}</td>
-                    <td>{{e.Name}}</td>
-                    <td>{{e.Room}}</td>
-                    <td>{{e.Price}}</td>
+                    <td>{{e.timeBegin}}</td>
+                    <td>{{e.name}}</td>
+                    <td>{{e.roomName}}</td>
+                    <td>{{e.price}}</td>
                     <td> <button onclick="" class="btn btn-default">Join</button> </td>
 
                 </tr>
