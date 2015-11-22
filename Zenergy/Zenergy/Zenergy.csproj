@@ -290,6 +290,7 @@
       <DependentUpon>ZenergyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\ActivityService.cs" />
+    <Compile Include="Services\EventService.cs" />
     <Compile Include="Services\UserServices.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Models\user.cs">

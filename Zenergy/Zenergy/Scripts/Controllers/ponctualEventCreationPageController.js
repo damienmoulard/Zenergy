@@ -29,7 +29,6 @@
     });
 
     $scope.ponctualEvent = { eventId: 1, eventDate: new Date(), event: { eventId: 1, roomId: '', activityId: '', eventName: '', eventPrice: '', eventDurationHours: '', eventMaxPeople: '', eventDescription: '', timeBegin: '' } };
-    $scope.regular = false;
 
     // When an activity is selected in the form
     $scope.activitySelected = function (activity) {
@@ -41,19 +40,6 @@
     $scope.roomSelected = function (room) {
         $('#selectedRoom').attr("placeholder", room.roomName);
         $scope.ponctualEvent.event.roomId = room.roomId;
-    }
-
-    // If user wants to create a ponctual event
-    $scope.ponctualSelected = function () {
-        $('#ponctualSelect').attr("class", "active");
-        $('#regularSelect').attr("class", "");
-        $scope.regular = false;
-    }
-
-    $scope.regularSelected = function () {
-        $('#ponctualSelect').attr("class", "");
-        $('#regularSelect').attr("class", "active");
-        $scope.regular = true;
     }
 
     $scope.createEvent = function () {
