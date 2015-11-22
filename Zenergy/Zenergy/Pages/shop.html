@@ -3,15 +3,14 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-8">
         <ul class="nav navbar-nav">
-            <li><a href="#Shop" ng-click="test()">All</a></li>
-            <li ng-repeat="c in categories"><a href="#Shop" ng-click="test()">{{c.categoryName}}</a></li>
+            <li><a href="#Shop" ng-click="changeFilter('')">All</a></li>
+            <li ng-repeat="c in categories"><a href="#Shop" ng-click="changeFilter(c.categoryId)">{{c.categoryName}}</a></li>
         </ul>
     </div>
 </nav>
 <div class="container ">
     <div class="row">
-
-        <div ng-repeat="p in products" class="col-md-4">
+        <div ng-repeat="p in products | filter:filter" class="col-md-4">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{p.productName}} {{p.productPrice}}€ ( -{{p.memberReduction}}% for the members)</h3>
@@ -22,7 +21,7 @@
                         <br />
                     </div>
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-success btn-xs" ng-click="">Add to cart</button>
+                        <button type="button" class="btn btn-success btn-xs" ng-click="addProduct(p)">Add to cart</button>
                     </div>
                 </div>
             </div>   

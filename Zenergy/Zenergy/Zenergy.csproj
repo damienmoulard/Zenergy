@@ -318,12 +318,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Pages\accountManagement.html" />
+    <Content Include="Pages\cart.html" />
     <Content Include="Pages\products.html" />
     <Content Include="Pages\profile.html" />
     <Content Include="Pages\rooms.html" />
     <Content Include="Pages\shop.html" />
     <Content Include="Pages\users.html" />
     <Content Include="Scripts\Controllers\accountManagementPageController.js" />
+    <Content Include="Scripts\Controllers\cartPageController.js" />
     <Content Include="Scripts\Controllers\homePageController.js" />
     <Content Include="Scripts\Controllers\loginPageController.js" />
     <Content Include="Scripts\Controllers\mainController.js" />

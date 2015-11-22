@@ -11,7 +11,10 @@
 
 
         var Product = $resource('api/products/:productId', { productId: '@id' }, {
-        });
+            update: {		                
+                method: 'PUT' // this method issues a PUT request		
+            }
+         });
 
         $scope.products = Product.query(function () {
         });

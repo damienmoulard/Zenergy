@@ -124,7 +124,7 @@ namespace Zenergy.Controllers.ApiControllers
             return Created("api/users/basket", cartContent);
         }
 
-
+        
         /// <summary>
         /// Validate the basket, clear it and create a purchase.
         /// </summary>
@@ -153,7 +153,7 @@ namespace Zenergy.Controllers.ApiControllers
                 return BadRequest("Your cart is empty!");
             }
             var purchaseContents = new List<purchaseContent>();
-            
+
             foreach (CartContent item in basket)
             {
                 var purchaseContent = new purchaseContent();
@@ -161,6 +161,7 @@ namespace Zenergy.Controllers.ApiControllers
                 purchaseContent.product = item.product;
                 purchaseContent.productQuantity = item.productQuantity;
                 purchaseContents.Add(purchaseContent);
+            }
 
             var purchase = db.purchase.Add(new purchase() { userId = cartContent.userId, purchaseDate = DateTime.Today, user = cartContent.user, purchaseContent = purchaseContents });
 
