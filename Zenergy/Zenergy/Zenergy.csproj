@@ -318,11 +318,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Pages\accountManagement.html" />
-<<<<<<< HEAD
     <Content Include="Pages\eventRegistration.html" />
-=======
     <Content Include="Pages\products.html" />
->>>>>>> 7b0fc49167894c8d6bf1aee2ae8343edb0de60d6
     <Content Include="Pages\profile.html" />
     <Content Include="Pages\rooms.html" />
     <Content Include="Pages\users.html" />
