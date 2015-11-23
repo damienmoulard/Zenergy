@@ -73,6 +73,8 @@ zenergyApp.controller("eventRegistrationPageController", ["$scope", "$http", "to
             }
         }).then(function successCallback(responseEvent) {
             bootbox.alert("You just join this event !");
+        }, function errorCallback(response) {
+            bootbox.alert("You are already registered.");
         });
     };
 
