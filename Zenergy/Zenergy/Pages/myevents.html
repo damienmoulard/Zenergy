@@ -1,0 +1,35 @@
+﻿<h2>My Events</h2>
+
+<div ="container ">
+
+    <date-picker ng-model="dateSelected" format-date="formatDate" on-date-selected="getEvent()"> </date-picker>
+    <h2>{{dateSelected}}</h2>
+    <br />
+    <div class="row">
+        <div>
+            <table class="table">
+                <tr>
+                    <th>Time</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Duration</th>
+                    <th>Price</th>
+                    <th>Register</th> 
+                </tr>
+                <tr ng-repeat="e in events">
+                    <td>{{e.timeBegin}}</td>
+                    <td>{{e.name}}</td>
+                    <td>{{e.description}}</td>
+                    <td>{{e.duration}}</td>
+                    <td>{{e.price}}</td>
+                    <td> <button ng-click="unjoinEvent(e.Id)" class="btn btn-default">Unjoin</button></td>
+
+                </tr>
+
+
+            </table>
+
+        </div>
+    </div>
+</div>
+

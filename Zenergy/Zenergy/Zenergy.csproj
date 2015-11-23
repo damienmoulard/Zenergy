@@ -317,12 +317,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\angular-date-picker.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-ui.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Pages\accountManagement.html" />
+    <Content Include="Pages\eventRegistration.html" />
+    <Content Include="Pages\myEvents.html" />
     <Content Include="Pages\ponctualEventCreation.html" />
     <Content Include="Pages\eventsManagement.html" />
     <Content Include="Pages\cart.html" />
@@ -333,12 +337,23 @@
     <Content Include="Pages\shop.html" />
     <Content Include="Pages\users.html" />
     <Content Include="Scripts\Controllers\accountManagementPageController.js" />
+    <Content Include="Scripts\Controllers\eventRegistrationPageController.js" />
     <Content Include="Scripts\Controllers\cartPageController.js" />
+    <Content Include="Pages\ponctualEventCreation.html" />
+    <Content Include="Pages\eventsManagement.html" />
+    <Content Include="Pages\products.html" />
+    <Content Include="Pages\profile.html" />
+    <Content Include="Pages\regularEventCreation.html" />
+    <Content Include="Pages\users.html" />
+    <Content Include="Scripts\Controllers\accountManagementPageController.js" />
+    <Content Include="Scripts\Controllers\ponctualEventCreationPageController.js" />
+    <Content Include="Scripts\Controllers\eventsManagementPageController.js" />
     <Content Include="Scripts\Controllers\ponctualEventCreationPageController.js" />
     <Content Include="Scripts\Controllers\eventsManagementPageController.js" />
     <Content Include="Scripts\Controllers\homePageController.js" />
     <Content Include="Scripts\Controllers\loginPageController.js" />
     <Content Include="Scripts\Controllers\mainController.js" />
+    <Content Include="Scripts\Controllers\myEventsPagecontroller.js" />
     <Content Include="Scripts\Controllers\productsPageController.js" />
     <Content Include="Scripts\Controllers\registerPageController.js" />
     <Content Include="Scripts\Controllers\profilePageController.js" />
@@ -1166,6 +1181,7 @@
     <Content Include="Scripts\Lib\jquery-1.10.2.js" />
     <Content Include="Scripts\Lib\jquery-1.10.2.min.js" />
     <None Include="Scripts\Lib\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\Lib\jquery-ui.js" />
     <Content Include="Scripts\Lib\jquery.validate.js" />
     <Content Include="Scripts\Lib\jquery.validate.min.js" />
     <Content Include="Scripts\Lib\jquery.validate.unobtrusive.js" />
@@ -1173,6 +1189,7 @@
     <Content Include="Scripts\Lib\modernizr-2.6.2.js" />
     <Content Include="Scripts\Lib\respond.js" />
     <Content Include="Scripts\Lib\respond.min.js" />
+    <Content Include="Scripts\Tools\angular-date-picker.js" />
     <Content Include="Scripts\Lib\ui-bootstrap-tpls-0.14.3.min.js" />
     <Content Include="Scripts\Tools\facebookApiTools.js" />
     <Content Include="Scripts\zenergyApp.js" />

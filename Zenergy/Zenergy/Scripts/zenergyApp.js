@@ -1,4 +1,4 @@
-﻿var zenergyApp = angular.module('zenergyApp', ['ngResource', 'ngRoute', 'ui.bootstrap']);
+var zenergyApp = angular.module('zenergyApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'mp.datePicker']);
 
 zenergyApp.config(function ($routeProvider) {
     $routeProvider
@@ -33,7 +33,11 @@ zenergyApp.config(function ($routeProvider) {
             templateUrl: 'Pages/accountManagement.html',
             controller: 'accountManagementPageController'
         })
-    
+        .when('/Events', {
+            templateUrl: 'Pages/eventRegistration.html',
+            controller: 'eventRegistrationPageController'
+        })
+
         .when('/MyEvents', {
             templateUrl: 'Pages/eventsManagement.html',
             controller: 'eventsManagementPageController'
@@ -42,6 +46,11 @@ zenergyApp.config(function ($routeProvider) {
         .when('/CreateEvent', {
             templateUrl: 'Pages/ponctualEventCreation.html',
             controller: 'ponctualEventCreationPageController'
+        })
+
+        .when('/Products', {
+            templateUrl: 'Pages/products.html',
+            controller: 'productsPageController'
         })
 
         .when('/Rooms', {
