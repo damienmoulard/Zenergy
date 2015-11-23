@@ -11,10 +11,10 @@
 
 
         var Product = $resource('api/products/:productId', { productId: '@id' }, {
-            update: {
-                method: 'PUT' // this method issues a PUT request
+            update: {		                
+                method: 'PUT' // this method issues a PUT request		
             }
-        });
+         });
 
         $scope.products = Product.query(function () {
         });
@@ -86,7 +86,7 @@
 
         $scope.add = function () {
             $scope.showInputs = true;
-            $scope.newProduct = new Product();
+            $scope.newProduct = new Product({productName:''});
         };
 
         $scope.confirm = function () {

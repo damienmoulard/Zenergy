@@ -7,7 +7,7 @@
                     <div class="input-group">
                         <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
 
-                        <input type="text" class="form-control" placeholder="Search for a product" ng-model="searchProduct">
+                        <input type="text" class="form-control" placeholder="Search for a product (by name)" ng-model="searchProduct.productName">
                     </div>
                 </div>
             </form>
@@ -112,7 +112,7 @@
                         <td>{{p.productName}}</td>
                         <td>{{p.productDescr}}</td>
                         <td>{{p.productPrice}} €</td>
-                        <td>{{p.memberReduction}} €</td>
+                        <td>{{p.memberReduction}} %</td>
                         <td>{{p.availableQty}}</td>
                         <td width="100px"><input class="btn btn-primary btn-sm" value="Edit" ng-click="update(p)" /></td>
                         <td width="100px"><input class="btn btn-danger btn-sm" value="Delete" ng-click="delete(p)" /></td>

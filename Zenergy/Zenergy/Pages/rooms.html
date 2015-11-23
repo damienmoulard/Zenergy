@@ -1,0 +1,138 @@
+﻿<div class="container ">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Rooms managment</h2>
+            <form>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+
+                        <input type="text" class="form-control" placeholder="Search for a room (by name)" ng-model="searchRoom.roomName">
+                    </div>
+                </div>
+            </form>
+
+            <script type="text/ng-template" id="deleteRoomContent.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">Are you sur you want to delete room n° {{roomToDelete.roomId}} ?</h3>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                </div>
+            </script>
+
+            <script type="text/ng-template" id="updateRoomContent.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">Edit room n° {{roomToUpdate.roomId}} ?</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="container ">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Name:</label>
+                                    <input type="text" class="form-control" ng-model="roomToUpdate.roomName">
+                                </div>
+                                <div class="form-group">
+                                    <label>Superficy:</label>
+                                    <input type="number" class="form-control" ng-model="roomToUpdate.roomSuperficy">
+                                </div>
+                                <div class="form-group">
+                                    <label>Capacity:</label>
+                                    <input type="number" class="form-control" ng-model="roomToUpdate.maxCapacity">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label>Accessories:</label>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="rc in roomToUpdate.roomContent" id="trAcc{{rc.accessoryId}}">
+                                                <td>{{rc.accessoryId}}</td>
+                                                <td>{{rc.accessory.accessoryName}}</td>
+                                                <td>{{rc.accessoryQuantityInRoom }}</td>
+                                                <td width="20%"><button type="button" class="btn btn-warning btn-block" ng-click="deleteRC(rc)" ><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
+                                            </tr>
+                                            <tr >
+                                        </tbody>
+                                    </table>
+                                    <div ng-show="showInputsAcc" class="form-group">
+                                        <select name="mySelect" id="mySelect"
+                                                ng-options="a.accessoryName for a in accessories"
+                                                ng-model="newRC.accessory"></select>       
+                                        <input placeholder="Quantity" type="number" ng-model="newRC.accessoryQuantityInRoom" />
+                                    </div>
+                                    <button type="button" ng-hide="showInputsAcc" class="btn btn-success btn-sm" ng-click="addRC(rc)" ><span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                                    <input ng-disabled="newRC.accessory==null || newRC.accessoryQuantityInRoom=='' || newRC.accessoryQuantityInRoom==null" ng-show="showInputsAcc" class="btn btn-success btn-sm" value="Add" ng-click="confirmRC()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                </div>
+            </script>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            <a href="" ng-click="sortType = 'roomId' ; sortReverse = !sortReverse">
+                                Room ID
+                                <span ng-show="sortType == 'roomId' && sortReverse" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                                <span ng-show="sortType == 'roomId' && !sortReverse" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="" ng-click="sortType = 'roomName'; sortReverse = !sortReverse">
+                                Name
+                                <span ng-show="sortType == 'roomName' && sortReverse" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                                <span ng-show="sortType == 'roomName' && !sortReverse" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="" ng-click="sortType = 'roomSuperficy'; sortReverse = !sortReverse">
+                                Superficy (m²)
+                                <span ng-show="sortType == 'roomSuperficy' && sortReverse" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                                <span ng-show="sortType == 'roomSuperficy' && !sortReverse" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="" ng-click="sortType = 'maxCapacity'; sortReverse = !sortReverse">
+                                Capacity
+                                <span ng-show="sortType == 'maxCapacity' && sortReverse" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                                <span ng-show="sortType == 'maxCapacity' && !sortReverse" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="r in rooms | orderBy:sortType:sortReverse| filter:searchRoom" id="tr{{r.roomId}}">
+                        <td>{{r.roomId}}</td>
+                        <td>{{r.roomName}}</td>
+                        <td>{{r.roomSuperficy}}</td>
+                        <td>{{r.maxCapacity}}</td>
+                        <td width="100px"><input class="btn btn-primary btn-sm" value="Edit" ng-click="update(r)" /></td>
+                        <td width="100px"><input class="btn btn-danger btn-sm" value="Delete" ng-click="delete(r)" /></td>
+                    </tr>
+                    <tr ng-show="showInputs">
+                        <td></td>
+                        <td><input placeholder="Name" ng-model="newRoom.roomName" /></td>
+                        <td><input placeholder="Superficy" type="number" ng-model="newRoom.roomSuperficy" /></td>
+                        <td><input placeholder="Capacity" type="number" ng-model="newRoom.maxCapacity" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <input ng-hide="showInputs" class="btn btn-success btn-lg" value="Add one" ng-click="add()" />
+            <input ng-disabled="newRoom.roomName=='' " ng-show="showInputs" class="btn btn-success btn-sm" value="Add" ng-click="confirm()" />
+        </div>
+    </div>
+</div>

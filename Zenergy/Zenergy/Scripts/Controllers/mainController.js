@@ -17,19 +17,19 @@
     };
 
     $scope.isAdmin = function () {
-        return tokenService.isAdmin();
+        return tokenService.isAdmin() == "true";
     }
 
     $scope.isManager = function () {
-        return tokenService.isManager();
+        return tokenService.isManager() == "true";
     }
 
     $scope.isContributor = function () {
-        return tokenService.isContributor();
+        return tokenService.isContributor() == "true";
     }
 
     $scope.isMember = function () {
-        return tokenService.isMember();
+        return tokenService.isMember() == "true";
     }
 
     $scope.initRoles = function () {
