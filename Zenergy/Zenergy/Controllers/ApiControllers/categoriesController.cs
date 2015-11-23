@@ -12,6 +12,7 @@ using Zenergy.Models;
 
 namespace Zenergy.Controllers.ApiControllers
 {
+    [Authorize]
     public class categoriesController : ApiController
     {
         private ZenergyContext db = new ZenergyContext();
@@ -36,6 +37,7 @@ namespace Zenergy.Controllers.ApiControllers
         }
 
         // PUT: api/categories/5
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(void))]
         public IHttpActionResult Putcategory(int id, category category)
         {
@@ -72,6 +74,7 @@ namespace Zenergy.Controllers.ApiControllers
 
         // POST: api/categories
         [ResponseType(typeof(category))]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult Postcategory(category category)
         {
             if (!ModelState.IsValid)
@@ -87,6 +90,7 @@ namespace Zenergy.Controllers.ApiControllers
 
         // DELETE: api/categories/5
         [ResponseType(typeof(category))]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult Deletecategory(int id)
         {
             category category = db.category.Find(id);

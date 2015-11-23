@@ -15,6 +15,7 @@ using Zenergy.Models;
 
 namespace Zenergy.Controllers.ApiControllers
 {
+    [Authorize]
     public class accessoriesController : ApiController
     {
         private ZenergyContext db = new ZenergyContext();

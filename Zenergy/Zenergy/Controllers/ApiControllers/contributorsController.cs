@@ -13,6 +13,7 @@ using Zenergy.Models;
 
 namespace Zenergy.Controllers.ApiControllers
 {
+    [Authorize]
     public class contributorsController : ApiController
     {
         private ZenergyContext db = new ZenergyContext();

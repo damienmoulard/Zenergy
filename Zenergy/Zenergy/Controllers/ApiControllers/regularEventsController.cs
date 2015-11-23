@@ -13,6 +13,7 @@ using Zenergy.Models;
 
 namespace Zenergy.Controllers.ApiControllers
 {
+    [Authorize]
     public class regularEventsController : ApiController
     {
         private ZenergyContext db = new ZenergyContext();

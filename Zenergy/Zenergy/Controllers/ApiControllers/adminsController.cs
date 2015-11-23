@@ -13,6 +13,7 @@ using Zenergy.Models;
 
 namespace Zenergy.Controllers.ApiControllers
 {
+    [Authorize]
     public class adminsController : ApiController
     {
         private ZenergyContext db = new ZenergyContext();
@@ -32,6 +33,7 @@ namespace Zenergy.Controllers.ApiControllers
 
         // POST: api/admins
         [ResponseType(typeof(admin))]
+        [Authorize(Roles = "Admin")]
         public async Task<IHttpActionResult> Postadmin(admin admin)
         {
             if (!ModelState.IsValid)
@@ -62,6 +64,7 @@ namespace Zenergy.Controllers.ApiControllers
 
         // DELETE: api/admins/5
         [ResponseType(typeof(admin))]
+        [Authorize(Roles = "Admin")]
         public async Task<IHttpActionResult> Deleteadmin(int id)
         {
             admin admin = await db.admin.FindAsync(id);

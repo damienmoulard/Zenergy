@@ -13,6 +13,7 @@ using Zenergy.Models;
 
 namespace Zenergy.Controllers.ApiControllers
 {
+    [Authorize]
     public class managersController : ApiController
     {
         private ZenergyContext db = new ZenergyContext();
@@ -62,6 +63,7 @@ namespace Zenergy.Controllers.ApiControllers
 
         // DELETE: api/managers/5
         [ResponseType(typeof(manager))]
+        [Authorize(Roles = "Admin")]
         public async Task<IHttpActionResult> Deletemanager(int id)
         {
             manager manager = await db.manager.FindAsync(id);

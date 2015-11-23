@@ -14,7 +14,8 @@ using Zenergy.Services;
 
 namespace Zenergy.Controllers.ApiControllers
 {
-   // [RoutePrefix("api/events")]
+    // [RoutePrefix("api/events")]
+    [Authorize]
     public class eventRegistrationsController : ApiController
     {
         private ZenergyContext db = new ZenergyContext();

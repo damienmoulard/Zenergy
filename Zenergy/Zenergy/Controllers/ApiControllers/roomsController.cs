@@ -15,6 +15,7 @@ using Zenergy.Models;
 
 namespace Zenergy.Controllers.ApiControllers
 {
+    [Authorize]
     public class roomsController : ApiController
     {
         private ZenergyContext db = new ZenergyContext();
@@ -58,6 +59,7 @@ namespace Zenergy.Controllers.ApiControllers
         /// <returns></returns>
         // PUT: api/rooms/5
         [ResponseType(typeof(void))]
+        [Authorize(Roles = "Admin")]
         public async Task<IHttpActionResult> Putroom(int id, room room)
         {
             if (!ModelState.IsValid)
@@ -99,6 +101,7 @@ namespace Zenergy.Controllers.ApiControllers
         /// <returns></returns>
         // POST: api/rooms
         [ResponseType(typeof(room))]
+        [Authorize(Roles = "Admin")]
         public async Task<IHttpActionResult> Postroom(room room)
         {
             if (!ModelState.IsValid)
@@ -119,6 +122,7 @@ namespace Zenergy.Controllers.ApiControllers
         /// <param name="id"></param>
         /// <returns></returns>
         // DELETE: api/rooms/5
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(room))]
         public async Task<IHttpActionResult> Deleteroom(int id)
         {

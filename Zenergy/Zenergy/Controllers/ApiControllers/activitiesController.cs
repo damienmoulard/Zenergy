@@ -61,6 +61,7 @@ namespace Zenergy.Controllers.ApiControllers
 
         // PUT: api/activities/5
         [ResponseType(typeof(void))]
+        [Authorize(Roles = "Manager")]
         public IHttpActionResult Putactivity(int id, activity activity)
         {
             if (!ModelState.IsValid)
@@ -96,6 +97,7 @@ namespace Zenergy.Controllers.ApiControllers
 
         // POST: api/activities
         [ResponseType(typeof(activity))]
+        [Authorize(Roles = "Manager")]
         public IHttpActionResult Postactivity(activity activity)
         {
             if (!ModelState.IsValid)
@@ -111,6 +113,7 @@ namespace Zenergy.Controllers.ApiControllers
 
         // DELETE: api/activities/5
         [ResponseType(typeof(activity))]
+        [Authorize(Roles = "Manager")]
         public IHttpActionResult Deleteactivity(int id)
         {
             activity activity = db.activity.Find(id);

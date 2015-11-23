@@ -14,6 +14,7 @@ using Zenergy.Services;
 
 namespace Zenergy.Controllers.ApiControllers
 {
+    [Authorize]
     public class ponctualEventsController : ApiController
     {
         private ZenergyContext db = new ZenergyContext();
